@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  
+}
+
+#orderHistoryComponent{
+        display: flex;
+        width: min(100vw, 1200px);
+        overflow: hidden;
+        
+        
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 15px;
+        padding-bottom: 10px;
+        padding-top: 5px;
+        min-height: 20.5vh;
+        font-family: 'Noto Sans JP', sans-serif;
+        /* align-items: center; */
+      }
+
+#orderHistoryHeader{
+    display: flex;
+    width: 100%;
+    height: 7vh;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid  rgb(231, 226, 226);
+    margin-bottom: 10px;
+ 
+}
+
+#orderIdColumn,#orderDateColumn,#orderAmountColumn,#orderStatusColumn,#orderViewColumn{
+display: flex;
+width: 20%;
+justify-content: center;
+align-items: center;
+font-size: large;
+}
+
+.ordersTemplate{
+    display: flex;
+
+    width: 100%;
+    height: 10vh;
+    /* margin-bottom: 10px; */
+    border-bottom: 2px solid lightgray;
+    
+}
+#orderId,#orderDate,#orderAmount,#orderStatus,#orderView{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    font-size: 20px;
+}
+#orderId{
+  font-size: 15px;
+  color: rgb(121, 121, 121);
+}
+
+#orderDate{
+width: 20%;
+color: rgb(92, 205, 250);
+
+
+}
+#orderAmount{
+width: 20%;
+color: rgb(20, 190, 20);
+}
+#orderStatus{
+width: 20%;
+}
+#orderView{
+width: 20%;
+height: 100%;
+}
+
+#orderView button{  
+  width: 150px;
+  height: 40px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: rgba(150, 177, 252, 0.849);
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  transition: all ease 0.3s;}
+
+  #orderView button:hover{
+    box-shadow: 5px 5px rgb(165, 165, 165);
+    /* filter: contrast(150%); */
+    background-color: rgba(38, 216, 38, 0.747);
+  }
+  #orderView button:active{
+    scale: 0.9;
+  }
+
+
+  @media screen and (max-width: 780px) {
+
+    #orderHistoryComponent{
+     
+      width: 100%;
+    
+      margin: 0px;
+     
+    
+      padding: 15px;
+      padding-bottom: 10px;
+      padding-top: 5px;
+      min-height: 20.5vh;
+     
+      /* align-items: center; */
+    }
+
+    #orderIdColumn,#orderDateColumn,#orderAmountColumn,#orderStatusColumn,#orderViewColumn{
+    
+      width: 25%;
+    
+      font-size: 15px;
+      }
+      #orderIdColumn{
+        display: none;
+      }
+      #orderId{
+        display: none;
+      }
+
+      #orderDate,#orderAmount,#orderStatus,#orderView{
+       
+        width: 25%;
+        font-size: 14px;
+    }
+
+    .ordersTemplate{
+      height: 70px;
+ 
+    }
+
+    #orderView button{  
+      width: 90%;
+      height: 35px;
+     
+    
+     
+      font-size: 13px;
+    }
+
+    #orderView button:hover{
+        box-shadow: 0px 0px;
+        /* filter: contrast(150%); */
+        background-color: rgba(150, 177, 252, 0.849);
+      }
+      #orderView button:active{
+        scale: 0.9;
+      }
+  }

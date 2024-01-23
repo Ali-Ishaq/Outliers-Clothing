@@ -1,0 +1,370 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  /* overflow: hidden; */
+  font-family: "Lato", sans-serif;
+}
+
+
+div#header {
+  display: flex;
+  width: 100vw;
+  height: 15vh;
+  background: white;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  z-index: 4;
+  /* border-bottom: 2px solid rgb(231, 226, 226); */
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+  /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35); */
+  box-shadow: 0 5px 5px -5px #00000060;
+
+  transition: ease-in-out 0.6s;
+
+}
+
+div#header-1 {
+  display: flex;
+  width: 100vw;
+  background: #000;
+  /* flex: 4; */
+  color: white;
+  height: 30%;
+}
+div#announcement {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  /* font-weight: 600; */
+  font-size: 0.9rem;
+}
+div#faqs {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  
+}
+a.navigations {
+  text-decoration: none;
+  color: white;
+  padding-right: 50px;
+  font-size: 0.9rem;
+}
+select.navigations {
+  color: white;
+  background: #000;
+  border: 0px;
+  font-size: medium;
+}
+
+div#header-2 {
+  display: flex;
+  width: 100vw;
+  /* flex: 8; */
+  height: 70%;
+  
+  /* border: 1px solid black; */
+  justify-content: center;
+  background-color: white;
+  /* align-items: center; */
+  
+  
+}
+div#logo {
+  display: flex;
+  
+  width: 25% ;
+
+  justify-content: center;
+  align-items: center;
+}
+div#navbar-elems {
+  display: flex;
+  /* flex: 1; */
+  flex-direction: row;
+  width: 50% ;
+  /* border: 1px solid black; */
+}
+ul#navlinks{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+li.navlinks   {
+  position: relative;
+    list-style: none;
+    display: flex;
+    /* height: 100%; */
+    /* align-items: center; */
+
+    
+    
+}
+li.navlinks ::after{
+  content: '';
+  position: absolute;
+  left:0;
+  bottom:0;
+height: 2px;
+
+width: 0;
+background: #000;
+display: flex;
+margin-top: 3px;
+transition: all ease 0.5s;
+transform: translateY(3px);
+}
+
+li.navlinks :hover::after{
+  width: 100%;
+}
+
+li.navlinks a{
+  font-size: large;
+    font-weight: 600 ;
+    text-decoration: none;
+    color: black;
+}
+div#cart {
+  display: flex;
+  
+  justify-content: space-around;
+  align-items: center;
+ width: 25% ;
+/* overflow: scroll; */
+  /* border: 1px solid black; */
+  
+}
+
+
+div#cart-icon{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+div#cart-counter{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    transform: translate(17px,-17px);
+    /* transform: translateY(-20px); */
+    background: black;
+    border-radius: 50%;
+    /* border: 1px solid black; */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    font-weight: bold;
+
+}
+
+
+/*@media (max-width: 450px) {
+  div#header-1{
+    display: none;
+  }
+  div#header-2{
+    height: 100%;
+  
+    background-color: chartreuse;
+    overflow-x: scroll;
+    width: 100%;
+  }
+  div#logo {
+    width: 50%;
+    overflow: hidden;
+  }
+  div#navbar-elems{
+    width: 40%;
+    overflow: hidden;
+  }
+  #cart{
+    width: 10%;
+    overflow: hidden;
+    background-color: black;
+  }
+
+  div#header {
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+    background: red;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    z-index: 4;
+    border-bottom: 2px solid rgb(231, 226, 226);
+  }
+
+
+} */
+
+
+
+/* For screens with a width less than 450px (mobile devices) */
+@media (max-width: 780px) {
+  div#header-1 {
+    display: none; 
+    
+  }
+
+  div#header {
+    height: 8.6vh !important; /* Adjust the overall header height */
+    /* border-bottom: 2px solid lightgray !important; */
+ 
+  }
+
+  div#header-2 {
+   
+    height: 100% !important; /* Adjust the height of header-2 to fill the available space */
+    position: relative;
+    
+  }
+  
+
+
+  div#logo {
+    width: 33%; /* Adjust the logo width */
+    text-align: center; /* Center the logo */
+  }
+
+  div#hamburgerMenu{
+    display: flex !important;
+    width: 33% !important;
+   
+    justify-content: flex-start;
+    padding: 20px;
+    align-items: center;
+  }
+
+  div#navbar-elems {
+    /* Adjust the navbar-elems width */
+    justify-content: space-between; /* Center the navbar elements */
+    display:  flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(241, 239, 239);
+    
+    height: 100dvh;
+    width: 0;
+    z-index: 10;
+    overflow: hidden;
+    transition: 0.2s all ease;
+    
+    
+  }
+  #hamBurgerLogo{
+    height: 9.45%;
+    width: 80vw;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 20px 0; */
+    border-bottom: 2px solid lightgray;
+    position: relative;
+  }
+  
+  div#navbar-elems ul#navlinks{
+    flex-direction: column;
+    height: 40%;
+    width: 80vw;
+  }
+  div#navbar-elems ul#navlinks li a{
+    font-size: large;
+    
+  }
+
+  #userAccountLink{
+    border-top: 2px solid lightgray;
+    height: 10%;
+    width: 80vw;
+  
+
+  }
+
+  ul#navlinks {
+    justify-content: space-between; /* Space the navigation links */
+  }
+
+  li.navlinks::after {
+    display: none; /* Hide the underline on navigation links */
+  }
+
+  li.navlinks a {
+    font-size: medium; /* Adjust the font size of the navigation links */
+  }
+
+  div#cart {
+    width: 33%; /* Full width for the cart */
+    padding: 0;
+    justify-content: flex-end;
+    padding-right: 20px; /* Remove horizontal padding */
+
+   
+   
+  }
+  .search-wishicons{
+    display: none;
+  }
+
+  div#cart-counter {
+    height: 18px;
+    width: 18px;
+    transform: translate(15px, -15px); /* Adjust the position of the cart counter */
+  }
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#AdminLogIn {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+#logInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logInFormDivs {
+  width: 300px;
+  /* background-color: skyblue; */
+  height: 70px;
+  margin-bottom: 10px;
+}
+.loginformHeading {
+  margin-bottom: 5px;
+}
+.loginformError {
+  color: red;
+  font-size: 13px;
+}
+.logInFormDivs input {
+  width: 100%;
+  height: 30px;
+  padding: 8px;
+}
+
+button#adminLoginSubmit {
+  width: 220px;
+  height: 40px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: rgba(150, 177, 252, 0.849);
+  color: white;
+  margin-top: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  transition: all ease 0.3s;
+}
+
+button#adminLoginSubmit:hover {
+  box-shadow: 5px 5px rgb(165, 165, 165);
+
+  background-color: rgba(38, 216, 38, 0.747);
+}
+button#adminLoginSubmit:active {
+  scale: 0.9;
+}
+
+@media screen and (max-width: 450px) {
+  #AdminLogIn {
+    transform: translateY(-60px);
+  }
+
+  .logInFormDivs {
+    width: 250px;
+  }
+  button#adminLoginSubmit:hover {
+    box-shadow: 0px 0px;
+    background-color: rgba(150, 177, 252, 0.849);
+  }
+}

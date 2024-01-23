@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+
+}
+
+#reviewComponent{
+    display: flex;
+    justify-self: center;
+    min-height:86.5vh;
+    width: 35%;
+    background-color: transparent;
+    margin: 25px ;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    /* padding: 10px; */
+
+}
+
+#orderName{
+ 
+  padding: 10px 0 10px 10px;
+}
+
+#orderName p{
+  font-size: 20px;
+  color: rgb(124, 124, 124);
+}
+
+#reviewContainer{
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    padding-bottom: 0px;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    background-color: white;
+    border-radius: 10px;
+}
+button#addReviewBtn{
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: rgba(150, 177, 252, 0.849);
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  transition: all ease 0.3s;
+}
+
+
+
+button#addReviewBtn:hover{
+    box-shadow: 5px 5px rgb(165, 165, 165);
+    /* filter: contrast(150%); */
+    background-color: rgba(38, 216, 38, 0.747);
+  }
+  button#addReviewBtn:active{
+    scale: 0.9;
+  }
+@media screen and (max-width: 450px) {
+  #reviewComponent{
+    display: flex;
+    justify-self: center;
+    min-height:86.5vh;
+    width: 100%;
+    background-color: transparent;
+    margin: 25px ;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 5px;
+
+}
+
+#orderName p{
+  font-size: 15px;
+  color: rgb(124, 124, 124);
+}
+#orderName{
+ 
+  padding: 10px 0 10px 10px;
+  margin-bottom: 10px;
+}
+
+#reviewContainer{
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  padding-bottom: 0px;
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
+button#addReviewBtn{
+  width: 100%;
+  height: 30px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: rgba(150, 177, 252, 0.849);
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  transition: all ease 0.3s;
+}
+
+
+
+button#addReviewBtn:hover{
+    box-shadow: none;
+    /* filter: contrast(150%); */
+    background-color:rgba(150, 177, 252, 0.849);
+  }
+  button#addReviewBtn:active{
+    scale: 0.8;
+    background-color: rgba(38, 216, 38, 0.747);
+  }
+}

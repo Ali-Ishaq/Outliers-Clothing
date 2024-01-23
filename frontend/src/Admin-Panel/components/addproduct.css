@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+
+}
+
+
+#addProductComp{
+    
+    /* width: 100vw; */
+    /* height: 100vh; */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+
+
+
+}
+
+#addProductComp form{
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:   transparent;
+    
+}
+
+.inputFieldDiv{
+    /* background-color: skyblue; */
+    height: 90px;
+    width: 400px;
+   
+}
+
+.fieldHeading{
+margin-bottom: 5px;
+font-size: large;
+}
+
+.errorMsg{
+    color: red;
+    font-size: 13px;
+    margin-top: 2px;
+}
+.inputFieldDiv input ,textarea,select.category {
+    width: 100%;
+    height: 40%;
+    padding-left: 10px;
+    border-radius: 0px;
+    border: 1px solid darkgray;
+}
+
+#productDescription{
+    height: 260px;
+}
+
+textarea{
+    width: 100%;
+    height: 200px;
+    font-size: 15px;
+    padding: 8px;
+    display: flex;
+    resize: none;
+    }
+
+button#AddProductBtn{
+    width: 250px;
+  height: 50px;
+  border: 0px;
+  border-radius: 3px;
+  background-color: rgba(150, 177, 252, 0.849);
+  color: white;
+  margin-top: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  transition: all ease 0.3s;
+  }
+
+  
+  button#AddProductBtn:hover{
+    box-shadow: 5px 5px rgb(165, 165, 165);
+    /* filter: contrast(150%); */
+    background-color: rgba(38, 216, 38, 0.747);
+
+  }
+  button#AddProductBtn:active{
+    scale: 0.9;
+  }
+
+  @media screen and (max-width: 450px) {
+    .errorMsg{
+        font-size: 13px;
+    }
+    
+    button#AddProductBtn:hover{
+        box-shadow: 0px 0px;
+        /* filter: contrast(150%); */
+       
+        background-color:rgba(150, 177, 252, 0.849);
+    }
+    #addProductComp form{
+        width: 100%;
+        height: 100%;
+        background-color:  rgba(255, 232, 253, 0.425);
+    }
+    .inputFieldDiv{
+        /* background-color: skyblue; */
+        height: 90px;
+        width: 90%;
+       
+    }
+  }

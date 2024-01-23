@@ -1,0 +1,75 @@
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&family=Noto+Sans+Old+Permic&family=Tourney:ital,wght@0,100;0,900;1,900&display=swap');
+
+
+*{
+    
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Lato", sans-serif;
+  
+
+
+}
+
+
+div.App{
+background-color: rgb(231, 226, 226);
+/* background-color: white; */
+  min-height:86.5vh;
+ max-width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  
+  margin-top: 15vh;
+  
+
+
+}
+
+div#cartstatus{
+  position: fixed;
+  z-index: 3;
+  bottom: 7%;
+  background:  rgba(31, 221, 212, 0.808);
+  width: 400px;
+  /* font-size: large; */
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:black;
+  /* font-weight: bold; */
+  font-size: larger;
+  letter-spacing: 1.5px;
+  /* text-shadow: 1px 1px 5px green; */
+  /* box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.664); */
+  /* text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.582); */
+  box-shadow: rgba(0, 0, 0, 0.685) 1px 1px 5px;
+  border-radius: 60px;
+}
+
+
+@media (max-width: 780px) {
+
+  div.App{
+ 
+    margin-top: 8.6vh;
+      min-height:90vh;
+    }
+
+      div#cartstatus{
+        width: 80vw;
+        background-color:  rgba(24, 218, 208, 0.89);
+      }
+}
+
+

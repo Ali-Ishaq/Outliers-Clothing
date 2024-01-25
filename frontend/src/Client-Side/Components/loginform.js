@@ -103,7 +103,7 @@ function Loginform({ cartdata, userprevCart }) {
     <div id="login_form_parent">
       <div id="login_form">
         <div id="bigimg">
-          <img src="loginPageImg.jpg" alt="" />
+          <img src="https://res.cloudinary.com/drwizlf0y/image/upload/v1706214540/TrendFlare/luis-felipe-lins-LG88A2XgIXY-unsplash_v3s4gk.jpg" alt="" />
         </div>
 
         {!isUserLogged && (

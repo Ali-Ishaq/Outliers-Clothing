@@ -112,9 +112,9 @@ export default function CheckOut({ cartdata, carttotal }) {
             >
               <div
                 id="orderCartViewImg"
-                style={{ height: "100%", width: "15%", overflow: "hidden" }}
+                style={{ height: "100%", aspectRatio:'1/1', overflow: "hidden" ,display:'flex',justifyContent:'center',alignItems:'center'}}
               >
-                <img src={e.CartImg} alt="" />
+                <img  src={e.CartImg} alt="" style={{width:'100%'}}/>
               </div>
 
               <div

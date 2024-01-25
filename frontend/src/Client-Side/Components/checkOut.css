@@ -9,15 +9,17 @@
 div#CheckOutPage {
   display: flex;
   width: 100vw;
-  
+  flex-direction: column;
   min-height: 86.5vh;
   padding: 30px;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 div#orderOverview {
-  width: 30%;
-  height: 80vh;
+  width: 500px;
+
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -71,8 +73,8 @@ div#dueAmount {
 }
 
 div#checkOutDetails {
-  width: 30%;
-  height: 80vh;
+  width: 500px;
+  
   background-color: white;
   padding: 35px 30px 25px 30px;
   display: flex;
@@ -230,8 +232,8 @@ div#checkOutCard {
   flex-direction: column;
   /* background-image: linear-gradient(to right, #fc5c7d, #6a82fb); */
   background-color: white;
-  width: 30%;
-  height: 80vh;
+  width: 500px;
+
   padding: 40px 30px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 18px;
@@ -275,6 +277,7 @@ button#loadPaymentIntent {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 10px;
+    gap: 0px;
     
   }
 

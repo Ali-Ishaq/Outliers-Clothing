@@ -1,17 +1,18 @@
 div#cartUI {
   display: flex;
-  height: 15vh;
+  height: 18vh;
 
   width: 100%;
   /* background-color: rgb(231, 226, 226); */
   margin-bottom: 15px;
 }
 #front-layer {
+  border-radius: 10px;
   width: 100%;
   height: 100%;
   display: flex;
   border-bottom: 1px solid rgb(231, 226, 226);
-
+overflow: hidden;
   background-color: "white";
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Outer box shadow for prominence */
 }

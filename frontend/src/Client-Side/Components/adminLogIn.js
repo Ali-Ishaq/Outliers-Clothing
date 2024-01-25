@@ -4,34 +4,27 @@ import "./adminLogIn.css";
 import { logInFormSchema } from "./formSchemas/loginFormSchema";
 import { useNavigate } from "react-router-dom";
 function AdminLogIn({ setAccess }) {
-
-
-  const navigate =useNavigate()
-
-
+  const navigate = useNavigate();
 
   const checkCredentials = async (obj) => {
-   
-    const response = await fetch(`http://192.168.0.129:3000/users/adminlogin`, {
-      method: "POST",
-      credentials:"include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(obj),
-    });
+    const response = await fetch(
+      `https://trend-flare-apparel-store-api.vercel.app/users/adminlogin`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(obj),
+      }
+    );
 
-    const {status,username}=await response.json()
-    if(status==='success'){
-     console.log('success')
-     setAccess(true)
-     
-     
-    }else{
-      console.log(status)
+    const { status, username } = await response.json();
+    if (status === "success") {
+      console.log("success");
+      setAccess(true);
+    } else {
+      console.log(status);
     }
   };
-
-
-  
 
   const initialValues = {
     username: "",
@@ -43,9 +36,7 @@ function AdminLogIn({ setAccess }) {
       initialValues: initialValues,
       validationSchema: logInFormSchema,
       onSubmit: (values) => {
-     
-        checkCredentials(values)
-
+        checkCredentials(values);
       },
     });
 

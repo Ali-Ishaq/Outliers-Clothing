@@ -4,8 +4,7 @@ import "./productcard.css";
 import "./loader.css";
 import { dispatchContext } from "../Contexts/dispatchContext";
 import { useParams } from "react-router-dom";
-import { FaChevronDown,FaChevronUp } from "react-icons/fa6";
-
+import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 
 function ProductCard({ productsDb }) {
   const [product, setProduct] = useState(null);
@@ -17,7 +16,9 @@ function ProductCard({ productsDb }) {
 
   useEffect(() => {
     const getOneProduct = async () => {
-      const response = await fetch(`http://192.168.0.129:3000/products/${id}`);
+      const response = await fetch(
+        `https://trend-flare-apparel-store-api.vercel.app/products/${id}`
+      );
       const data = await response.json();
       setProduct(data.data);
 
@@ -57,7 +58,8 @@ function ProductCard({ productsDb }) {
                     height: "100%",
                     position: "relative",
                     display: "flex",
-                    WebkitMaskImage: "url('https://res.cloudinary.com/drwizlf0y/image/upload/v1704897004/TrendFlare/rating_ai8xvg.png')",
+                    WebkitMaskImage:
+                      "url('https://res.cloudinary.com/drwizlf0y/image/upload/v1704897004/TrendFlare/rating_ai8xvg.png')",
                     WebkitMaskSize: "100%",
                     WebkitMaskRepeat: "no-repeat",
                   }}
@@ -91,10 +93,12 @@ function ProductCard({ productsDb }) {
               <div id="stars"></div>
             </div> */}
 
-            <div id="productdescription"
-             onClick={() => {
-                    setShowDescription((prev) => !prev);
-                  }}>
+            <div
+              id="productdescription"
+              onClick={() => {
+                setShowDescription((prev) => !prev);
+              }}
+            >
               <span
                 style={{
                   marginBottom: "8px",
@@ -105,11 +109,8 @@ function ProductCard({ productsDb }) {
                 }}
               >
                 <p style={{ fontSize: "120%" }}>DETAILS</p>
-                <span
-                  
-                  style={{display:'flex',alignItems:'center'}}
-                >
-                  {showDescription ? <FaChevronUp/> : <FaChevronDown/>}
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  {showDescription ? <FaChevronUp /> : <FaChevronDown />}
                 </span>
               </span>
               <p
@@ -129,7 +130,7 @@ function ProductCard({ productsDb }) {
           </div>
         </>
       ) : (
-        <div className="defautloader-container" >
+        <div className="defautloader-container">
           <div class="defautloader"></div>
         </div>
       )}

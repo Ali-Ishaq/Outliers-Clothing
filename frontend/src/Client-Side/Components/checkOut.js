@@ -32,7 +32,7 @@ export default function CheckOut({ cartdata, carttotal }) {
     userId: userProfile._id,
     formData: formData,
   };
-  console.log(cartdata)
+  console.log(cartdata);
 
   const initialValues = {
     firstname: "",
@@ -66,11 +66,14 @@ export default function CheckOut({ cartdata, carttotal }) {
   const loadPaymentIntent = () => {
     console.log(requestBody);
     // Create PaymentIntent as soon as the page loads
-    fetch("http://192.168.0.129:3000/products/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestBody),
-    })
+    fetch(
+      "https://trend-flare-apparel-store-api.vercel.app/products/create-payment-intent",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   };

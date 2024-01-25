@@ -15,7 +15,7 @@ function Review() {
       const getOrdersfromDB = async () => {
         try {
           const response = await fetch(
-            `http://192.168.0.129:3000/orders/deliveredOrders/${userProfile._id}`
+            `https://trend-flare-apparel-store-api.vercel.app/orders/deliveredOrders/${userProfile._id}`
           );
           const { deliveredOrders } = await response.json();
           console.log(deliveredOrders);
@@ -29,12 +29,11 @@ function Review() {
     }
     console.log(isUserLogged);
   }, []);
-  console.log(deliveredOrders)
+  console.log(deliveredOrders);
   return (
     <div id="reviewComponent">
       {deliveredOrders &&
         deliveredOrders.map((order, index) => {
-          
           return (
             <div key={index} id="reviewContainer">
               <div
@@ -57,8 +56,8 @@ function Review() {
                 }}
               >
                 {order.orderItems.map((item, index) => {
-                  return (
-                   item.isProductreviewed===true?(null):( <div
+                  return item.isProductreviewed === true ? null : (
+                    <div
                       key={index}
                       style={{
                         height:
@@ -84,9 +83,9 @@ function Review() {
                     >
                       <div
                         style={{
-                          display:'flex',
-                          justifyContent:'center',
-                          alignItems:'center',
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
 
                           height: "100%",
                           width:
@@ -94,7 +93,11 @@ function Review() {
                           overflow: "hidden",
                         }}
                       >
-                        <img style={{width:'100%'}} src={item.CartImg} alt="" />
+                        <img
+                          style={{ width: "100%" }}
+                          src={item.CartImg}
+                          alt=""
+                        />
                       </div>
 
                       <div
@@ -138,7 +141,7 @@ function Review() {
                           Review
                         </button>
                       </div>
-                    </div>)
+                    </div>
                   );
                 })}
               </div>

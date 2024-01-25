@@ -17,36 +17,29 @@ import OrderHistory from "./Components/orderHistory";
 import OrderDetails from "./Components/orderDetails";
 import Review from "./Components/review";
 import AddReview from "./Components/addReview";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import HomePage from "./Components/HomePage";
-
 
 function ClientSide() {
   const [productsDb, setProductsDb] = useState([]);
   const [carttotal, setCarttotal] = useState(0);
-  
+
   const [userProfile, setUserProfile] = useState(null);
   const [isUserLogged, setIsUserLogged] = useState(null);
-  const logOutFunction = () => {
-    
-  };
+  const logOutFunction = () => {};
 
   const [productPageId, setProductPageId] = useState();
   const [showmsg, setshowmsg] = useState([false, ""]);
 
-  const toastNotification=(msg)=>{
-    toast(msg)
-  }
+  const toastNotification = (msg) => {
+    toast(msg);
+  };
 
   const cartReducer = (cartdata, action) => {
     switch (action.type) {
       case "updateCart":
-
-
-
-
         let img = action.payload.img;
         let name = action.payload.name;
         let price = action.payload.price;
@@ -62,12 +55,14 @@ function ClientSide() {
         };
 
         if (!cartdata.some((p) => p.id == action.payload.id)) {
-          toastNotification('Added to Cart')
+          toastNotification("Added to Cart");
           return [...cartdata, newcartitem];
         } else if (cartdata.some((p) => p.id == action.payload.id)) {
-          toastNotification('Quantity Adjusted')
+          toastNotification("Quantity Adjusted");
 
-          const index1 = cartdata.findIndex((obj) => obj.id === action.payload.id);
+          const index1 = cartdata.findIndex(
+            (obj) => obj.id === action.payload.id
+          );
 
           const updatedquantity = cartdata.map((obj, index) =>
             index === index1 ? { ...obj, quantity: obj.quantity + 1 } : obj
@@ -91,7 +86,10 @@ function ClientSide() {
       case "decreaseCartQuantity":
         return cartdata.map((obj, index) =>
           obj.id === action.payload
-            ? { ...obj, quantity:(obj.quantity>1)?(obj.quantity - 1):(obj.quantity)} 
+            ? {
+                ...obj,
+                quantity: obj.quantity > 1 ? obj.quantity - 1 : obj.quantity,
+              }
             : obj
         );
 
@@ -114,25 +112,22 @@ function ClientSide() {
   useEffect(() => {
     if (isUserLogged) {
       try {
-        
-             
         const updateCartOnDb = async () => {
-          const updatedCart =cartdata.map((item)=>{
-            return{
-              product_id:item.id,
-              quantity:item.quantity
-            }
-          })
-          
+          const updatedCart = cartdata.map((item) => {
+            return {
+              product_id: item.id,
+              quantity: item.quantity,
+            };
+          });
+
           console.log("fetching.....");
           const response = await fetch(
-            `http://192.168.0.129:3000/cart/updatecart`,
+            `https://trend-flare-apparel-store-api.vercel.app/cart/updatecart`,
             {
-
               method: "POST",
               body: JSON.stringify(updatedCart),
               headers: { "Content-Type": "application/json" },
-              credentials:'include',
+              credentials: "include",
             }
           );
         };
@@ -147,21 +142,20 @@ function ClientSide() {
     try {
       const checkAuth = async () => {
         const response = await fetch(
-          "http://192.168.0.129:3000/users/checkAuth",
+          "https://trend-flare-apparel-store-api.vercel.app/users/checkAuth",
           {
             credentials: "include",
           }
         );
-        const {user,cart} = await response.json();
+        const { user, cart } = await response.json();
 
         if (response.status === 200) {
           // console.log(data.user)
-          
 
-          cartDispatch({ type: "userCartDB", payload:cart });
+          cartDispatch({ type: "userCartDB", payload: cart });
           setIsUserLogged(true);
           setUserProfile(user);
-          console.log(user)
+          console.log(user);
         } else {
           console.log("not Authorizeddddd");
           setIsUserLogged(false);
@@ -172,8 +166,6 @@ function ClientSide() {
       console.log(error);
     }
   }, []);
-
-  
 
   function clearCart() {
     cartDispatch({ type: "clearCart" });
@@ -189,8 +181,6 @@ function ClientSide() {
       setCarttotal((cartsub += totalprice_Array[i]));
     }
   }, [cartdata]);
-
-  
 
   return (
     <>
@@ -209,89 +199,76 @@ function ClientSide() {
               <hooksContext.Provider
                 value={{ productPageId, setProductPageId }}
               >
-               
-                  <Header cartlength={cartdata.length}></Header>
+                <Header cartlength={cartdata.length}></Header>
 
-                  <Routes>
+                <Routes>
+                  <Route exact path="/" element={<HomePage />} />
+                  <Route
+                    exact
+                    path="/products/:category"
+                    element={<Products productsDb={productsDb}></Products>}
+                  />
 
+                  <Route
+                    path="/cart"
+                    element={
+                      <Cart
+                        carttotal={carttotal}
+                        cartdata={cartdata}
+                        clearCart={clearCart}
+                      ></Cart>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/checkout"
+                    element={
+                      <CheckOut
+                        cartdata={cartdata}
+                        carttotal={carttotal}
+                      ></CheckOut>
+                    }
+                  />
 
-                    <Route
-                      exact
-                      path="/"
-                      element={<HomePage/>}
-                    />
-                    <Route
-                      exact
-                      path="/products/:category"
-                      element={<Products productsDb={productsDb}></Products>}
-                    />
-                    
-                    <Route
-                      
-                      path="/cart"
-                      element={
-                        <Cart
-                          carttotal={carttotal}
-                          cartdata={cartdata}
-                          clearCart={clearCart}
-                        ></Cart>
-                      }
-                    />
-                    <Route
-                      exact
-                      path="/checkout"
-                      element={
-                        <CheckOut
-                          cartdata={cartdata}
-                          carttotal={carttotal}
-                        ></CheckOut>
-                      }
-                    />
+                  <Route
+                    path="/productcard/:id"
+                    element={
+                      <ProductCard productsDb={productsDb}></ProductCard>
+                    }
+                  />
 
-                    <Route
-                      path="/productcard/:id"
-                      element={
-                        <ProductCard productsDb={productsDb}></ProductCard>
-                      }
-                    />
+                  <Route
+                    exact
+                    path="/loginform"
+                    element={
+                      <Loginform
+                        cartdata={cartdata}
+                        // userprevCart={userprevCart}
+                      ></Loginform>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/orders"
+                    element={<OrderHistory></OrderHistory>}
+                  />
 
-                    <Route
-                      exact
-                      path="/loginform"
-                      element={
-                        <Loginform
-                          cartdata={cartdata}
-                          // userprevCart={userprevCart}
-                        ></Loginform>
-                      }
-                    />
-                    <Route
-                      exact
-                      path="/orders"
-                      element={<OrderHistory></OrderHistory>}
-                    />
-
-                    <Route
-                      exact
-                      path="/orders/:id"
-                      element={<OrderDetails></OrderDetails>}
-                    />
-                    <Route exact path="/review" element={<Review></Review>} />
-                    <Route
-                      exact
-                      path="/review/:orderId/:productId"
-                      element={<AddReview></AddReview>}
-                    />
-                    
-                  </Routes>
-                  
-                
-
-                
+                  <Route
+                    exact
+                    path="/orders/:id"
+                    element={<OrderDetails></OrderDetails>}
+                  />
+                  <Route exact path="/review" element={<Review></Review>} />
+                  <Route
+                    exact
+                    path="/review/:orderId/:productId"
+                    element={<AddReview></AddReview>}
+                  />
+                </Routes>
               </hooksContext.Provider>
             </userContext.Provider>
           </dispatchContext.Provider>
-      <ToastContainer />
+          <ToastContainer />
         </div>
       )}
     </>

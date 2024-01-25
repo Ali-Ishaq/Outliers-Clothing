@@ -1,50 +1,39 @@
 import React from "react";
 import { Form, Field, useFormik, Formik } from "formik";
 import { addProductSchema } from "./formSchemas/addProductformSchema";
-import { toast} from 'react-toastify';
+import { toast } from "react-toastify";
 import "./addproduct.css";
 
-
-
-
-
-
 AddProduct.defaultProps = {
-
   initialValues: {
     title: "",
     description: "",
     price: "",
     thumbnail: "",
     category: "",
-  } ,
+  },
 
   handleSubmitFunction: async (product) => {
-    const response = await fetch("http://192.168.0.129:3000/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(product),
-    });
+    const response = await fetch(
+      "https://trend-flare-apparel-store-api.vercel.app/products",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+      }
+    );
 
-    const {status}=await response.json()
-    
-    if(status==='success'){
-      toast.success('Product Uploaded')
-    }else{
-      toast.error('Error Uploading Product')
+    const { status } = await response.json();
+
+    if (status === "success") {
+      toast.success("Product Uploaded");
+    } else {
+      toast.error("Error Uploading Product");
     }
-  }
-
+  },
 };
 
-
-
-function AddProduct({initialValues,handleSubmitFunction}) {
-  
-
-
-  
-
+function AddProduct({ initialValues, handleSubmitFunction }) {
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
       initialValues: initialValues,
@@ -55,14 +44,17 @@ function AddProduct({initialValues,handleSubmitFunction}) {
       },
     });
 
-  
-
   return (
     <div id="addProductComp">
       <Formik>
         <Form action="" id="productdetails">
-          <h1 className="addProductFormHeading" style={{ marginBottom: "50px" }}>Add a Product</h1>
-          
+          <h1
+            className="addProductFormHeading"
+            style={{ marginBottom: "50px" }}
+          >
+            Add a Product
+          </h1>
+
           <div id="productTitle" className="inputFieldDiv">
             <p className="fieldHeading">Product Title</p>
             <input
@@ -72,7 +64,6 @@ function AddProduct({initialValues,handleSubmitFunction}) {
               name="title"
               value={values.title}
               type="text"
-              
             />
             <p className="errorMsg">
               {errors.title && touched.title ? errors.title : null}
@@ -150,7 +141,7 @@ function AddProduct({initialValues,handleSubmitFunction}) {
               value={values.category}
             >
               <option value="" label="Select an option" />
-              <option value="Sneakers" label="Sneakers"   />
+              <option value="Sneakers" label="Sneakers" />
               <option value="Tees" label="Tees" />
               <option value="Watches" label="Watches" />
               <option value="Casual" label="Casual" />

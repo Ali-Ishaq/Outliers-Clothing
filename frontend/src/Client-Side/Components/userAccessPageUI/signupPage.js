@@ -14,20 +14,23 @@ function SignupPage({ setError, isSignup, error, setIssignup, cartdata }) {
   const createUserAccount = async (userdata) => {
     console.log({ userdata });
     try {
-      const updatedCart =cartdata.map((item)=>{
-        return{
-          product_id:item.id,
-          quantity:item.quantity
-        }
-      })
-      const response = await fetch("http://192.168.0.129:3000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", // Set the content type for JSON data
-        },
-
-        body: JSON.stringify({ ...userdata, cart:updatedCart }),
+      const updatedCart = cartdata.map((item) => {
+        return {
+          product_id: item.id,
+          quantity: item.quantity,
+        };
       });
+      const response = await fetch(
+        "https://trend-flare-apparel-store-api.vercel.app/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Set the content type for JSON data
+          },
+
+          body: JSON.stringify({ ...userdata, cart: updatedCart }),
+        }
+      );
 
       const data = await response.json();
       console.log("response..........", data);

@@ -1,33 +1,57 @@
 import React from "react";
-import './navigationPage.css'
+import "./navigationPage.css";
 import { useNavigate } from "react-router-dom";
 
-function NavigationPage({setAccess}) {
-    const navigate=useNavigate()
+function NavigationPage({ setAccess }) {
+  const navigate = useNavigate();
 
-    const handleClick =(route)=>{
-        navigate(route)
-    }
+  const handleClick = (route) => {
+    navigate(route);
+  };
 
-    const handleLogout=()=>{
-      
-     const logOut=async()=>{
-      const response=await fetch('http://192.168.0.129:3000/users/logout/adminToken',{credentials:'include'})
-     }
+  const handleLogout = () => {
+    const logOut = async () => {
+      const response = await fetch(
+        "https://trend-flare-apparel-store-api.vercel.app/users/logout/adminToken",
+        { credentials: "include" }
+      );
+    };
 
-     logOut()
-            
-      setAccess(false)
-      navigate('/')
-    }
+    logOut();
 
+    setAccess(false);
+    navigate("/");
+  };
 
   return (
     <div id="navigationPage">
-      <button onClick={()=>{handleClick('/addproduct')}} className="navigationPageBtns">Add Product</button>
-      <button onClick={()=>{handleClick('/vieworders')}} className="navigationPageBtns">View Orders</button>
-      <button onClick={()=>{handleClick('/viewproducts')}} className="navigationPageBtns">View Products</button>
-      <button onClick={handleLogout} className="navigationPageBtns">LogOut</button>
+      <button
+        onClick={() => {
+          handleClick("/addproduct");
+        }}
+        className="navigationPageBtns"
+      >
+        Add Product
+      </button>
+      <button
+        onClick={() => {
+          handleClick("/vieworders");
+        }}
+        className="navigationPageBtns"
+      >
+        View Orders
+      </button>
+      <button
+        onClick={() => {
+          handleClick("/viewproducts");
+        }}
+        className="navigationPageBtns"
+      >
+        View Products
+      </button>
+      <button onClick={handleLogout} className="navigationPageBtns">
+        LogOut
+      </button>
     </div>
   );
 }

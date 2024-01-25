@@ -18,7 +18,7 @@ function Loginform({ cartdata, userprevCart }) {
   const [signUpDetails, setSignUpDetails] = useState({});
   const [logInDetails, setLogInDetails] = useState({});
   const [error, setError] = useState([false, ""]);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const { userProfile, setUserProfile, isUserLogged, setIsUserLogged } =
     useContext(userContext);
@@ -33,40 +33,33 @@ function Loginform({ cartdata, userprevCart }) {
 
     const findUser = async () => {
       try {
-        const response = await fetch("http://192.168.0.129:3000/users/login", {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(credentials),
-        });
+        const response = await fetch(
+          "https://trend-flare-apparel-store-api.vercel.app/users/login",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(credentials),
+          }
+        );
 
-        const {status,role,userDetails,cart} = await response.json();
+        const { status, role, userDetails, cart } = await response.json();
 
-
-        if(status==='success'){
-          if(role==='visitor'){
-            
-            cartDispatch({ type: "userCartDB", payload:cart });
+        if (status === "success") {
+          if (role === "visitor") {
+            cartDispatch({ type: "userCartDB", payload: cart });
             setIsUserLogged(true);
             setUserProfile(userDetails);
-            console.log('this is previous cart',userDetails.cart)
-            console.log('This is actual cart',cart)
-            console.log(userDetails)
-          }else{
-            navigate('/admin')
+            console.log("this is previous cart", userDetails.cart);
+            console.log("This is actual cart", cart);
+            console.log(userDetails);
+          } else {
+            navigate("/admin");
           }
-
-        }else{
+        } else {
           setError([true, ` ✕  ${status}`]);
           console.log(status);
         }
-        
-
-
-
-
-
-        
       } catch (error) {
         console.log(error);
       }
@@ -214,5 +207,3 @@ function Loginform({ cartdata, userprevCart }) {
 }
 
 export default Loginform;
-
-

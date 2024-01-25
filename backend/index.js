@@ -25,9 +25,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://192.168.0.129:3001",
-      "http://192.168.0.129:3002",
-      "http://192.168.0.129:3000",
+      // "http://192.168.0.129:3001",
+      // "http://192.168.0.129:3002",
+      // "https://trend-flare-apparel-store-api.vercel.app",
+      "",
     ],
     credentials: true,
   })

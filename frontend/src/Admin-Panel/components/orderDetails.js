@@ -9,7 +9,9 @@ function OrderDetails() {
 
   useEffect(() => {
     const getOrderDetails = async () => {
-      const response = await fetch(`http://192.168.0.129:3000/orders/${id}`);
+      const response = await fetch(
+        `https://trend-flare-apparel-store-api.vercel.app/orders/${id}`
+      );
       const { orderDetails } = await response.json();
       console.log(orderDetails);
       setOrderStatus(orderDetails.orderStatus);
@@ -21,7 +23,7 @@ function OrderDetails() {
 
   const changeOrderStatus = async () => {
     const response = await fetch(
-      `http://192.168.0.129:3000/orders/changestatus/${id}`,
+      `https://trend-flare-apparel-store-api.vercel.app/orders/changestatus/${id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -260,57 +262,56 @@ function OrderDetails() {
                   </p>
                 </span>
 
-
                 <span>
-                <p
-                  style={{
-                    display: "flex",
-                    
-                    fontSize: "120%",
-                    color: "rgb(56, 55, 55)",
-                  }}
-                >
-                  Order Date :{" "}
-                  <p style={{ marginLeft: "5px", color: "rgb(103, 172, 1)" }}>
-                    {" "}
-                    {orderDetails.orderDate}
-                  </p>
-                </p>
-                <p
-                  style={{
-                    display: "flex",
-                    fontSize: "120%",
-                    color: "rgb(56, 55, 55)",
+                  <p
+                    style={{
+                      display: "flex",
 
-                    alignItems: "center",
-                  }}
-                >
-                  Order Status :{" "}
-                  {/* <p style={{ marginLeft: "5px", color: "rgb(103, 172, 1)" }}>
+                      fontSize: "120%",
+                      color: "rgb(56, 55, 55)",
+                    }}
+                  >
+                    Order Date :{" "}
+                    <p style={{ marginLeft: "5px", color: "rgb(103, 172, 1)" }}>
+                      {" "}
+                      {orderDetails.orderDate}
+                    </p>
+                  </p>
+                  <p
+                    style={{
+                      display: "flex",
+                      fontSize: "120%",
+                      color: "rgb(56, 55, 55)",
+
+                      alignItems: "center",
+                    }}
+                  >
+                    Order Status :{" "}
+                    {/* <p style={{ marginLeft: "5px", color: "rgb(103, 172, 1)" }}>
                     {" "}
                     {orderStatus}
                   </p> */}
-                  <select
-                    onChange={(e) => {
-                      setOrderStatus(e.target.value);
-                    }}
-                    name=""
-                    id="OrderStatusSelect"
-                  >
-                    <option value={orderStatus} selected>
-                      {orderStatus.toUpperCase()}
-                    </option>
-                    {orderStatus !== "recieved" && (
-                      <option value="recieved">RECEIVED</option>
-                    )}
-                    {orderStatus !== "delivered" && (
-                      <option value="delivered">DELIVERED</option>
-                    )}
-                    {orderStatus !== "cancelled" && (
-                      <option value="cancelled">CANCELLED</option>
-                    )}
-                  </select>
-                </p>
+                    <select
+                      onChange={(e) => {
+                        setOrderStatus(e.target.value);
+                      }}
+                      name=""
+                      id="OrderStatusSelect"
+                    >
+                      <option value={orderStatus} selected>
+                        {orderStatus.toUpperCase()}
+                      </option>
+                      {orderStatus !== "recieved" && (
+                        <option value="recieved">RECEIVED</option>
+                      )}
+                      {orderStatus !== "delivered" && (
+                        <option value="delivered">DELIVERED</option>
+                      )}
+                      {orderStatus !== "cancelled" && (
+                        <option value="cancelled">CANCELLED</option>
+                      )}
+                    </select>
+                  </p>
                 </span>
               </div>
             )}

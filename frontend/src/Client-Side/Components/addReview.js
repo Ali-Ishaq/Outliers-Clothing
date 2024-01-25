@@ -45,7 +45,7 @@ function AddReview() {
   const handleReviewSubmit = async () => {
     const addReview = async () => {
       const response = await fetch(
-        "http://192.168.0.129:3000/orders/addProductReview",
+        "https://trend-flare-apparel-store-api.vercel.app/orders/addProductReview",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -72,7 +72,7 @@ function AddReview() {
     if (userProfile) {
       const authenticateProductPurchase = async () => {
         const response = await fetch(
-          `http://192.168.0.129:3000/orders/checkProductPurchase/${orderId}/${productId}`
+          `https://trend-flare-apparel-store-api.vercel.app/orders/checkProductPurchase/${orderId}/${productId}`
         );
         const { order } = await response.json();
         setProduct(order);
@@ -109,12 +109,11 @@ function AddReview() {
               marginLeft: window.visualViewport.width < 455 && "3px",
             }}
           >
-            <img style={{width:'100%'}} src={product.CartImg} alt="" />
+            <img style={{ width: "100%" }} src={product.CartImg} alt="" />
           </div>
 
           <div
             style={{
-
               width: window.visualViewport.width < 455 ? "75%" : "70%",
               paddingLeft: "15px",
               overflow: "hidden",

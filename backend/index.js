@@ -26,7 +26,8 @@ app.use(
   cors({
     origin: [
 
-      "https://trend-flare-apparel-store.vercel.app"
+      "https://trend-flare-apparel-store.vercel.app",
+      "http://192.168.0.129:3001"
       
     ],
     credentials: true,

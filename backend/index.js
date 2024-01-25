@@ -37,7 +37,7 @@ app.use(
 app.use(cookieParser());
 
 mongoose
-  .connect('mongodb+srv://admin:admin@cluster0.gkebbw3.mongodb.net/ecommerce?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(PORT, () => {
       console.log("Server is up and running on Port:", PORT);

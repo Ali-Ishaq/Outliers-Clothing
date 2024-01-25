@@ -145,6 +145,7 @@ function ClientSide() {
           "https://trend-flare-apparel-store-api.vercel.app/users/checkAuth",
           {
             credentials: "include",
+            
           }
         );
         const { user, cart } = await response.json();

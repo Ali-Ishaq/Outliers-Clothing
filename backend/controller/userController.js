@@ -32,6 +32,8 @@ const userLogIn = async (req, res) => {
         res.cookie(cookieName, token, {
           httpOnly: true,
           expires: expirationDate,
+          sameSite: 'None',
+          secure: true,
         });
 
     
@@ -211,11 +213,9 @@ const deleteUser = async (req, res) => {
 const adminAuthCheck = async (req, res) => {
   try {
     const token = req.cookies.adminToken;
-    console.log(token)
 
     const checkUser = async (username) => {
       const user = await User.findOne({ username: username });
-      console.log(user)
       if (user && user.role === "admin") {
         res.json({ permission: true, status: "success" });
       } else {

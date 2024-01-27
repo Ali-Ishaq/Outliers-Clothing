@@ -85,7 +85,7 @@ function Header({ cartlength }) {
 
         <div id="logo">
           
-          <img src="https://res.cloudinary.com/drwizlf0y/image/upload/v1705763032/TrendFlare/vecteezy_creative-letter-t-f-elegant-monogram-logo_10858087_1_av2dvq.jpg" alt="" style={{height:'70%',filter:'invert(100%)'}} />
+          <img src="/brandlogo.jpg" alt="" style={{height:'70%',filter:'invert(100%)'}} />
         </div>
 
         
@@ -93,7 +93,7 @@ function Header({ cartlength }) {
           {window.visualViewport.width < 780 && (
             <div id="hamBurgerLogo">
               
-              <img src="https://res.cloudinary.com/drwizlf0y/image/upload/v1705763032/TrendFlare/vecteezy_creative-letter-t-f-elegant-monogram-logo_10858087_1_av2dvq.jpg"style={{height:'70%',filter:'invert(100%)',mixBlendMode:'darken'}} alt="" />
+              <img src="/brandlogo.jpg"style={{height:'70%',filter:'invert(100%)',mixBlendMode:'darken'}} alt="" />
               <RxCross1
                 style={{ position: "absolute", right: "20px" }}
                 onClick={() => {

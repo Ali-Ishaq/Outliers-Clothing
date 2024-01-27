@@ -107,7 +107,7 @@ function ProductUI({
             height: "100%",
             position: "relative",
             display: "flex",
-            WebkitMaskImage:"url('https://res.cloudinary.com/drwizlf0y/image/upload/v1704897004/TrendFlare/rating_ai8xvg.png')",
+            WebkitMaskImage:"url('/rating.png')",
           
             
             WebkitMaskSize: "100%",

@@ -50,7 +50,7 @@ function HomePage() {
           >
             <h1>WATCHES</h1>
             <img
-              src="https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="/watchbanner.avif"
               alt=""
               
             />
@@ -64,7 +64,7 @@ function HomePage() {
           >
             <h1>TEES</h1>
             <img
-              src="https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="/shirtbanner.avif"
               alt=""
             />
           </div>
@@ -75,7 +75,7 @@ function HomePage() {
           >
             <h1>CASUAL</h1>
             <img
-              src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1372&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="casualbanner.avif"
               alt=""
               style={{ width: "auto", height: "100%" }}
             />

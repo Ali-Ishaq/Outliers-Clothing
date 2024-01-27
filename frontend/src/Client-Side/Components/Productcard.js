@@ -59,7 +59,7 @@ function ProductCard({ productsDb }) {
                     position: "relative",
                     display: "flex",
                     WebkitMaskImage:
-                      "url('https://res.cloudinary.com/drwizlf0y/image/upload/v1704897004/TrendFlare/rating_ai8xvg.png')",
+                      "url('/rating.png')",
                     WebkitMaskSize: "100%",
                     WebkitMaskRepeat: "no-repeat",
                   }}

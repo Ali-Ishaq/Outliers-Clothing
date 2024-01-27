@@ -62,6 +62,7 @@ function ProductCard({ productsDb }) {
                       "url('/rating.png')",
                     WebkitMaskSize: "100%",
                     WebkitMaskRepeat: "no-repeat",
+                    
                   }}
                 >
                   <div

@@ -40,6 +40,7 @@ function HomePage() {
             <img
               src="/sneakerbanner.avif"
               alt=""
+              loading='eager'
             />
           </div>
           <div
@@ -52,6 +53,7 @@ function HomePage() {
             <img
               src="/watchbanner.avif"
               alt=""
+              loading='eager'
               
             />
           </div>
@@ -66,6 +68,7 @@ function HomePage() {
             <img
               src="/shirtbanner.avif"
               alt=""
+              loading='eager'
             />
           </div>
           <div className="collections-box"
@@ -77,6 +80,7 @@ function HomePage() {
             <img
               src="casualbanner.avif"
               alt=""
+              loading='eager'
               style={{ width: "auto", height: "100%" }}
             />
           </div>

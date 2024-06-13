@@ -1,6 +1,7 @@
 import "./header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FiSearch, FiHeart } from "react-icons/fi";
+import { FaUser } from "react-icons/fa6";
 import { BsCart3 } from "react-icons/bs";
 import { GiEagleHead } from "react-icons/gi";
 import { SlLogout } from "react-icons/sl";
@@ -59,16 +60,16 @@ function Header({ cartlength }) {
         <div id="faqs">
           {/* <a href="" className="navigations">SIGN IN</a> */}
           <Link to="/loginform" className="navigations">
-            {isUserLogged === true ? "Log Out" : "Sign Up"}
+            {isUserLogged === true ? <SlLogout/> : <FaUser/>}
           </Link>
-          <a href="" className="navigations">
+          {/* <a href="" className="navigations">
             FAQS
           </a>
           <select className="navigations" name="currency" id="">
             <option>USD</option>
             <option>GBP</option>
             <option>PKR</option>
-          </select>
+          </select> */}
         </div>
       </div>
 
@@ -85,7 +86,8 @@ function Header({ cartlength }) {
 
         <div id="logo">
           
-          <img src="/brandlogo.jpg" alt="" loading="eager" style={{height:'70%',filter:'invert(100%)'}} />
+          {/* <img src="/brandlogo.jpg" alt="" loading="eager" style={{height:'70%',filter:'invert(100%)'}} /> */}
+          <h1 style={{fontFamily:' "Lobster", sans-serif',fontWeight:'400',fontStyle:'normal',fontSize:'40px'}}>Outliers.</h1>
         </div>
 
         
@@ -119,9 +121,7 @@ function Header({ cartlength }) {
             <li onClick={closeMenu} className="navlinks">
               <Link to="" >Pages</Link>
             </li>
-            <li  onClick={closeMenu}className="navlinks">
-              <Link to="">Blog</Link>
-            </li>
+           
             <li onClick={closeMenu} className="navlinks">
               <Link to="">Contact</Link>
             </li>

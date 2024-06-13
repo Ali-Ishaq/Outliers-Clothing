@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
 * {
   margin: 0px;
   padding: 0px;
@@ -10,23 +12,25 @@
 div#login_form_parent{
     font-family: 'Noto Sans JP', sans-serif;
     width:100vw;
-    margin-block: 2rem;
+    /* margin-block: 2rem; */
     padding-inline: 2rem;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 div#login_form{
-    height: max(75vh,500px);
+    height: max(80vh,500px);
     width:clamp(500px,100%,1000px) ;
     background-color: white;
     display: flex;
     /* flex-direction: column; */
+    justify-content: center;
     border-radius: 20px;
     
     
 }
-div#bigimg{
+/* div#bigimg{
     width: 65%;
     background-color: skyblue;
     overflow: hidden;
@@ -36,18 +40,12 @@ div#bigimg{
 }
 div#bigimg img{
     height: 100%;
-    /* width: 100%; */
     scale: 1.1;
-    /* object-fit:contain; */
-    
-    /* overflow: hidden; */
-   
-
-}
+} */
 div#formpart{
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 500px;
 }
 div#inputfields{
     display: flex;
@@ -67,6 +65,7 @@ div.inputfield{
     align-items: flex-start;
     justify-content: flex-start;
     position: relative;
+    
     
     flex-direction: column;
     overflow: hidden;
@@ -109,12 +108,17 @@ div#heading h1{
     position: relative;
     font-size: 300%;
     font-weight: 100;
-    letter-spacing: 2px;
-    color: rgb(61, 60, 60);
+    
+    color: rgba(0, 0, 0, 0.336);
+
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
 }
 button#submit_btn,button#logoutbtn{
 width: 40%;
-height: 40px;
+height: 50px;
 border: 0px;
 background-color: rgba(119, 145, 219, 0.849);
 color: white;

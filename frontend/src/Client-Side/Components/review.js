@@ -15,7 +15,7 @@ function Review() {
       const getOrdersfromDB = async () => {
         try {
           const response = await fetch(
-            `https://trend-flare-apparel-store-api.vercel.app/orders/deliveredOrders/${userProfile._id}`
+            `http://192.168.0.129:3000/orders/deliveredOrders/${userProfile._id}`
           );
           const { deliveredOrders } = await response.json();
           console.log(deliveredOrders);

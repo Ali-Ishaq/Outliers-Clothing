@@ -11,12 +11,8 @@ function Cart({ clearCart, carttotal, cartdata }) {
   const { isUserLogged } = useContext(userContext);
 
   const handleCheckOut = () => {
-    if (!isUserLogged) {
-      navigate("/loginform");
-    }
-    if (cartdata.length >= 1 && isUserLogged) {
-      navigate("/checkout");
-    }
+     navigate("/checkout");
+    
   };
 
 
@@ -39,6 +35,7 @@ function Cart({ clearCart, carttotal, cartdata }) {
               CartImg={value.CartImg}
               CartName={value.CartName}
               CartPrice={value.CartPrice}
+              size={value.size}
               // totalammount={totalammount}
             ></CartUI>
           ))
@@ -49,7 +46,7 @@ function Cart({ clearCart, carttotal, cartdata }) {
       <div id="subtotal">
         <div id="firstChild">
           <button id="checkoutbtn" onClick={handleCheckOut}>
-            {isUserLogged === true ? "Check Out" : "Log In to Check Out"}
+            Check Out
           </button>
         </div>
 

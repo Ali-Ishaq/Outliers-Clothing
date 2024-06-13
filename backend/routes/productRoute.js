@@ -8,8 +8,8 @@ productRouter
   .get("/:id", productController.getProduct)
   .put("/:id", productController.updateProduct)
   .delete("/:id", productController.deleteProduct)
-  .post('/stripe-payment-url',productController.stripePaymentUrl)
-  .post('/create-payment-intent',productController.payment_intent)
+  .post('/stripe-payment-url',productController.stripePaymentUrl);
+  // .post('/create-payment-intent',productController.payment_intent)
   
 
 exports.route = productRouter;

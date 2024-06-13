@@ -19,18 +19,18 @@ div#CheckOutPage {
 
 div#orderOverview {
   width: 500px;
-
+  height: 75vh;
   background-color: white;
   display: flex;
   flex-direction: column;
   padding: 40px 30px;
   align-items: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 18px;
+  border-radius: 10px;
 }
 
 div#orderCartView {
-  margin-top: 10%;
+  margin-top: 5%;
   width: 100%;
   /* background-color: aqua; */
   height: 57%;
@@ -56,7 +56,7 @@ div#orderCalculation {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 0 28px 20px 0;
+  padding: 0 15px 20px 0;
   border-bottom: 2px solid lightgray;
 }
 div#dueAmount {
@@ -67,7 +67,7 @@ div#dueAmount {
   align-items: center;
 
   justify-content: space-between;
-  padding-right: 28px;
+  padding-right: 15px;
   /* background-color:rgb(230, 248, 255); */
   height: 50px;
 }
@@ -82,7 +82,7 @@ div#checkOutDetails {
   align-items: center;
   justify-content: space-between;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 18px;
+  border-radius: 10px;
 }
 
 div#checkOutDetails h1 {
@@ -132,13 +132,14 @@ div#deliveryOptions {
   /* background-color: antiquewhite; */
   margin: 10px 0 17px 0px;
   justify-content: space-between;
+  gap: 10px;
 }
 
 div.deliveryOption {
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: 48.5%;
+  height: 50%;
   background-color: rgb(213, 242, 253);
 }
 
@@ -223,44 +224,6 @@ button#saveAddres:active,
 button#continueShopping:active,
 button#loadPaymentIntent:active {
   scale: 0.9;
-}
-
-div#checkOutCard {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  /* background-image: linear-gradient(to right, #fc5c7d, #6a82fb); */
-  background-color: white;
-  width: 500px;
-
-  padding: 40px 30px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 18px;
-}
-
-#cardform {
-  align-self: center;
-  /* box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
-      0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07); */
-  border-radius: 7px;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 100%;
-  justify-content: center;
-}
-
-button#loadPaymentIntent {
-  height: 45px;
-  width: 200px;
-
-  font-size: 19px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 
@@ -392,14 +355,6 @@ button#loadPaymentIntent {
       width: 55%;
     }
 
-    img#creditcardImg{
-      height: 150px ;
-      width: 250px;
-    }
-
-
-    div#checkOutCard{
-      height: 90vh;
-    }
+    
    
 }

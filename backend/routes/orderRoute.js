@@ -12,6 +12,7 @@ orderRouter
     orderController.checkProductPurchase
   )
   .put("/changestatus/:id", orderController.changeOrderStatus)
-  .post("/addProductReview", orderController.addReview);
+  .post("/addProductReview", orderController.addReview)
+  .post("/placeOrder", orderController.placeOrder);
 
 exports.route = orderRouter;

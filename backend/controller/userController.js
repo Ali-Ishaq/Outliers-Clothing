@@ -13,8 +13,6 @@ const getAllUser = async (req, res) => {
   }
 };
 
-
-
 const userLogIn = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -28,41 +26,63 @@ const userLogIn = async (req, res) => {
           process.env.JWT_KEY
         );
         const expirationDate = new Date(Date.now() + 86400000);
-        const cookieName=user.role==='visitor'? ("visitorToken"):("adminToken")
+        const cookieName = user.role === "user" ? "visitorToken" : "adminToken";
         res.cookie(cookieName, token, {
           httpOnly: true,
           expires: expirationDate,
-          sameSite: 'None',
-          secure: true,
+          // sameSite: "None",
+          // secure: true,
+          //has to enable these attributes at the time of publishing.
         });
 
-    
         if (user.role === "admin") {
           res.json({ status: "success", role: "admin", username: username });
         } else {
 
-         
+          const ids = user.cart.map((element) => {
+            return element.product_id;
+          });
 
-
-          const ids=user.cart.map((element)=>{return element.product_id})
-
-          const items=await Product.find({_id:{$in:ids}})
           
-          const cart=items.map((element)=>{
-            
-            return(
-              {CartImg:element.thumbnail,
-                CartName:element.title,
-                CartPrice:element.price,
-                productcode:element._id,
-                id:element._id,
-                quantity:user.cart.find((item)=>item.product_id===element.id).quantity,
-              })
-          })
 
-          console.log({cart})
+          
+          let fetchedDocuments=[] ;
 
-          res.json({ status: "success", role: "visitor", userDetails: user,cart:cart });
+          for (const id of ids) {
+            // Fetch the document corresponding to the current ID
+            const document = await Product.findById(id);
+          
+            // If a document is found, push it to the fetchedDocuments array
+            if (document) {
+              fetchedDocuments.push(document);
+            }else{
+              fetchedDocuments.push(null);
+            }
+          }
+
+          const cart = fetchedDocuments.map((element, index) => {
+          
+            if(element!=null){
+            return {
+              CartImg: element.thumbnail,
+              CartName: element.title,
+              CartPrice: element.price,
+              productcode: element._id,
+              size: user.cart[index].size,
+              id: element._id,
+              quantity: user.cart[index].quantity,
+            };
+          }
+          });
+
+          
+
+          res.json({
+            status: "success",
+            role: "visitor",
+            userDetails: user,
+            cart: cart,
+          });
         }
       } else {
         throw new Error(`Password Doesn't Matched`);
@@ -72,7 +92,7 @@ const userLogIn = async (req, res) => {
     }
   } catch (error) {
     res.json({ status: error.message });
-    console.log(error.message)
+    console.log(error.message);
   }
 };
 
@@ -123,43 +143,56 @@ const userAuthCheck = async (req, res) => {
       let username;
       jwt.verify(token, process.env.JWT_KEY, (error, payload) => {
         if (error) {
-      //     res.json({ permission: false, status: "token failure" });
-              throw new Error("Invalid Token");   
+          //     res.json({ permission: false, status: "token failure" });
+          throw new Error("Invalid Token");
         } else {
-          username=payload.username;
+          username = payload.username;
         }
       });
 
-     
-
-      const user = await User.findOne(
-        { username: username }
-      );
+      const user = await User.findOne({ username: username });
       if (!user) {
         throw new Error("error");
       } else {
 
+        const ids = user.cart.map((element) => {
+            return element.product_id;
+          });
 
-        const ids=user.cart.map((element)=>{return element.product_id})
-
-          const items=await Product.find({_id:{$in:ids}})
           
-          const cart=items.map((element)=>{
-            
-            return(
-              {CartImg:element.thumbnail,
-                CartName:element.title,
-                CartPrice:element.price,
-                productcode:element._id,
-                id:element._id,
-                quantity:user.cart.find((item)=>item.product_id===element.id).quantity,
-              })
-          })
+
+          
+          let fetchedDocuments=[] ;
+
+          for (const id of ids) {
+            // Fetch the document corresponding to the current ID
+            const document = await Product.findById(id);
+          
+            // If a document is found, push it to the fetchedDocuments array
+            if (document) {
+              fetchedDocuments.push(document);
+            }else{
+              fetchedDocuments.push(null);
+            }
+          }
+
+          const cart = fetchedDocuments.map((element, index) => {
+          
+            if(element!=null){
+            return {
+              CartImg: element.thumbnail,
+              CartName: element.title,
+              CartPrice: element.price,
+              productcode: element._id,
+              size: user.cart[index].size,
+              id: element._id,
+              quantity: user.cart[index].quantity,
+            };
+          }
+          });
 
 
-
-
-        res.status(200).json({ user: user, cart:cart  });
+        res.status(200).json({ user: user, cart: cart });
         console.log("authorized user");
       }
     } else {
@@ -196,8 +229,6 @@ const createUser = async (req, res) => {
   }
 };
 
-
-
 const deleteUser = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
@@ -212,7 +243,9 @@ const deleteUser = async (req, res) => {
 
 const adminAuthCheck = async (req, res) => {
   try {
+    console.log("checkingAdmin");
     const token = req.cookies.adminToken;
+    console.log("token is: ", token);
 
     const checkUser = async (username) => {
       const user = await User.findOne({ username: username });
@@ -243,7 +276,7 @@ module.exports = {
   userLogIn,
   createUser,
   getAllUser,
-  
+
   deleteUser,
   userAuthCheck,
   adminLogIn,

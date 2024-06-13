@@ -9,9 +9,7 @@ function OrderDetails() {
 
   useEffect(() => {
     const getOrderDetails = async () => {
-      const response = await fetch(
-        `https://trend-flare-apparel-store-api.vercel.app/orders/${id}`
-      );
+      const response = await fetch(`http://192.168.0.129:3000/orders/${id}`);
       const { orderDetails } = await response.json();
       console.log(orderDetails);
       setOrderStatus(orderDetails.orderStatus);
@@ -23,7 +21,7 @@ function OrderDetails() {
 
   const changeOrderStatus = async () => {
     const response = await fetch(
-      `https://trend-flare-apparel-store-api.vercel.app/orders/changestatus/${id}`,
+      `http://192.168.0.129:3000/orders/changestatus/${id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -36,7 +34,7 @@ function OrderDetails() {
   };
 
   return (
-    <div id="orderDetailsComponent">
+    <div id="orderDetailsComponent" style={{marginTop:'3rem'}}>
       {orderDetails != null ? (
         <>
           <div id="orderItems">

@@ -33,18 +33,15 @@ function Loginform({ cartdata, userprevCart }) {
 
     const findUser = async () => {
       try {
-        const response = await fetch(
-          "https://trend-flare-apparel-store-api.vercel.app/users/login",
-          {
-            method: "POST",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(credentials),
-          }
-        );
+        const response = await fetch("http://192.168.0.129:3000/users/login", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credentials),
+        });
 
         const { status, role, userDetails, cart } = await response.json();
-
+        console.log('cartfromDB:' ,cart);
         if (status === "success") {
           if (role === "visitor") {
             cartDispatch({ type: "userCartDB", payload: cart });
@@ -102,9 +99,12 @@ function Loginform({ cartdata, userprevCart }) {
   return (
     <div id="login_form_parent">
       <div id="login_form">
-        <div id="bigimg">
-          <img src="https://res.cloudinary.com/drwizlf0y/image/upload/v1706214540/TrendFlare/luis-felipe-lins-LG88A2XgIXY-unsplash_v3s4gk.jpg" alt="" />
-        </div>
+        {/* <div id="bigimg">
+          <img
+            src="https://res.cloudinary.com/drwizlf0y/image/upload/v1706214540/TrendFlare/luis-felipe-lins-LG88A2XgIXY-unsplash_v3s4gk.jpg"
+            alt=""
+          />
+        </div> */}
 
         {!isUserLogged && (
           <div id="formpart">

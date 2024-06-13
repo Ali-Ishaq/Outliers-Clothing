@@ -7,8 +7,13 @@ const userSchema = new Schema({
   phone: { type: Number, required: [true, 'Input Field can"t be empty'] },
   username: { type: String, required: [true, 'Input Field can"t be empty'] },
   password: { type: String, required: [true, 'Input Field can"t be empty'] },
-  cart: [{ product_id:{type:String},
-   quantity: { type: Number } }],
+  cart: [
+    {
+      product_id: { type: String },
+      size: { type: String },
+      quantity: { type: Number },
+    },
+  ],
   role: { type: String, default: "user" },
 });
 

@@ -1,8 +1,4 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-
-import CheckoutForm from "./checkOutForm";
 import "./checkOut.css";
 import { userContext } from "../Contexts/userContext";
 import { useNavigate } from "react-router-dom";
@@ -12,12 +8,11 @@ import { billingAddressSchema } from "../formSchemas/index";
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
-const stripePromise = loadStripe(
-  "pk_test_51O1SMOH103GHUfsXm0arUQySPmHI8BU8lsLgoeCpN69kkOl0DT5ONOXL6F6pRpo5bpW5reLTyr8KQDMnH4NCa1il00lPUw89V5"
-);
+
 
 export default function CheckOut({ cartdata, carttotal }) {
-  const [formData, setFormData] = useState(null);
+  console.log(cartdata,carttotal);
+  let formData ={};
   const [deliveryCharges, setDeliveryCharges] = useState(0);
 
   const navigate = useNavigate();
@@ -26,10 +21,10 @@ export default function CheckOut({ cartdata, carttotal }) {
   const checkOutDetailSection = useRef("");
 
   const { userProfile } = useContext(userContext);
-  const [clientSecret, setClientSecret] = useState("");
-  const requestBody = {
+  // const [clientSecret, setClientSecret] = useState("");
+  let requestBody = {
     cartdata: cartdata,
-    userId: userProfile._id,
+    userId: userProfile?userProfile._id:"guest",
     formData: formData,
   };
   console.log(cartdata);
@@ -50,46 +45,51 @@ export default function CheckOut({ cartdata, carttotal }) {
       initialValues: initialValues,
       validationSchema: billingAddressSchema,
       onSubmit: (values) => {
-        setFormData({
+
+        formData={
           ...formData,
           ...values,
           deliveryCharges: deliveryCharges,
-        });
+        };
+
+        requestBody={...requestBody,formData:formData}
+
+
+        
+        placeOrder();
         saveAddressBtn.current.style.backgroundColor =
           "rgba(38, 216, 38, 0.747)";
-        loadPaymentIntentBtn.current.click();
+        
       },
     });
 
-  console.log(formData, formData != null);
-
-  const loadPaymentIntent = () => {
+  // console.log(formData, formData != null);
+  
+  const placeOrder = async() => {
     console.log(requestBody);
+   
     // Create PaymentIntent as soon as the page loads
-    fetch(
-      "https://trend-flare-apparel-store-api.vercel.app/products/create-payment-intent",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody),
-      }
-    )
+    fetch("http://192.168.0.129:3000/orders/placeOrder", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then((data) => console.log(data));
   };
 
-  const formChangeHandle = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
-  };
+  // const formChangeHandle = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  //   console.log({formData});
+  // };
 
-  const appearance = {
-    theme: "stripe",
-  };
-  const options = {
-    clientSecret,
-    appearance,
-  };
+  // const appearance = {
+  //   theme: "stripe",
+  // };
+  // const options = {
+  //   clientSecret,
+  //   appearance,
+  // };
 
   return (
     <div id="CheckOutPage">
@@ -112,9 +112,16 @@ export default function CheckOut({ cartdata, carttotal }) {
             >
               <div
                 id="orderCartViewImg"
-                style={{ height: "100%", aspectRatio:'1/1', overflow: "hidden" ,display:'flex',justifyContent:'center',alignItems:'center'}}
+                style={{
+                  height: "100%",
+                  aspectRatio: "1/1",
+                  overflow: "hidden",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                <img  src={e.CartImg} alt="" style={{width:'100%'}}/>
+                <img src={e.CartImg} alt="" style={{ width: "100%" }} />
               </div>
 
               <div
@@ -189,18 +196,18 @@ export default function CheckOut({ cartdata, carttotal }) {
         <div id="dueAmount">
           <button
             onClick={() => {
-              navigate("/");
+              checkOutDetailSection.current.scrollIntoView({ behavior: 'smooth' });
             }}
             id="continueShopping"
           >
-            Continue Shopping
+            Continue
           </button>
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
               minWidth: "52%",
-              maxWidth: "52%",
+              maxWidth: "58%",
               alignItems: "center",
             }}
             className="calculation"
@@ -209,7 +216,7 @@ export default function CheckOut({ cartdata, carttotal }) {
             <p
               className="calcsubprice"
               style={{
-                fontSize: "25px",
+                fontSize: "22px",
                 fontWeight: "bolder",
                 color: "rgb(103, 172, 1)",
               }}
@@ -539,41 +546,11 @@ export default function CheckOut({ cartdata, carttotal }) {
           </div>
         </div>
         <button onClick={handleSubmit} id="saveAddres" ref={saveAddressBtn}>
-          Save Address
+          Place Order
         </button>
       </div>
 
-      <div id="checkOutCard">
-        <div id="cardform">
-          <img id="creditcardImg" src="./creditcard.png" alt="" />
-          {!clientSecret && (
-            <button
-              ref={loadPaymentIntentBtn}
-              onClick={(e) => {
-                if (formData === null) {
-                  saveAddressBtn.current.click();
-                  e.target.style.backgroundColor = "red";
-                  checkOutDetailSection.current.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                }
-                if (formData) {
-                  loadPaymentIntent();
-                  e.target.style.backgroundColor = "rgba(38, 216, 38, 0.747)";
-                }
-              }}
-              id="loadPaymentIntent"
-            >
-              Add Card Details
-            </button>
-          )}
-          {clientSecret && (
-            <Elements options={options} stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
-          )}
-        </div>
-      </div>
+      
     </div>
   );
 }

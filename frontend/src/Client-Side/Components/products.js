@@ -15,7 +15,7 @@ function Products({ productsDb }) {
     const getProductsFromDb = async () => {
       try {
         const res = await fetch(
-          `https://trend-flare-apparel-store-api.vercel.app/products/category/${category}`
+          `http://192.168.0.129:3000/products/category/${category}`
         );
         const { fetchedProducts } = await res.json();
         console.log(fetchedProducts);

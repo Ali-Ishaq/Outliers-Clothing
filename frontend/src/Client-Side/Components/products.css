@@ -41,8 +41,8 @@
   }
 
   select#sort{
-    border: 1px solid rgb(133, 133, 133);
-  
+    border: 1px solid rgb(190, 184, 184);
+    /* border-radius: 20px; */
     padding: 5px;
     background-color: white;
   }
@@ -81,6 +81,7 @@
 
     select#sort{
       border-radius: 20px;
+      border: 1px;
     }
  
   }

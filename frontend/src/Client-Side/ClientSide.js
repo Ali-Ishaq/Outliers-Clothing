@@ -40,10 +40,12 @@ function ClientSide() {
   const cartReducer = (cartdata, action) => {
     switch (action.type) {
       case "updateCart":
+        // console.log(cartdata[0].size)
         let img = action.payload.img;
         let name = action.payload.name;
         let price = action.payload.price;
         let productcode = action.payload.id;
+        let size = action.payload.size;
 
         let newcartitem = {
           CartImg: img,
@@ -52,16 +54,22 @@ function ClientSide() {
           id: productcode,
           productcode: productcode,
           quantity: 1,
+          size:size
         };
+        
+        console.log(newcartitem)
+        console.log(!cartdata.some((p) => p.id == action.payload.id))
 
-        if (!cartdata.some((p) => p.id == action.payload.id)) {
+        if (!cartdata.some((p) => (p.id == action.payload.id && p.size == action.payload.size))) {
+          console.log('heyy')
           toastNotification("Added to Cart");
+          console.log(cartdata)
           return [...cartdata, newcartitem];
-        } else if (cartdata.some((p) => p.id == action.payload.id)) {
+        } else if (cartdata.some((p) => ((p.id == action.payload.id && p.size == action.payload.size) ))) {
           toastNotification("Quantity Adjusted");
 
           const index1 = cartdata.findIndex(
-            (obj) => obj.id === action.payload.id
+            (obj) => obj.id === action.payload.id && obj.size === action.payload.size
           );
 
           const updatedquantity = cartdata.map((obj, index) =>
@@ -81,11 +89,11 @@ function ClientSide() {
         if (cartdata.length === 1) {
           setCarttotal(0);
         }
-        return cartdata.filter((value) => value.id !== action.payload);
+        return cartdata.filter((value) => !(value.id == action.payload.UniqueId && value.size == action.payload.size) );
 
       case "decreaseCartQuantity":
         return cartdata.map((obj, index) =>
-          obj.id === action.payload
+          (obj.id === action.payload.UniqueId && obj.size == action.payload.size)
             ? {
                 ...obj,
                 quantity: obj.quantity > 1 ? obj.quantity - 1 : obj.quantity,
@@ -95,7 +103,7 @@ function ClientSide() {
 
       case "increaseCartQuantity":
         return cartdata.map((obj, index) =>
-          obj.id === action.payload
+          (obj.id === action.payload.UniqueId && obj.size == action.payload.size)
             ? { ...obj, quantity: obj.quantity + 1 }
             : obj
         );
@@ -117,12 +125,13 @@ function ClientSide() {
             return {
               product_id: item.id,
               quantity: item.quantity,
+              size:item.size
             };
           });
 
           console.log("fetching.....");
           const response = await fetch(
-            `https://trend-flare-apparel-store-api.vercel.app/cart/updatecart`,
+            `http://192.168.0.129:3000/cart/updatecart`,
             {
               method: "POST",
               body: JSON.stringify(updatedCart),
@@ -142,10 +151,9 @@ function ClientSide() {
     try {
       const checkAuth = async () => {
         const response = await fetch(
-          "https://trend-flare-apparel-store-api.vercel.app/users/checkAuth",
+          "http://192.168.0.129:3000/users/checkAuth",
           {
             credentials: "include",
-            
           }
         );
         const { user, cart } = await response.json();

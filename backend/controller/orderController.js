@@ -1,6 +1,60 @@
 const Order = require("../model/orders");
 const Product = require("../model/product");
-const jwt=require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
+
+const calculation = async (items) => {
+  const item_ids = items.map((item) => [item.id, item.quantity]);
+  console.log(item_ids);
+  let total = 0;
+  for (value of item_ids) {
+    const product = await Product.findById(value[0]);
+    console.log(product.price, value[1], product.price * value[1]);
+
+    total += product.price * value[1];
+  }
+  console.log(total);
+  return total;
+};
+
+const placeOrder = async (req, res) => {
+  try {
+    const { userId, cartdata, formData } = req.body;
+    console.log(formData);
+    const amount = await calculation(cartdata);
+    const date = `${new Date().getDate()}/${
+      new Date().getMonth() + 1
+    }/${new Date().getFullYear()}`;
+
+    let orderItems = new Order({
+      orderDate: date,
+      orderAmount: amount + formData.deliveryCharges,
+      shippingAmount: Number.parseFloat(formData.deliveryCharges),
+      orderItems: cartdata.map((item) => ({
+        ...item,
+        isProductreviewed: false,
+      })),
+      userId: userId,
+      deliveryInfo: formData,
+    });
+    orderItems = await orderItems.save();
+    const orderId = orderItems._id.toString();
+
+    console.log({ orderId });
+    console.log(70 * 100 + Number.parseFloat(formData.deliveryCharges));
+
+    res.json({
+      status: "success",
+      orderId: orderId,
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      
+      
+      error:error.message
+    });
+  }
+};
 
 const getAllOrders = async (req, res) => {
   try {
@@ -11,14 +65,13 @@ const getAllOrders = async (req, res) => {
     //     throw new Error("Corrupted Token")
     //   }
     //   else{
-      
-        res.json({status:'success', orders: orders });
-      // }
+
+    res.json({ status: "success", orders: orders });
+    // }
     // })
-    
   } catch (error) {
     console.log(error);
-    res.json({ status: 'error', error:error.message});
+    res.json({ status: "error", error: error.message });
   }
 };
 
@@ -28,10 +81,13 @@ const changeOrderStatus = async (req, res) => {
     const orderId = req.params.id;
     const orderStatus = req.body.orderStatus;
 
-    const updateOrder= await Order.findByIdAndUpdate(`${orderId}`,{$set:{orderStatus:orderStatus}},{new:true})
-    res.json({ status:updateOrder.orderStatus });
+    const updateOrder = await Order.findByIdAndUpdate(
+      `${orderId}`,
+      { $set: { orderStatus: orderStatus } },
+      { new: true }
+    );
+    res.json({ status: updateOrder.orderStatus });
   } catch (error) {
-   
     res.json({ error: error });
   }
 };
@@ -63,19 +119,17 @@ const getDeliveredOrderDetails = async (req, res) => {
   try {
     const userId = req.params.id;
     const deliveredOrders = await Order.find({
-    $and: [{ orderStatus: "delivered" }, { userId: userId }],
-  });
-
+      $and: [{ orderStatus: "delivered" }, { userId: userId }],
+    });
 
     //To filter out all the orders that has already been reviewed
 
-    const reviewOrders=deliveredOrders.filter((orderDetails)=>{
-      return(
-         orderDetails.orderItems.some((item)=>item.isProductreviewed!==true)
-      )
-    })
+    const reviewOrders = deliveredOrders.filter((orderDetails) => {
+      return orderDetails.orderItems.some(
+        (item) => item.isProductreviewed !== true
+      );
+    });
 
-    
     res.json({ deliveredOrders: reviewOrders });
   } catch (error) {
     console.log(error);
@@ -101,7 +155,7 @@ const checkProductPurchase = async (req, res) => {
 const addReview = async (req, res) => {
   try {
     const { productId, orderId, userId, currentRating, reviewMsg } = req.body;
-    console.log(productId, orderId, userId, currentRating, reviewMsg)
+    console.log(productId, orderId, userId, currentRating, reviewMsg);
     const order = await Order.findOne({
       $and: [{ _id: orderId }, { userId: userId }],
     });
@@ -112,9 +166,8 @@ const addReview = async (req, res) => {
         isProductreviewed: true,
       };
       await order.save();
-      console.log('teeest')
-      
-      
+      console.log("teeest");
+
       const product = await Product.findById(productId);
       const { rating, reviewers, notes } = product.reviews;
 
@@ -125,7 +178,7 @@ const addReview = async (req, res) => {
         notes: [...notes, reviewMsg],
       };
       await product.save();
-    }else{
+    } else {
       // console.log('teeest')
     }
 
@@ -134,12 +187,11 @@ const addReview = async (req, res) => {
       orderId: orderId,
       userId: userId,
       order: order,
-      status:'success'
+      status: "success",
     });
   } catch (error) {
     console.log(error);
-    res.json({ error: error,status:'error' });
-    
+    res.json({ error: error, status: "error" });
   }
 };
 
@@ -151,4 +203,5 @@ module.exports = {
   addReview,
   getAllOrders,
   changeOrderStatus,
+  placeOrder,
 };

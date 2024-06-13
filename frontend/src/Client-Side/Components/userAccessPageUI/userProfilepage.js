@@ -26,7 +26,7 @@ function UserProfilepage() {
 
     const logOut = async () => {
       const response = await fetch(
-        "https://trend-flare-apparel-store-api.vercel.app/users/logout/visitorToken",
+        "http://192.168.0.129:3000/users/logout/visitorToken",
         { credentials: "include" }
       );
     };

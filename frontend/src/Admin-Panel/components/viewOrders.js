@@ -9,7 +9,7 @@ function ViewOrders({ acess }) {
   useEffect(() => {
     const getOrdersfromDB = async () => {
       const response = await fetch(
-        `https://trend-flare-apparel-store-api.vercel.app/orders/getAllOrders`,
+        `http://192.168.0.129:3000/orders/getAllOrders`,
         {
           credentials: "include",
         }

@@ -14,14 +14,11 @@ AddProduct.defaultProps = {
   },
 
   handleSubmitFunction: async (product) => {
-    const response = await fetch(
-      "https://trend-flare-apparel-store-api.vercel.app/products",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      }
-    );
+    const response = await fetch("http://192.168.0.129:3000/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(product),
+    });
 
     const { status } = await response.json();
 

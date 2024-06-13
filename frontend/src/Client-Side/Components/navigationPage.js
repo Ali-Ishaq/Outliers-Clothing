@@ -12,7 +12,7 @@ function NavigationPage({ setAccess }) {
   const handleLogout = () => {
     const logOut = async () => {
       const response = await fetch(
-        "https://trend-flare-apparel-store-api.vercel.app/users/logout/adminToken",
+        "http://192.168.0.129:3000/users/logout/adminToken",
         { credentials: "include" }
       );
     };

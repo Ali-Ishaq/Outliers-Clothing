@@ -14,7 +14,7 @@ function OrderHistory() {
       const getOrdersfromDB = async () => {
         try {
           const response = await fetch(
-            `https://trend-flare-apparel-store-api.vercel.app/orders/getUserOrders/${userProfile._id}`
+            `http://192.168.0.129:3000/orders/getUserOrders/${userProfile._id}`
           );
           const { orders } = await response.json();
           console.log(orders);

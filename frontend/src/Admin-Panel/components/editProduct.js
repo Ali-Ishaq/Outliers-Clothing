@@ -11,9 +11,7 @@ function EditProduct() {
   const { id } = useParams();
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await fetch(
-        `https://trend-flare-apparel-store-api.vercel.app/products/${id}`
-      );
+      const response = await fetch(`http://192.168.0.129:3000/products/${id}`);
       const { data } = await response.json();
       setProduct(data);
       console.log(data);
@@ -22,14 +20,11 @@ function EditProduct() {
   }, []);
 
   const editProduct = async (product) => {
-    const response = await fetch(
-      `https://trend-flare-apparel-store-api.vercel.app/products/${id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      }
-    );
+    const response = await fetch(`http://192.168.0.129:3000/products/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(product),
+    });
 
     const { status, updatedProduct } = await response.json();
 

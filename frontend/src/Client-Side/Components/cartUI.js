@@ -5,7 +5,7 @@ import Cartdata from "../Datafiles/cartdata";
 import { dispatchContext } from "../Contexts/dispatchContext";
 
 import { motion } from 'framer-motion'
-function CartUI({ UniqueId, CartImg, CartName, CartPrice, quantity }) {
+function CartUI({ UniqueId, CartImg, CartName, CartPrice, quantity,size }) {
 
   const [subtotal, setSubtotal] = useState(CartPrice);
 
@@ -21,15 +21,15 @@ function CartUI({ UniqueId, CartImg, CartName, CartPrice, quantity }) {
   }
 
   function removeitem() {
-    cartDispatch({ type: "removeCartItem", payload: UniqueId });
+    cartDispatch({ type: "removeCartItem", payload: {UniqueId:UniqueId,size:size} });
   }
 
   function increaseQuantity() {
-    cartDispatch({ type: "increaseCartQuantity", payload: UniqueId });
+    cartDispatch({ type: "increaseCartQuantity", payload: {UniqueId:UniqueId,size:size} });
   }
 
   function decreaseQuantity() {
-    cartDispatch({ type: "decreaseCartQuantity", payload: UniqueId });
+    cartDispatch({ type: "decreaseCartQuantity", payload: {UniqueId:UniqueId,size:size} });
     // setCartdata(
     //     cartdata.map((obj, index) =>
     //       index === currentArray ? { ...obj, quantity: obj.quantity!==1? obj.quantity- 1 :obj.quantity } : obj
@@ -74,6 +74,7 @@ function CartUI({ UniqueId, CartImg, CartName, CartPrice, quantity }) {
       </div>
       <div id="cartdetails">
         <h1 id="cartname">{CartName}</h1>
+        <h1 id="cartproductsize">size: {size}</h1>
         <h1 id="cartprice">${CartPrice}</h1>
       </div>
       <div id="cartquantity">

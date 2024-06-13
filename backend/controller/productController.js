@@ -109,62 +109,6 @@ const stripePaymentUrl = async (req, res) => {
   }
 };
 
-const calculation = async (items) => {
-  const item_ids = items.map((item) => [item.id, item.quantity]);
-  console.log(item_ids);
-  let total = 0;
-  for (value of item_ids) {
-    const product = await Product.findById(value[0]);
-    console.log(product.price, value[1], product.price * value[1]);
-
-    total += product.price * value[1];
-  }
-  console.log(total);
-  return total;
-};
-
-const payment_intent = async (req, res) => {
-  const { userId, cartdata, formData } = req.body;
-  const amount = await calculation(cartdata);
-  const date = `${new Date().getDate()}/${
-    new Date().getMonth() + 1
-  }/${new Date().getFullYear()}`;
-
-  let orderItems = new Order({
-    orderDate: date,
-    orderAmount: amount + formData.deliveryCharges,
-    shippingAmount: Number.parseFloat(formData.deliveryCharges),
-    orderItems: cartdata.map((item) => ({ ...item, isProductreviewed: false })),
-    userId: userId,
-    deliveryInfo: formData,
-  });
-  orderItems = await orderItems.save();
-  const orderId = orderItems._id.toString();
-  console.log({ orderId });
-  console.log(70 * 100 + Number.parseFloat(formData.deliveryCharges));
-
-  try {
-    // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount * 100 + Number.parseFloat(formData.deliveryCharges) * 100,
-      currency: "usd",
-      // automatic_payment_methods: {
-      //   enabled: true,
-      // },
-      metadata: {
-        userId: userId,
-        orderId: orderId,
-      },
-      payment_method_types: ["card"],
-    });
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 module.exports = {
   getProduct,
   createProduct,
@@ -172,5 +116,4 @@ module.exports = {
   updateProduct,
   deleteProduct,
   stripePaymentUrl,
-  payment_intent,
 };

@@ -10,6 +10,7 @@ const productSchema = new Schema({
   category: String,
   thumbnail: { type: String, required: true },
   images: [String],
+  quantity: [Number],
   reviews:{type:Object,default:{rating:0,reviewers:0,notes:[]}}
 
 });

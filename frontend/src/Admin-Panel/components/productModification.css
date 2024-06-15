@@ -39,7 +39,7 @@
   button.updateBtns:hover{
     box-shadow: 5px 5px rgb(165, 165, 165);
    
-    background-color: rgba(38, 216, 38, 0.747);
+    background-color: rgba(99, 99, 99);
     
   }
   button.updateBtns:active{
@@ -51,10 +51,10 @@
     aspect-ratio: 4/1;
     border: 0px;
   border-radius: 3px;
-  background-color: rgba(150, 177, 252, 0.849);
+  background-color: #1a1a1a;
   color: white;
+  font-family: "Montserrat", sans-serif;
   
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 90%;
   padding: 5px;
   transition: all ease 0.3s;

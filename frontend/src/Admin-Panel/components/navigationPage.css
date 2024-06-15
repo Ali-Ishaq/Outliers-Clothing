@@ -28,11 +28,13 @@ button.navigationPageBtns {
   height: 50px;
   border: 0px;
   border-radius: 3px;
-  background-color: rgba(150, 177, 252, 0.849);
+  background-color:#1a1a1a;
+  
   color: white;
+  
   margin-top: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
+  font-family: "Montserrat", sans-serif;
+  font-size: medium;
   transition: all ease 0.3s;
   }
 
@@ -40,7 +42,7 @@ button.navigationPageBtns {
   button.navigationPageBtns:hover{
     box-shadow: 5px 5px rgb(165, 165, 165);
    
-    background-color: rgba(38, 216, 38, 0.747);
+    background-color: rgb(99, 99, 99);
     
   }
   button.navigationPageBtns:active{

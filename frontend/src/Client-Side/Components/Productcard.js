@@ -5,10 +5,12 @@ import "./loader.css";
 import { dispatchContext } from "../Contexts/dispatchContext";
 import { useParams } from "react-router-dom";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { SlArrowRight,SlArrowLeft } from "react-icons/sl";
 
 function ProductCard({ productsDb }) {
   const [product, setProduct] = useState(null);
-  const productSize=useRef('');
+  const [mainImage,setMainImage]=useState(0)
+  const [productSize,setProductSize]=useState(null);
   const { id } = useParams();
   const [showDescription, setShowDescription] = useState(false);
 
@@ -34,15 +36,23 @@ function ProductCard({ productsDb }) {
       price: product.price,
       productcode: product._id,
       id: product._id,
-      size:productSize.current
+      size:productSize
     };
     cartDispatch({ type: "updateCart", payload: productDetails });
   }
 
   const handleSizeChange=(e)=>{
-    productSize.current=e.target.value;
-    console.log(productSize.current)
+    setProductSize(e.target.value);
+    console.log(productSize)
 
+  }
+  const sizeLeft=()=>{
+    if(productSize==='s')
+      return 0;
+    else if(productSize==='m')
+      return 1;
+    else
+      return 2;
   }
 
   return (
@@ -51,7 +61,8 @@ function ProductCard({ productsDb }) {
         <>
           <div id="product-images-section">
             <div id="image-thumbnails">
-              <li className="extra-images">
+              
+              {/* <li className="extra-images">
                 <img src={product.thumbnail} alt="" />
               </li>
               <li className="extra-images">
@@ -65,10 +76,23 @@ function ProductCard({ productsDb }) {
               </li>
               <li className="extra-images">
                 <img src={product.thumbnail} alt="" />
+              </li> */}
+
+              {product.images.map((obj,i)=>{
+                return(
+                <li className="extra-images" onClick={()=>{setMainImage(i)}} style={mainImage===i?{outline: '2px solid #1a1a1a'}:{}}>
+                <img src={obj} alt=""  />
               </li>
+                )
+              })}
+
+
             </div>
             <div id="main-image">
-              <img src={product.thumbnail} alt="" />
+              <span id="left-arrow" ><SlArrowLeft /></span>
+              
+              <img src={product.images[mainImage]} alt="" />
+              <span id="right-arrow" ><SlArrowRight /></span>
             </div>
           </div>
 
@@ -138,27 +162,28 @@ function ProductCard({ productsDb }) {
 
               <form action="" onChange={handleSizeChange}>
                 <div className="size-variant-button-parent">
-                  <input type="radio" id="size-s" name="size" value="s" />
+                  <input type="radio" id="size-s" name="size" value="s" disabled={product.quantity[0]<1}/>
                   <label htmlFor="size-s" className="size-variant-button">
                     S
                   </label>
                 </div>
 
                 <div className="size-variant-button-parent">
-                  <input type="radio" id="size-m" name="size" value="m" disabled />
+                  <input type="radio" id="size-m" name="size" value="m" disabled={product.quantity[1]<1} />
                   <label htmlFor="size-m" className="size-variant-button">
                     M
                   </label>
                 </div>
 
                 <div className="size-variant-button-parent">
-                  <input type="radio" id="size-l" name="size" value="l" />
+                  <input type="radio" id="size-l" name="size" value="l" disabled={product.quantity[2]<1} />
                   <label htmlFor="size-l" className="size-variant-button">
                     L
                   </label>
                 </div>
                 </form>
               </div>
+              {productSize&&<p>Only {product.quantity[sizeLeft()]} left in stock !</p>}
             </div>
 
             <button onClick={clickHandle} uniquekey={product.id} id="cartbtn2">

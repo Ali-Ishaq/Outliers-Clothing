@@ -10,46 +10,44 @@ const { Schema } = mongoose;
 //   paymentStatus: { type: String, default: "pending" },
 //   userId: { type: String },
 //   deliveryInfo: {},
-  
+
 // });
-
-
 
 const orderSchema = new mongoose.Schema({
   orderStatus: {
     type: String,
     default: "pending",
-    required: true
+    required: true,
   },
   orderDate: {
     type: String,
-    required: true
+    required: true,
   },
   orderAmount: {
     type: Number,
-    required: true
+    required: true,
   },
   orderItems: [
     {
       CartImg: String,
       CartName: String,
       CartPrice: Number,
+      size: String,
       id: String,
       productcode: String,
       quantity: Number,
       isProductreviewed: {
         type: Boolean,
-        default: false
-      }
-    }
+        default: false,
+      },
+    },
   ],
   paymentStatus: {
     type: String,
-    
   },
   userId: {
     type: String,
-    required: true
+    required: true,
   },
   deliveryInfo: {
     firstname: String,
@@ -60,11 +58,9 @@ const orderSchema = new mongoose.Schema({
     email: String,
     phone: Number,
     zip: Number,
-    deliveryCharges: Number
-  }
+    deliveryCharges: Number,
+  },
 });
-
-
 
 const Order = mongoose.model("order", orderSchema);
 

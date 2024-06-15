@@ -74,7 +74,7 @@ function CartUI({ UniqueId, CartImg, CartName, CartPrice, quantity,size }) {
       </div>
       <div id="cartdetails">
         <h1 id="cartname">{CartName}</h1>
-        <h1 id="cartproductsize">size: {size}</h1>
+        <h1 id="cartproductsize">size: {size.toUpperCase()}</h1>
         <h1 id="cartprice">${CartPrice}</h1>
       </div>
       <div id="cartquantity">

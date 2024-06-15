@@ -126,17 +126,25 @@ export default function CheckOut({ cartdata, carttotal }) {
 
               <div
                 id="orderCartViewTitle"
-                style={{ width: "70%", paddingLeft: "15px" }}
+                style={{ width: "70%", paddingLeft: "15px",height:'100%',display:'flex',flexDirection:'column',justifyContent:'space-around' }}
               >
                 <h1
                   style={{
                     fontSize: "15px",
-                    marginBottom: "6px",
+                    
                     fontWeight: "400",
                   }}
                 >
                   {e.CartName}
+                 
+
                 </h1>
+                  <p style={{
+                    fontSize: "14px",
+                    color: "gray",
+                    fontWeight: "400",
+                  }}>size: {(e.size).toUpperCase()}</p>
+                
                 <p style={{ fontSize: "small", color: "gray" }}>
                   Qty : {e.quantity}
                 </p>

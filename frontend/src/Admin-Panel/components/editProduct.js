@@ -59,6 +59,8 @@ function EditProduct() {
                 price: product.price,
                 thumbnail: product.thumbnail,
                 category: product.category,
+                images:[product.images[0],product.images[1],product.images[2],product.images[3],product.images[4]],
+                quantity:[product.quantity[0],product.quantity[1],product.quantity[2]]
               }}
               handleSubmitFunction={editProduct}
             ></AddProduct>

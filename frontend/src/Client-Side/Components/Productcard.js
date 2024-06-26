@@ -5,15 +5,19 @@ import "./loader.css";
 import { dispatchContext } from "../Contexts/dispatchContext";
 import { useParams } from "react-router-dom";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import { SlArrowRight,SlArrowLeft } from "react-icons/sl";
+import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+import { RxCross1 } from "react-icons/rx";
+
 
 function ProductCard({ productsDb }) {
   const [product, setProduct] = useState(null);
-  const [mainImage,setMainImage]=useState(0)
-  const [productSize,setProductSize]=useState(null);
+  const [mainImage, setMainImage] = useState(0);
+  const [productSize, setProductSize] = useState(null);
   const { id } = useParams();
+  const sizeChartRef=useRef()
   const [showDescription, setShowDescription] = useState(false);
 
+  const {Overlay}=useContext(hooksContext)
   const { cartDispatch } = useContext(dispatchContext);
   // const { productPageId } = useContext(hooksContext);
 
@@ -36,23 +40,79 @@ function ProductCard({ productsDb }) {
       price: product.price,
       productcode: product._id,
       id: product._id,
-      size:productSize
+      size: productSize,
     };
     cartDispatch({ type: "updateCart", payload: productDetails });
   }
 
-  const handleSizeChange=(e)=>{
+  const handleSizeChange = (e) => {
     setProductSize(e.target.value);
-    console.log(productSize)
+    console.log(productSize);
+  };
+  const sizeLeft = () => {
+    if (productSize === "s") return 0;
+    else if (productSize === "m") return 1;
+    else return 2;
+  };
 
-  }
-  const sizeLeft=()=>{
-    if(productSize==='s')
-      return 0;
-    else if(productSize==='m')
-      return 1;
-    else
-      return 2;
+  const handleImageToggle = (direction) => {
+    let size = product.images.length - 1;
+    if (direction === "right") {
+      setMainImage((prevValue) => {
+        if (prevValue < size) {
+          return prevValue + 1;
+        } else {
+          return 0;
+        }
+      });
+    } else {
+      setMainImage((prevValue) => {
+        if (prevValue > 0) {
+          return prevValue - 1;
+        } else {
+          return size;
+        }
+      });
+    }
+  };
+
+  const handleChartToggle=(status)=>{
+
+    if(window.visualViewport.width<600){
+
+      if(status==='close'){
+        sizeChartRef.current.style.translate='';
+        document.body.style.overflow='';
+
+        Overlay.current.style.display = "none";
+        
+        }else{
+          sizeChartRef.current.style.translate='0 0%';
+          document.body.style.overflow='hidden';
+          Overlay.current.style.display = "flex";
+        
+      }
+  
+    }else{
+
+      if(status==='close'){
+        sizeChartRef.current.style.translate='';
+        document.body.style.overflow='';
+        document.body.style.marginRight='';
+        Overlay.current.style.display = "none";
+        
+        }else{
+          sizeChartRef.current.style.translate='0';
+          document.body.style.overflow='hidden';
+          Overlay.current.style.display = "flex";
+          document.body.style.marginRight='17px';
+        
+      }
+  
+  
+    }
+
+    
   }
 
   return (
@@ -61,84 +121,107 @@ function ProductCard({ productsDb }) {
         <>
           <div id="product-images-section">
             <div id="image-thumbnails">
-              
-              {/* <li className="extra-images">
-                <img src={product.thumbnail} alt="" />
-              </li>
-              <li className="extra-images">
-                <img src={product.thumbnail} alt="" />
-              </li>
-              <li className="extra-images">
-                <img src={product.thumbnail} alt="" />
-              </li>
-              <li className="extra-images">
-                <img src={product.thumbnail} alt="" />
-              </li>
-              <li className="extra-images">
-                <img src={product.thumbnail} alt="" />
-              </li> */}
-
-              {product.images.map((obj,i)=>{
-                return(
-                <li className="extra-images" onClick={()=>{setMainImage(i)}} style={mainImage===i?{outline: '2px solid #1a1a1a'}:{}}>
-                <img src={obj} alt=""  />
-              </li>
-                )
+              {product.images.map((obj, i) => {
+                return (
+                  <li
+                    className="extra-images"
+                    onClick={() => {
+                      setMainImage(i);
+                    }}
+                    style={
+                      mainImage === i ? { outline: "2px solid #1a1a1a" } : {}
+                    }
+                  >
+                    <img src={obj} alt="" />
+                  </li>
+                );
               })}
-
-
             </div>
+
+            <div id="image-thumbnails-mobile-view" style={{ display: "none" }}>
+              <svg
+                focusable="false"
+                width="17"
+                height="14"
+                class="icon icon--nav-arrow-left  icon--direction-aware "
+                viewBox="0 0 17 14"
+                onClick={() => {
+                  handleImageToggle("left");
+                }}
+              >
+                <path
+                  d="M17 7H2M8 1L2 7l6 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                ></path>
+              </svg>
+
+              <div id="image-toggle-radio">
+                {product.images.map((obj, i) => {
+                  return (
+                    <input
+                      type="radio"
+                      name="image-toggle-btns"
+                      className="extra-images"
+                      checked={i === mainImage}
+                      onClick={() => {
+                        setMainImage(i);
+                      }}
+                      style={
+                        mainImage === i ? { outline: "2px solid #1a1a1a" } : {}
+                      }
+                    />
+                  );
+                })}
+              </div>
+
+              <svg
+                focusable="false"
+                width="17"
+                height="14"
+                class="icon icon--nav-arrow-right  icon--direction-aware "
+                viewBox="0 0 17 14"
+                onClick={() => {
+                  handleImageToggle("right");
+                }}
+              >
+                <path
+                  d="M0 7h15M9 1l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                ></path>
+              </svg>
+            </div>
+
             <div id="main-image">
-              <span id="left-arrow" ><SlArrowLeft /></span>
-              
+              <span id="left-arrow">
+                <SlArrowLeft />
+              </span>
+
               <img src={product.images[mainImage]} alt="" />
-              <span id="right-arrow" ><SlArrowRight /></span>
+              <span id="right-arrow">
+                <SlArrowRight />
+              </span>
             </div>
           </div>
 
           <div id="details">
-            <h1 id="brand-name">Outliers Clothing</h1>
-            <div id="productname">{product.title}</div>
-            <div id="rating-stars">
-              <div id="ratingStars2">
-                <div
-                  id="imgbg"
-                  style={{
-                    width: "80%",
-                    backgroundColor: "#cccccc",
-                    height: "100%",
-                    position: "relative",
-                    display: "flex",
-                    WebkitMaskImage: "url('/rating.png')",
-                    WebkitMaskSize: "100%",
-                    WebkitMaskRepeat: "no-repeat",
-                  }}
-                >
-                  <div
-                    id="ratingScore"
-                    style={{
-                      display: "flex",
-                      height: "100%",
-                      width: `${(product.reviews.rating / 5) * 100}%`,
-                      position: "absolute",
-                      top: "0",
-                      left: "0",
-                      backgroundColor: "#fbe22f",
-                    }}
-                  ></div>
-                </div>
-                <p
-                  style={{
-                    width: "20%",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  ( {product.reviews.reviewers} )
-                </p>
+            <h1 id="brand-name">OUTLIERS CLOTHING</h1>
+            <h1 id="productname">{product.title}</h1>
+           
+            
+            <div id="review-stars">
+            
+              <div class="stars-outer">
+                <div class="stars-inner" style={{width: `${(product.reviews.rating / 5) * 100}%`}}></div>
               </div>
+              <p className="reviews-count">({product.reviews.reviewers})</p>
+            
             </div>
-            <div id="productprice"> $ {product.price}</div>
+
+            <h1 id="productprice"> $ {product.price}</h1>
             {/* <div id="reviewStars">
               <div id="stars"></div>
             </div> */}
@@ -155,35 +238,54 @@ function ProductCard({ productsDb }) {
               <div id="product-variants-heading">
                 <p>Size: M</p>
                 <p>
-                  <a href="">Size chart</a>
+                  <a href="#" onClick={handleChartToggle} >Size chart</a>
                 </p>
               </div>
               <div id="product-variants-radio">
+                <form action="" onChange={handleSizeChange}>
+                  <div className="size-variant-button-parent">
+                    <input
+                      type="radio"
+                      id="size-s"
+                      name="size"
+                      value="s"
+                      disabled={product.quantity[0] < 1}
+                    />
+                    <label htmlFor="size-s" className="size-variant-button">
+                      S
+                    </label>
+                  </div>
 
-              <form action="" onChange={handleSizeChange}>
-                <div className="size-variant-button-parent">
-                  <input type="radio" id="size-s" name="size" value="s" disabled={product.quantity[0]<1}/>
-                  <label htmlFor="size-s" className="size-variant-button">
-                    S
-                  </label>
-                </div>
+                  <div className="size-variant-button-parent">
+                    <input
+                      type="radio"
+                      id="size-m"
+                      name="size"
+                      value="m"
+                      disabled={product.quantity[1] < 1}
+                    />
+                    <label htmlFor="size-m" className="size-variant-button">
+                      M
+                    </label>
+                  </div>
 
-                <div className="size-variant-button-parent">
-                  <input type="radio" id="size-m" name="size" value="m" disabled={product.quantity[1]<1} />
-                  <label htmlFor="size-m" className="size-variant-button">
-                    M
-                  </label>
-                </div>
-
-                <div className="size-variant-button-parent">
-                  <input type="radio" id="size-l" name="size" value="l" disabled={product.quantity[2]<1} />
-                  <label htmlFor="size-l" className="size-variant-button">
-                    L
-                  </label>
-                </div>
+                  <div className="size-variant-button-parent">
+                    <input
+                      type="radio"
+                      id="size-l"
+                      name="size"
+                      value="l"
+                      disabled={product.quantity[2] < 1}
+                    />
+                    <label htmlFor="size-l" className="size-variant-button">
+                      L
+                    </label>
+                  </div>
                 </form>
               </div>
-              {productSize&&<p>Only {product.quantity[sizeLeft()]} left in stock !</p>}
+              {productSize && (
+                <p>Only {product.quantity[sizeLeft()]} left in stock !</p>
+              )}
             </div>
 
             <button onClick={clickHandle} uniquekey={product.id} id="cartbtn2">
@@ -203,6 +305,18 @@ function ProductCard({ productsDb }) {
           <div class="defautloader"></div>
         </div>
       )}
+
+
+      <div ref={sizeChartRef}  id="size-chart">
+          <div className="sizeChart-toggle-menu">
+            <RxCross1 onClick={()=>{handleChartToggle('close')}}/>
+          </div>
+          <div className="sizeChart-image-container">
+
+          <img src="https://overlays.co/cdn/shop/files/TSHIRT-RElaxed-size-chart.png?v=1680184202" alt="" />
+          </div>
+          
+      </div>
     </div>
   );
 }

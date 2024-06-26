@@ -3,31 +3,32 @@
   padding: 0px;
   box-sizing: border-box;
   /* overflow: hidden; */
-  font-family: "Lato", sans-serif;
 }
 
 div#productUI {
   /* width: 18%; */
-  width: 180px;
-  aspect-ratio: 3/4.5;
-  
-  margin-bottom: 15px;
+  width: 305px;
+  /* aspect-ratio: 3/4.5; */
 
-    margin-bottom: 25px;
+  margin-bottom: 25px;
+
+  margin-bottom: 40px;
   background-color: white;
   padding: 0px;
-  border-radius: 10px;
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
-    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 5px;
+  /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
+  overflow: hidden;
 }
 div#productimg {
   display: flex;
-  height: 65%;
-
+  /* height: 65%; */
+  border-radius: 5px;
   width: 100%;
+  aspect-ratio: 9/13;
   position: relative;
   overflow: hidden;
-  border-radius: 10px 10px 0px 0px;
+  /* border-radius: 10px 10px 0px 0px; */
 }
 
 img#productImg {
@@ -35,7 +36,6 @@ img#productImg {
     transform: translateY(-40px); */
   width: 100%;
 
-  z-index: 3;
   object-fit: cover;
 }
 
@@ -43,7 +43,7 @@ div#layer {
   position: absolute;
   height: 100%;
   width: 100%;
-  z-index: 2;
+
   background: #00000063;
   display: flex;
   align-items: end;
@@ -82,7 +82,7 @@ div#layer {
   position: absolute;
   height: 100%;
   width: 100%;
-  z-index: 2;
+
   background: #00000063;
   display: flex;
   align-items: end;
@@ -119,7 +119,6 @@ button.searchbtn:active {
 }
 
 #product-details {
-  height: 35%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -129,14 +128,14 @@ button.searchbtn:active {
 }
 
 #productName {
-  height: 40%;
-  font-size: 100%;
-  font-weight: 600;
-  height: 40%;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height:120%;
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  text-align: center;
 }
 
 div#ratingStars {
@@ -147,20 +146,52 @@ div#ratingStars {
   overflow: hidden;
   display: flex;
   /* background: #000; */
-  
+
   align-items: center;
 }
 
 #productPrice {
-  display: flex;
-  flex: 1;
-  height: 40%;
-  flex-direction: column;
-
-  justify-content: center;
-  font-size: large;
-  color: rgb(103, 172, 1);
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  text-align: center;
+  /* color: rgb(103, 172, 1); */
+  
 }
+.size-variants-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  .size-variant-element,.size-variant-element-disabled{
+    width: 13%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    position: relative;
+    
+    border: 1px solid darkgray;
+  }
+  .size-variant-element-disabled{
+    color: #bbbbbb;
+  }
+  .size-variant-element-disabled::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 80%;
+    background-color: #bbbbbb;
+  }
+
+}
+
 
 @keyframes loadingAnimation {
   0% {
@@ -181,15 +212,14 @@ div.imgBg {
   border-radius: 10px 10px 10px 10px;
   animation: loadingAnimation 1.5s infinite;
 }
-div.fieldsBg{
-    animation: loadingAnimation 1.5s infinite;
-
+div.fieldsBg {
+  animation: loadingAnimation 1.5s infinite;
 }
 
 @media screen and (max-width: 780px) {
   div#productUI {
     width: 48%;
-    height: 260px;
+    /* height: 260px; */
     /* border: 2px solid black; */
     /* margin: 5px; */
     margin-bottom: 15px;

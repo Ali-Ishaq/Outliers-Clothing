@@ -49,6 +49,7 @@ function EditProduct() {
               productImg={product.thumbnail}
               productName={product.title}
               productPrice={product.price}
+              productSizes={product.quantity}
             />
           </div>
           <div className="editProductForm">

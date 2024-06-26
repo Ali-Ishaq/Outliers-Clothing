@@ -14,12 +14,16 @@ function ProductUI({
   productName,
   productPrice,
   productReviews,
+  productSizes
 }) {
   const [style, setStyle] = useState();
   const { setProductPageId } = useContext(hooksContext);
   const { cartDispatch } = useContext(dispatchContext);
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    console.log(productSizes);
+  },[])
   //This function will take the prduct id of the targeted products and sends it to App component
   function clickHandle(e) {
     // e.preventDefault();
@@ -96,7 +100,7 @@ function ProductUI({
 
       <div id="product-details">
         <h1 id="productName">{productName}</h1>
-        <div id="ratingStars">
+        {/* <div id="ratingStars">
           
 
           <div
@@ -129,8 +133,13 @@ function ProductUI({
             }}
           ></div>
         </div>
+        </div> */}
+        <h1 id="productPrice">Rs {productPrice}</h1>
+        <div className="size-variants-container">
+          <div className={productSizes[0]>0 ?'size-variant-element':'size-variant-element-disabled'}>S</div>
+          <div className={productSizes[1]>0 ?'size-variant-element':'size-variant-element-disabled'}>M</div>
+          <div className={productSizes[2]>0 ?'size-variant-element':'size-variant-element-disabled'}>L</div>
         </div>
-        <h1 id="productPrice">${productPrice}</h1>
         <button
           style={{ display: "none" }}
           className="cartbtn"

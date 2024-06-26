@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Jost", sans-serif;
   width: 100%;
 }
 
@@ -40,9 +40,9 @@
   div#product-quantity {
     width: 30%;
     height: auto;
-    
-    input{
-        height: 36px;
+
+    input {
+      height: 36px;
     }
   }
   .item:nth-child(4) {
@@ -92,7 +92,7 @@ button#AddProductBtn {
   background-color: #1a1a1a;
   color: white;
   margin-top: 50px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: large;
   transition: all ease 0.3s;
 }

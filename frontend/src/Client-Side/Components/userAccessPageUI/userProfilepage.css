@@ -4,7 +4,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 #userProfilepage {
@@ -26,7 +26,6 @@
   /* background-color: aqua; */
   /* border-top: 2px solid lightgray; */
   border-bottom: 2px solid lightgray;
-  
 }
 #userprofileimg {
   width: 100%;
@@ -48,7 +47,6 @@
   /* background-color: skyblue; */
   padding: 20px;
   padding-left: 25px;
-  
 }
 
 #userdetails p {
@@ -58,9 +56,9 @@
   margin-bottom: 15px;
 }
 #userdetails p span {
-  color:black;
+  color: black;
   font-weight: 500;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Jost", sans-serif;
 }
 button#editprofilebtn {
   width: 130px;
@@ -79,16 +77,18 @@ button#editprofilebtn {
   margin-top: 10px;
 }
 
-button#editprofilebtn:hover,#logoutbtn button:hover {
+button#editprofilebtn:hover,
+#logoutbtn button:hover {
   box-shadow: 5px 5px rgb(165, 165, 165);
   background-color: rgba(38, 216, 38, 0.747);
 }
 
-button#editprofilebtn:active,#logoutbtn button:active {
+button#editprofilebtn:active,
+#logoutbtn button:active {
   scale: 0.9;
 }
 
-#useroptions  {
+#useroptions {
   height: 30%;
   width: 90%;
   /* background-color: antiquewhite; */
@@ -100,51 +100,36 @@ button#editprofilebtn:active,#logoutbtn button:active {
   justify-content: center;
 }
 
-
-
-
 #useroptions a {
-
-text-decoration: none;
-font-size: 22px;
-margin-bottom: 18px;
-
-
+  text-decoration: none;
+  font-size: 22px;
+  margin-bottom: 18px;
 }
 
-
-
-
-
-
-
-
-
-
-#logoutbtn{
-    display: flex;
-    width: 90%;
-    height: 15%;
-    justify-content: center;
-    align-items: center;
-    /* background-color: brown; */
+#logoutbtn {
+  display: flex;
+  width: 90%;
+  height: 15%;
+  justify-content: center;
+  align-items: center;
+  /* background-color: brown; */
 }
-#logoutbtn button{
+#logoutbtn button {
   width: 150px;
   height: 40px;
-display: flex;
-justify-content: center;
-align-items: center;
-border: 0px;
-border-radius: 3px;
-background-color: rgba(150, 177, 252, 0.849);
-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  border-radius: 3px;
+  background-color: rgba(150, 177, 252, 0.849);
+  color: white;
 
-font-family: Arial, Helvetica, sans-serif;
-font-size: 18px;
-transition: all ease 0.3s;
-margin-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  transition: all ease 0.3s;
+  margin-top: 10px;
 }
-#logoutbtn button:hover{
+#logoutbtn button:hover {
   background-color: red;
 }

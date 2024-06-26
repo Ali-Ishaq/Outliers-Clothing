@@ -1,34 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
 
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  
 }
 
-div#login_form_parent{
-    font-family: 'Noto Sans JP', sans-serif;
-    width:100vw;
-    /* margin-block: 2rem; */
-    padding-inline: 2rem;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+div#login_form_parent {
+  font-family: "Noto Sans JP", sans-serif;
+  width: 100vw;
+  /* margin-block: 2rem; */
+  padding-inline: 2rem;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-div#login_form{
-    height: max(80vh,500px);
-    width:clamp(500px,100%,1000px) ;
-    background-color: white;
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    border-radius: 20px;
-    
-    
+div#login_form {
+  height: max(80vh, 500px);
+  width: clamp(500px, 100%, 1000px);
+  background-color: white;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  border-radius: 20px;
 }
 /* div#bigimg{
     width: 65%;
@@ -42,153 +39,138 @@ div#bigimg img{
     height: 100%;
     scale: 1.1;
 } */
-div#formpart{
-    display: flex;
-    flex-direction: column;
-    width: 500px;
+div#formpart {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
 }
-div#inputfields{
-    display: flex;
-    height: 75%;
-    
-    width: 100%;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    /* background-color: skyblue; */
+div#inputfields {
+  display: flex;
+  height: 75%;
+
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: skyblue; */
 }
 
-div.inputfield{
-    width: 70%;
-    height: 80px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    position: relative;
-    
-    
-    flex-direction: column;
-    overflow: hidden;
-}
-div#inputfields input{
-    
-    border: 0px;
-    width: 100%;
-    height: 45px;
+div.inputfield {
+  width: 70%;
+  height: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
 
-    font-family:Arial, Helvetica, sans-serif;
-    padding-left: 40px;
-    font-size: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3px;
-    border: 1px solid lightgray;
-    
+  flex-direction: column;
+  overflow: hidden;
+}
+div#inputfields input {
+  border: 0px;
+  width: 100%;
+  height: 45px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 40px;
+  font-size: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3px;
+  border: 1px solid lightgray;
 }
 
 div#inputfields input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+div#heading {
+  display: flex;
+  width: 100%;
+  height: 25%;
+  justify-content: center;
+  align-items: center;
 
-
-div#heading{
-    display: flex;
-    width: 100%;
-    height: 25%;
-    justify-content: center;
-    align-items: center;
- 
-    /* background-color: lime; */
+  /* background-color: lime; */
 }
-div#heading h1{
-    
-/* font-family: 'Alfa Slab One'; */
-    position: relative;
-    font-size: 300%;
-    font-weight: 100;
-    
-    color: rgba(0, 0, 0, 0.336);
+div#heading h1 {
+  /* font-family: 'Alfa Slab One'; */
+  position: relative;
+  font-size: 300%;
+  font-weight: 100;
 
-    font-family: "Red Hat Display", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
+  color: rgba(0, 0, 0, 0.336);
+
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }
-button#submit_btn,button#logoutbtn{
-width: 40%;
-height: 50px;
-border: 0px;
-background-color: rgba(119, 145, 219, 0.849);
-color: white;
-font-family:Arial, Helvetica, sans-serif;
-font-size: larger;
-transition: all ease 0.3s;
-margin-block: 10px;
-/* font-weight: bold; */
-
+button#submit_btn,
+button#logoutbtn {
+  width: 40%;
+  height: 50px;
+  border: 0px;
+  background-color: rgba(119, 145, 219, 0.849);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: larger;
+  transition: all ease 0.3s;
+  margin-block: 10px;
+  /* font-weight: bold; */
 }
 
-button#submit_btn:hover,button#logoutbtn:hover{
-    /* background-color: rgb(124, 241, 7); */
-    box-shadow: 5px 5px rgba(0, 0, 0, 0.534);
+button#submit_btn:hover,
+button#logoutbtn:hover {
+  /* background-color: rgb(124, 241, 7); */
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.534);
 }
-
 
 @media (max-width: 770px) {
+  div#login_form_parent {
+    margin-top: 0px;
+    height: 91vh;
+    padding-inline: 0px;
+  }
 
-    div#login_form_parent{
-       margin-top: 0px;
-        height: 91vh ;
-        padding-inline: 0px;
-        
-        
-    }
+  div#bigimg {
+    display: none;
+  }
 
-    div#bigimg{
-    
-        display: none;
-        
-    }
+  div#formpart {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    div#formpart{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  div#login_form {
+    height: 95%;
+    width: 90vw;
+    background-color: white;
+    display: flex;
+    /* flex-direction: column; */
+    border-radius: 20px;
+  }
 
-    div#login_form{
-        height: 95% ;
-        width: 90vw;
-        background-color: white;
-        display: flex;
-        /* flex-direction: column; */
-        border-radius: 20px;
-        
-        
-    }
+  div.inputfield {
+    width: 80%;
+    height: 70px;
+  }
 
-    div.inputfield{
-        width: 80%;
-        height: 70px;
-        
-    }
+  button#submit_btn,
+  button#logoutbtn {
+    width: 60%;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
 
-    button#submit_btn,button#logoutbtn{
-        width: 60%;
-        margin-bottom: 5px;
-        margin-Top: 10px;
-    }
+  div#heading h1 {
+    /* font-family: 'Alfa Slab One'; */
+    position: relative;
 
-    div#heading h1{
-    
-        /* font-family: 'Alfa Slab One'; */
-            position: relative;
-            
-            font-weight: 100;
-            letter-spacing: 2px;
-            color: rgb(61, 60, 60);
-        }
-
+    font-weight: 100;
+    letter-spacing: 2px;
+    color: rgb(61, 60, 60);
+  }
 }

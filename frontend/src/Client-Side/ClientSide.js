@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, useRef } from "react";
 import "./ClientSide.css";
 import Cart from "./Components/cart";
 import Header from "./Components/header";
@@ -21,6 +21,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import HomePage from "./Components/HomePage";
+import OverlayComp from "./Components/overlay";
+
 
 function ClientSide() {
   const [productsDb, setProductsDb] = useState([]);
@@ -28,6 +30,8 @@ function ClientSide() {
 
   const [userProfile, setUserProfile] = useState(null);
   const [isUserLogged, setIsUserLogged] = useState(null);
+
+  const Overlay = useRef();
   const logOutFunction = () => {};
 
   const [productPageId, setProductPageId] = useState();
@@ -54,22 +58,31 @@ function ClientSide() {
           id: productcode,
           productcode: productcode,
           quantity: 1,
-          size:size
+          size: size,
         };
-        
-        console.log(newcartitem)
-        console.log(!cartdata.some((p) => p.id == action.payload.id))
 
-        if (!cartdata.some((p) => (p.id == action.payload.id && p.size == action.payload.size))) {
-          console.log('heyy')
+        console.log(newcartitem);
+        console.log(!cartdata.some((p) => p.id == action.payload.id));
+
+        if (
+          !cartdata.some(
+            (p) => p.id == action.payload.id && p.size == action.payload.size
+          )
+        ) {
+          console.log("heyy");
           toastNotification("Added to Cart");
-          console.log(cartdata)
+          console.log(cartdata);
           return [...cartdata, newcartitem];
-        } else if (cartdata.some((p) => ((p.id == action.payload.id && p.size == action.payload.size) ))) {
+        } else if (
+          cartdata.some(
+            (p) => p.id == action.payload.id && p.size == action.payload.size
+          )
+        ) {
           toastNotification("Quantity Adjusted");
 
           const index1 = cartdata.findIndex(
-            (obj) => obj.id === action.payload.id && obj.size === action.payload.size
+            (obj) =>
+              obj.id === action.payload.id && obj.size === action.payload.size
           );
 
           const updatedquantity = cartdata.map((obj, index) =>
@@ -89,11 +102,17 @@ function ClientSide() {
         if (cartdata.length === 1) {
           setCarttotal(0);
         }
-        return cartdata.filter((value) => !(value.id == action.payload.UniqueId && value.size == action.payload.size) );
+        return cartdata.filter(
+          (value) =>
+            !(
+              value.id == action.payload.UniqueId &&
+              value.size == action.payload.size
+            )
+        );
 
       case "decreaseCartQuantity":
         return cartdata.map((obj, index) =>
-          (obj.id === action.payload.UniqueId && obj.size == action.payload.size)
+          obj.id === action.payload.UniqueId && obj.size == action.payload.size
             ? {
                 ...obj,
                 quantity: obj.quantity > 1 ? obj.quantity - 1 : obj.quantity,
@@ -103,7 +122,7 @@ function ClientSide() {
 
       case "increaseCartQuantity":
         return cartdata.map((obj, index) =>
-          (obj.id === action.payload.UniqueId && obj.size == action.payload.size)
+          obj.id === action.payload.UniqueId && obj.size == action.payload.size
             ? { ...obj, quantity: obj.quantity + 1 }
             : obj
         );
@@ -125,7 +144,7 @@ function ClientSide() {
             return {
               product_id: item.id,
               quantity: item.quantity,
-              size:item.size
+              size: item.size,
             };
           });
 
@@ -206,7 +225,7 @@ function ClientSide() {
               }}
             >
               <hooksContext.Provider
-                value={{ productPageId, setProductPageId }}
+                value={{ productPageId, setProductPageId, Overlay }}
               >
                 <Header cartlength={cartdata.length}></Header>
 
@@ -274,6 +293,7 @@ function ClientSide() {
                     element={<AddReview></AddReview>}
                   />
                 </Routes>
+                <OverlayComp/>
               </hooksContext.Provider>
             </userContext.Provider>
           </dispatchContext.Provider>

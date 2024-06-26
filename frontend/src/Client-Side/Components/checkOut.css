@@ -4,7 +4,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Jost", sans-serif;
 }
 div#CheckOutPage {
   display: flex;
@@ -74,7 +74,7 @@ div#dueAmount {
 
 div#checkOutDetails {
   width: 500px;
-  
+
   background-color: white;
   padding: 35px 30px 25px 30px;
   display: flex;
@@ -226,34 +226,29 @@ button#loadPaymentIntent:active {
   scale: 0.9;
 }
 
-
 @media (max-width: 450px) {
-
-
   div#CheckOutPage {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    
+
     min-height: 90vh;
     padding: 10px;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 10px;
     gap: 0px;
-    
   }
 
-
-
-  div#orderOverview,div#checkOutDetails,div#checkOutCard{
+  div#orderOverview,
+  div#checkOutDetails,
+  div#checkOutCard {
     width: 100%;
-    
+
     margin-bottom: 30px;
   }
 
-
-  div#orderOverview{
+  div#orderOverview {
     padding: 25px 10px 0px 10px;
     height: 75vh;
   }
@@ -263,65 +258,51 @@ button#loadPaymentIntent:active {
     width: 60%;
     padding-right: 15px;
   }
-  p.calcprices{
+  p.calcprices {
     font-size: 18px !important;
   }
-  .calcsubprice{
+  .calcsubprice {
     font-size: 22px !important;
     margin-left: 15px !important;
   }
-  div#dueAmount{
-   
+  div#dueAmount {
     justify-content: flex-end;
     padding-right: 10px;
     padding-left: 19px;
-
   }
-  button#continueShopping{
+  button#continueShopping {
     display: none;
-
   }
-  .calculation{
+  .calculation {
     min-width: 75% !important;
     max-width: 100% !important;
-  
-    
- 
   }
 
   div#orderCartView {
     height: 280px;
   }
-#orderCartViewImg{
-  width:20% !important;
-}
-#orderCartViewTitle{
-  width:60% !important;
-}
-#orderCartViewTitle h1{
- font-size: 15px !important ;
-}
-#orderCartViewPrice{
-  width:20% !important;
-}
-#orderCartViewPrice h1{
-  font-size: 16px !important;
-}
-#orderCartViewPrice p{
-  font-size: 14px !important;
-}
-
-
-
-
-
-
-
-  
+  #orderCartViewImg {
+    width: 20% !important;
+  }
+  #orderCartViewTitle {
+    width: 60% !important;
+  }
+  #orderCartViewTitle h1 {
+    font-size: 15px !important ;
+  }
+  #orderCartViewPrice {
+    width: 20% !important;
+  }
+  #orderCartViewPrice h1 {
+    font-size: 16px !important;
+  }
+  #orderCartViewPrice p {
+    font-size: 14px !important;
+  }
 
   div#checkOutDetails {
     min-height: 110vh;
-     background-color: white;
+    background-color: white;
     padding: 35px 10px 25px 10px;
     display: flex;
     flex-direction: column;
@@ -332,29 +313,29 @@ button#loadPaymentIntent:active {
   }
 
   .deliveryDetails #p1 {
-    font-size: 16px;}
+    font-size: 16px;
+  }
   .deliveryDetails #p2 {
-    font-size: 14px;}
+    font-size: 14px;
+  }
   .deliveryDetails #p3 {
-    font-size: 12px;}
+    font-size: 12px;
+  }
 
-    .deliveryPrice{
-      padding: 22px 0 0 10px;
-    }
+  .deliveryPrice {
+    padding: 22px 0 0 10px;
+  }
 
-    .deliveryPrice h2 {
-      font-size: 18px;
-    }
+  .deliveryPrice h2 {
+    font-size: 18px;
+  }
 
-    .deliveryDetails {
-      padding: 10px 4px 10px 6px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      width: 55%;
-    }
-
-    
-   
+  .deliveryDetails {
+    padding: 10px 4px 10px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 55%;
+  }
 }

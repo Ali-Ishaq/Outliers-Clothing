@@ -3,14 +3,35 @@ const Product = require("../model/product");
 const jwt = require("jsonwebtoken");
 
 const calculation = async (items) => {
-  const item_ids = items.map((item) => [item.id, item.quantity]);
+  const item_ids = items.map((item) => [item.id, item.quantity,item.size]);
   console.log(item_ids);
   let total = 0;
   for (value of item_ids) {
     const product = await Product.findById(value[0]);
+   
+    switch (value[2]) {
+      case 's':
+        product.quantity[0]-=value[1];
+        console.log('itemRemoved')
+        break;
+        
+        case 'm':
+          product.quantity[1]-=value[1];
+          console.log('itemRemoved')
+        break;
+
+        case 'l':
+        product.quantity[2]-=value[1];
+        break;
+    
+      default:
+        break;
+    }
+
     console.log(product.price, value[1], product.price * value[1]);
 
     total += product.price * value[1];
+    product.save()
   }
   console.log(total);
   return total;

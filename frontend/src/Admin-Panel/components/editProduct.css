@@ -4,88 +4,74 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-
 }
 
-
-
-.editProductCompParent{
+.editProductCompParent {
   display: flex;
   flex-direction: column;
   width: 100vw;
   background-color: white;
-
 }
 
-.editProductCompParent h1.edit-product-heading{
+.editProductCompParent h1.edit-product-heading {
   width: 100%;
   text-align: center;
   margin-block: 2rem;
 }
 
-#editProductComp{
-    
-    /* width: 100vw; */
-    
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    font-family: "Montserrat", sans-serif;
-    width: 100%;
-    
+#editProductComp {
+  /* width: 100vw; */
 
-
-
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  font-family: "Jost", sans-serif;
+  width: 100%;
 }
-.editProductCard{
+.editProductCard {
   width: 35%;
   height: 100vh;
-display: flex;
-justify-content: center;
-align-self: flex-start;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+  align-items: center;
 }
 
-.editProductCard #productUI{
-/* width: 200px;   */
+.editProductCard #productUI {
+  /* width: 200px;   */
 }
 
-.editProductCard div#layer{
+.editProductCard div#layer {
   display: none;
 }
-.editProductCard .cartbtn{
+.editProductCard .cartbtn {
   display: none !important;
 }
-.editProductForm .addProductFormHeading{
+.editProductForm .addProductFormHeading {
   display: none !important;
 }
 
-.editProductForm .addProductComp{
+.editProductForm .addProductComp {
   background-color: transparent;
 }
 
-
-.editProductForm{
+.editProductForm {
   height: 100%;
   width: 65%;
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
-
-
 @media screen and (max-width: 791px) {
-
-  #editProductComp{
+  #editProductComp {
     flex-direction: column;
   }
 
-  .editProductCard,.editProductForm{
+  .editProductCard,
+  .editProductForm {
     width: 100%;
     height: auto;
   }
-
 }

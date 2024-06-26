@@ -12,7 +12,7 @@ div#cartUI {
   height: 100%;
   display: flex;
   border-bottom: 1px solid rgb(231, 226, 226);
-overflow: hidden;
+  overflow: hidden;
   background-color: "white";
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Outer box shadow for prominence */
 }
@@ -20,7 +20,7 @@ overflow: hidden;
 div#cartimg {
   /* border: 1px solid black; */
   overflow: hidden;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,6 @@ div#cartimg {
   aspect-ratio: 1/1;
 }
 div#cartimg img {
-  
   width: 100%;
 }
 
@@ -40,15 +39,14 @@ div#cartdetails {
   align-items: flex-start;
   padding-left: 20px;
   padding-block: 5px;
-  
 }
 h1#cartname {
   font-size: 125%;
   /* font-size: large; */
-  
+
   font-weight: 400;
 }
-h1#cartproductsize{
+h1#cartproductsize {
   font-size: 16px;
   font-weight: 400;
 }
@@ -120,14 +118,14 @@ button.quantity-btn {
 @media (max-width: 780px) {
   div#cartUI {
     flex-direction: row;
-    
+
     height: auto;
     height: 110px;
     margin-bottom: 10px;
     /* border: 3px solid lightgray; Thinner light gray border */
     /* Adds a slight curve to the border */
-    
-    background-color :transparent;    
+
+    background-color: transparent;
     /* Optional: Give a slightly lowered appearance */
     transform: translateY(2px);
     margin-bottom: 17px;
@@ -142,35 +140,30 @@ button.quantity-btn {
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Outer box shadow for prominence */
     z-index: 2;
-    }
-   div#back-layer{
-      display: flex !important;
+  }
+  div#back-layer {
+    display: flex !important;
 
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 50%;
-      height: 99%;
-      background-color: rgba(235, 13, 13, 0.788);
-      z-index: 1;
-      border-radius: 0px 10px 10px 0px; 
-      display: flex;
-      justify-content: flex-end;
-      padding-right: 30px;
-      align-items: center;
-
-      
-    } 
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 99%;
+    background-color: rgba(235, 13, 13, 0.788);
+    z-index: 1;
+    border-radius: 0px 10px 10px 0px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+    align-items: center;
+  }
 
   div#cartimg {
-   
-    
     /* height: auto; Adjusted to make the image square */
   }
 
   div#cartimg img {
     height: 100%; /* Make the image fill the square container */
-    
   }
 
   div#cartdetails {
@@ -199,7 +192,7 @@ button.quantity-btn {
       230,
       231
     ); /* Add background color to the quantity adjuster */
-    /* border: 2px solid #ccc; Add a border to the quantity adjuster */
+    /* border: 2px solid #ebebeb; Add a border to the quantity adjuster */
     border-radius: 5px; /* Add a slight curve to the border */
     padding: 1px 5px;
     /* width: 15%; */

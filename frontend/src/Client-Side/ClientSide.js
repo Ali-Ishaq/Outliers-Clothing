@@ -23,7 +23,6 @@ import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./Components/HomePage";
 import OverlayComp from "./Components/overlay";
 
-
 function ClientSide() {
   const [productsDb, setProductsDb] = useState([]);
   const [carttotal, setCarttotal] = useState(0);
@@ -31,7 +30,9 @@ function ClientSide() {
   const [userProfile, setUserProfile] = useState(null);
   const [isUserLogged, setIsUserLogged] = useState(null);
 
-  const Overlay = useRef();
+  const [overlayVisibility, setOverlayVisibility] = useState(false);
+  const cartRef=useRef(null)
+
   const logOutFunction = () => {};
 
   const [productPageId, setProductPageId] = useState();
@@ -225,7 +226,13 @@ function ClientSide() {
               }}
             >
               <hooksContext.Provider
-                value={{ productPageId, setProductPageId, Overlay }}
+                value={{
+                  productPageId,
+                  setProductPageId,
+                  overlayVisibility,
+                  setOverlayVisibility,
+                  cartRef
+                }}
               >
                 <Header cartlength={cartdata.length}></Header>
 
@@ -237,16 +244,6 @@ function ClientSide() {
                     element={<Products productsDb={productsDb}></Products>}
                   />
 
-                  <Route
-                    path="/cart"
-                    element={
-                      <Cart
-                        carttotal={carttotal}
-                        cartdata={cartdata}
-                        clearCart={clearCart}
-                      ></Cart>
-                    }
-                  />
                   <Route
                     exact
                     path="/checkout"
@@ -293,7 +290,13 @@ function ClientSide() {
                     element={<AddReview></AddReview>}
                   />
                 </Routes>
-                <OverlayComp/>
+                <OverlayComp />
+                <Cart
+                
+                  carttotal={carttotal}
+                  cartdata={cartdata}
+                  clearCart={clearCart}
+                ></Cart>
               </hooksContext.Provider>
             </userContext.Provider>
           </dispatchContext.Provider>

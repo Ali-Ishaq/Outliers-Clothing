@@ -7,35 +7,54 @@
   font-family: "Jost", sans-serif;
 }
 div#CheckOutPage {
+
   display: flex;
   width: 100vw;
-  flex-direction: column;
-  min-height: 86.5vh;
-  padding: 30px;
+  background-color: black;
+  /* flex-direction: column; */
+  /* min-height: 86.5vh; */
+  /* height: 100vh; */
+  /* padding: 30px; */
   justify-content: center;
-  align-items: center;
-  gap: 30px;
+  /* align-items: center; */
+  /* gap: 30px; */
+
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  /* overflow: hidden; */
+  margin: 0px;
 }
 
+
 div#orderOverview {
-  width: 500px;
+  width: 40%;
   height: 75vh;
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding: 40px 30px;
+  padding: 15px 30px;
   align-items: center;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
   border-radius: 10px;
+  
+  
+  height: 100vh;
+  background-color: #f6f3ed;
+  position: sticky;
+  top: 0;
+  
+border-radius: 0;
 }
 
+
 div#orderCartView {
-  margin-top: 5%;
+  
   width: 100%;
   /* background-color: aqua; */
-  height: 57%;
-  border-top: 2px solid lightgray;
-  border-bottom: 2px solid lightgray;
+  flex: 1;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   overflow-y: scroll;
 }
 div#orderCartView::-webkit-scrollbar {
@@ -48,26 +67,26 @@ div#orderCartView::-webkit-scrollbar-thumb {
   border-radius: 50px;
 }
 div#orderCalculation {
-  width: 50%;
-  margin-top: 3%;
+  width: 100%;
+  
   /* background-color: skyblue; */
-  min-height: 90px;
+  gap: 10px;
   align-self: flex-end;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 0 15px 20px 0;
-  border-bottom: 2px solid lightgray;
+  padding: 15px 0px 15px 0;
+  border-bottom: 1px solid lightgray;
 }
 div#dueAmount {
   width: 100%;
-  margin-top: 3%;
+  
   display: flex;
 
   align-items: center;
 
-  justify-content: space-between;
-  padding-right: 15px;
+  
+  
   /* background-color:rgb(230, 248, 255); */
   height: 50px;
 }
@@ -76,17 +95,25 @@ div#checkOutDetails {
   width: 500px;
 
   background-color: white;
-  padding: 35px 30px 25px 30px;
+  padding: 20px 30px ;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
+
+  width: 60%;
+  /* height: 100%; */
+  /* overflow: scroll; */
+  border-radius: 0;
+  
 }
 
 div#checkOutDetails h1 {
-  margin-bottom: 25px;
+ 
+  margin-bottom: 35px;
+  font-weight: 400;
   display: flex;
 }
 div#checkOutDetails form {
@@ -116,7 +143,7 @@ div#checkOutDetails form input {
   margin: 5px 5px 2px 5px;
   /* border-radius: 5px; */
   padding-left: 10px;
-  background-color: rgb(230, 248, 255);
+  /* background-color: rgb(230, 248, 255); */
 }
 div#checkOutDetails form input[type="number"]::-webkit-inner-spin-button,
 div#checkOutDetails form input[type="number"]::-webkit-outer-spin-button {
@@ -141,15 +168,20 @@ div.deliveryOption {
   width: 100%;
   height: 50%;
   background-color: rgb(213, 242, 253);
+  
 }
 
 .deliveryPrice {
   padding: 15px;
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 25%;
+  h2{
+    font-weight: 500;
+  }
 }
 .deliveryDetails {
   padding: 10px 14px 10px 14px;
@@ -194,71 +226,150 @@ div.deliveryOption {
   color: black;
 }
 
-button#saveAddres,
-button#continueShopping {
-  width: 200px;
-  height: 45px;
-  border: 0px;
-  border-radius: 3px;
-  background-color: rgba(150, 177, 252, 0.849);
-  color: white;
+button#saveAddres{
+    width: 100%;
+    border: 0px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+    font-size: 18px;
+    /* font-weight: 600; */
+    align-self: center;
+    color: white;
+    transition: all ease 0.3s;
+    height: 50px;
 
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
-  transition: all ease 0.3s;
-}
-button#continueShopping {
-  width: 170px;
-  font-size: 17px;
-  height: 40px;
 }
 
-button#saveAddres:hover,
-button#continueShopping:hover,
-button#loadPaymentIntent:hover {
-  box-shadow: 5px 5px rgb(165, 165, 165);
-  /* filter: contrast(150%); */
-  background-color: rgba(38, 216, 38, 0.747);
+
+button#saveAddres:hover{
+  /* background-color: rgb(124, 241, 7); */
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.534);
+
 }
-button#saveAddres:active,
-button#continueShopping:active,
-button#loadPaymentIntent:active {
+button#saveAddres:active{
   scale: 0.9;
 }
 
-@media (max-width: 450px) {
-  div#CheckOutPage {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
+.promo-code-container{
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  
+  input{
+    height: 40px;
+    width: 70%;
+    padding-inline-start: 10px;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    }
+    button{
+      width: 20%;
+      background-color: #f0eadf;
+      border: 1px solid #dedede;
+      border-radius: 3px;
+    
+  }
+}
 
-    min-height: 90vh;
-    padding: 10px;
+.order-summary-expandable-drawer{
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  div#orderOverview,
+  div#checkOutDetails{
+    width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  div#CheckOutPage {
+   flex-direction: column;
+   align-items: center;
+
+   h1{
+    font-weight: 400;
+    font-size: 16px;
+   }
+   
+  }
+
+  .order-summary-expandable-drawer{
+    display:flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    gap: 0px;
+    align-items: center;
+    width: 100vw;
+    padding-block: 15px;
+    padding-inline:10px ;
+     background-color: #f6f3ed;
+
+     .orderVisibilitybtn{
+      width: 30px;
+      
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 0px;
+      background-color: transparent;
+       
+      svg{
+        width: 60%;
+        height: 90%;
+        transition: 0.2s;
+      }
+     }
+
   }
 
   div#orderOverview,
   div#checkOutDetails,
   div#checkOutCard {
-    width: 100%;
+    width: min(100%,500px);
+    position: relative;
+    /* overflow: unset; */
+  }
+  div#checkOutDetails::after,div#orderOverview::after{
+    content: '';
+    z-index: -1;
+    
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    background-color: white;
 
-    margin-bottom: 30px;
   }
 
+  div#orderOverview::after{
+    background-color: #f6f3ed;
+  }
   div#orderOverview {
-    padding: 25px 10px 0px 10px;
-    height: 75vh;
+    padding: 0px 10px 0px 10px;
+    height: 0px;
+    max-height: 85vh;
+    display: none;
+    overflow: hidden;
+    transition: 0.5s;
+    position: static;
+   
+    
+    
+  }
+  h1.orderOverview-main-heading{
+    display: none ;
   }
 
   div#orderCalculation {
-    margin-top: 15px;
-    width: 60%;
-    padding-right: 15px;
-  }
-  p.calcprices {
+    p{
+      font-size: 14px !important;
+    }
+    }
+    p.calcprices {
     font-size: 18px !important;
   }
   .calcsubprice {
@@ -267,16 +378,17 @@ button#loadPaymentIntent:active {
   }
   div#dueAmount {
     justify-content: flex-end;
-    padding-right: 10px;
-    padding-left: 19px;
+    
+    p{
+      font-size: 18px !important;
+    }
+    
+    
   }
   button#continueShopping {
     display: none;
   }
-  .calculation {
-    min-width: 75% !important;
-    max-width: 100% !important;
-  }
+  
 
   div#orderCartView {
     height: 280px;
@@ -301,15 +413,18 @@ button#loadPaymentIntent:active {
   }
 
   div#checkOutDetails {
-    min-height: 110vh;
-    background-color: white;
-    padding: 35px 10px 25px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    border-radius: 18px;
+    
+    padding: 20px 10px ;
+    order: 1;
+    
+  }
+  div#checkOutDetails h1 {
+ 
+    margin-bottom: 35px;
+    font-weight: 400;
+    font-size: 25px;
+    text-align: start;
+   
   }
 
   .deliveryDetails #p1 {
@@ -323,7 +438,7 @@ button#loadPaymentIntent:active {
   }
 
   .deliveryPrice {
-    padding: 22px 0 0 10px;
+    padding: 20px 0 0 15px;
   }
 
   .deliveryPrice h2 {

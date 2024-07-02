@@ -88,8 +88,7 @@ function AddProduct({ initialValues, handleSubmitFunction }) {
           <div id="stock-quantity" >
 
           <div id="product-quantity" className="inputFieldDiv" >
-
-            <p className="fieldHeading">S :</p>
+            <p className="fieldHeading">XS :</p>
             <input
               id="productQuantity"
               onChange={handleChange}
@@ -102,7 +101,8 @@ function AddProduct({ initialValues, handleSubmitFunction }) {
           </div>
 
           <div id="product-quantity" className="inputFieldDiv" >
-            <p className="fieldHeading">M :</p>
+
+            <p className="fieldHeading">S :</p>
             <input
               id="productQuantity"
               onChange={handleChange}
@@ -115,7 +115,7 @@ function AddProduct({ initialValues, handleSubmitFunction }) {
           </div>
 
           <div id="product-quantity" className="inputFieldDiv" >
-            <p className="fieldHeading">L :</p>
+            <p className="fieldHeading">M :</p>
             <input
               id="productQuantity"
               onChange={handleChange}
@@ -124,7 +124,34 @@ function AddProduct({ initialValues, handleSubmitFunction }) {
               value={values.quantity[2]}
               type="number"
             />
+           
+          </div>
+          
+
+          <div id="product-quantity" className="inputFieldDiv" >
+            <p className="fieldHeading">L :</p>
+            <input
+              id="productQuantity"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              name="quantity[3]"
+              value={values.quantity[3]}
+              type="number"
+            />
             
+           
+          </div>
+
+          <div id="product-quantity" className="inputFieldDiv" >
+            <p className="fieldHeading">XL :</p>
+            <input
+              id="productQuantity"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              name="quantity[4]"
+              value={values.quantity[4]}
+              type="number"
+            />
            
           </div>
 

@@ -9,11 +9,12 @@ import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { hooksContext } from "../Contexts/hooksContext";
 import { useState, useEffect, useContext, useRef } from "react";
 import { userContext } from "../Contexts/userContext";
+import Cart from "./cart";
 
 function Header({ cartlength }) {
   const navigate = useNavigate();
   const { isUserLogged, logOutFunction } = useContext(userContext);
-  const { Overlay } = useContext(hooksContext);
+  const { overlayVisibility,setOverlayVisibility,cartRef } = useContext(hooksContext);
   const navMenus = useRef();
 
   const [isNavbarVisible, setNavbarVisibility] = useState(true);
@@ -28,7 +29,7 @@ function Header({ cartlength }) {
       const scrolled15vh = currentScrollPos >= window.innerHeight * 0.15;
 
       // Hide the navbar only if scrolled down and at least 15vh from the top
-      if(document.getElementById('products')!=null && window.visualViewport.width>'780'){
+      if(document.getElementById('products')!=null ){
         setNavbarVisibility(true);
 
       }else{
@@ -50,8 +51,9 @@ function Header({ cartlength }) {
     if (window.visualViewport.width < 780) {
       navMenus.current.style.translate = "-100vw";
     }
-    Overlay.current.style.display = "none";
-    document.body.style.overflow = "unset";
+    setOverlayVisibility(false)
+    // Overlay.current.style.display = "none";
+    // document.body.style.overflow = "unset";
   };
 
   return (
@@ -81,8 +83,7 @@ function Header({ cartlength }) {
             style={{ display: "none" }}
             onClick={() => {
               navMenus.current.style.translate = "0vw";
-              Overlay.current.style.display = "flex";
-              document.body.style.overflow = "hidden";
+              setOverlayVisibility(true)
             }}
           >
             <RxHamburgerMenu size="25px" />
@@ -109,7 +110,18 @@ function Header({ cartlength }) {
           <div id="cart">
             <div id="cart-icon">
               {" "}
-              <Link to="/cart">
+              <Link  onClick={()=>{
+                
+                setOverlayVisibility(true)
+                // cartRef.current.style.translate = "100vw";
+                // cartRef.current.style.display = "flex";
+                cartRef.current.style.translate = "0";
+
+                
+                
+                
+                
+              }}>
                 {" "}
                 <BsCart3
                   color="black"
@@ -165,8 +177,8 @@ function Header({ cartlength }) {
             <RxCross1
               onClick={() => {
                 navMenus.current.style.translate = "-100vw";
-                Overlay.current.style.display = "none";
-                document.body.style.overflow = "unset";
+                setOverlayVisibility(false)
+              
               }}
               size="25px"
             />

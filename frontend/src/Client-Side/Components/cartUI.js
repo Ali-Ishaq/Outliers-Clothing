@@ -74,20 +74,23 @@ function CartUI({ UniqueId, CartImg, CartName, CartPrice, quantity,size }) {
       </div>
       <div id="cartdetails">
         <h1 id="cartname">{CartName}</h1>
-        <h1 id="cartproductsize">size: {size.toUpperCase()}</h1>
-        <h1 id="cartprice">${CartPrice}</h1>
+        <h1 id="cartproductsize"> {size.toUpperCase()}</h1>
+        <h1 id="cartprice">Rs {CartPrice}</h1>
       </div>
       <div id="cartquantity">
         {/* <input  value={quantity} onChange={changeHandle} type="number" name="" id="cartquantity" min={'1'}  max={'10'}/> */}
         <button className="quantity-btn" onClick={increaseQuantity}>
           +
         </button>
+        <p>
+
         {quantity}
+        </p>
         <button className="quantity-btn" onClick={decreaseQuantity}>
-          -
+          
         </button>
       </div>
-      <h1 id="subtotal">${quantity * CartPrice}</h1>
+      <h1 id="subtotal">Rs {quantity * CartPrice}</h1>
       <div onClick={removeitem} id="removeitem">
         <GoTrash style={{ pointerEvents: "none" }} size={"25px"} />
       </div>

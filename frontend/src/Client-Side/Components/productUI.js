@@ -14,14 +14,17 @@ function ProductUI({
   productName,
   productPrice,
   productReviews,
-  productSizes
+  productSizes,
+  productImages
 }) {
-  const [style, setStyle] = useState();
+  
   const { setProductPageId } = useContext(hooksContext);
   const { cartDispatch } = useContext(dispatchContext);
+  const [thumbnailImage,setThumbnailImage]=useState(productImg);
   const navigate = useNavigate();
 
   useEffect(()=>{
+    console.log(productImages)
     console.log(productSizes);
   },[])
   //This function will take the prduct id of the targeted products and sends it to App component
@@ -48,13 +51,7 @@ function ProductUI({
     }
   }
 
-  function mouseenterhandle() {
-    setStyle({ zIndex: "1" });
-  }
-
-  function mouseleavehandle(e) {
-    setStyle({ zIndex: "3" });
-  }
+  
 
   {
     /* <BsCart3 size={'40px'} color="white" /> */
@@ -63,39 +60,30 @@ function ProductUI({
   return (
     <div uniquekey={productId} id="productUI" >
       <div
-        onMouseEnter={mouseenterhandle}
-        onMouseLeave={mouseleavehandle}
+        
         id="productimg"
       >
         <img
-          style={style}
+          style={{transition:'2s'}}
           id="productImg"
-          src={productImg}
+          src={thumbnailImage}
           // src={`https://drive.google.com/file/d/1UBSzKO-tsUYWzYAqIVXOQhMAtkCVkfSC/view?usp=sharing`}
           // src={`https://drive.google.com/uc?export=view&id=1UBSzKO-tsUYWzYAqIVXOQhMAtkCVkfSC`}
           onClick={() => {
             navigate(`/productcard/${productId}`);
           }}
+          onMouseEnter={(e)=>{
+            
+            setThumbnailImage(productImages[1])
+            // e.target.style.opacity='100%'
+            // e.target.style.opacity='100'
+          }}
+          onMouseLeave={()=>{
+            setThumbnailImage(productImg)
+
+          }}
         />
-        <div id="layer">
-          <button
-            className="cartbtn"
-            onClick={clickHandle}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "")}
-          >
-            <BsCart3 size={"25px"} style={{ pointerEvents: "none" }} />
-          </button>
 
-          <button className="wishbtn">
-            <FiHeart size={"25px"} style={{ pointerEvents: "none" }} />
-          </button>
-
-          <Link to={`/ProductCard/${productId}`}>
-            <button onClick={clickHandle} className="searchbtn">
-              <FiSearch size={"25px"} style={{ pointerEvents: "none" }} />
-            </button>
-          </Link>
-        </div>
       </div>
 
       <div id="product-details">
@@ -136,9 +124,11 @@ function ProductUI({
         </div> */}
         <h1 id="productPrice">Rs {productPrice}</h1>
         <div className="size-variants-container">
-          <div className={productSizes[0]>0 ?'size-variant-element':'size-variant-element-disabled'}>S</div>
-          <div className={productSizes[1]>0 ?'size-variant-element':'size-variant-element-disabled'}>M</div>
-          <div className={productSizes[2]>0 ?'size-variant-element':'size-variant-element-disabled'}>L</div>
+          <div className={productSizes[0]>0 ?'size-variant-element':'size-variant-element-disabled'}>XS</div>
+          <div className={productSizes[1]>0 ?'size-variant-element':'size-variant-element-disabled'}>S</div>
+          <div className={productSizes[2]>0 ?'size-variant-element':'size-variant-element-disabled'}>M</div>
+          <div className={productSizes[3]>0 ?'size-variant-element':'size-variant-element-disabled'}>L</div>
+          <div className={productSizes[4]>0 ?'size-variant-element':'size-variant-element-disabled'}>XL</div>
         </div>
         <button
           style={{ display: "none" }}

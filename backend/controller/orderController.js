@@ -14,14 +14,23 @@ const calculation = async (items) => {
         product.quantity[0]-=value[1];
         console.log('itemRemoved')
         break;
+
+      case 's':
+        product.quantity[1]-=value[1];
+        console.log('itemRemoved')
+        break;
         
         case 'm':
-          product.quantity[1]-=value[1];
+          product.quantity[2]-=value[1];
           console.log('itemRemoved')
         break;
 
         case 'l':
-        product.quantity[2]-=value[1];
+        product.quantity[3]-=value[1];
+        break;
+
+        case 'xl':
+        product.quantity[4]-=value[1];
         break;
     
       default:

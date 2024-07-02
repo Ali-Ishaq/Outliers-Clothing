@@ -17,7 +17,7 @@ function ProductCard({ productsDb }) {
   const sizeChartRef=useRef()
   const [showDescription, setShowDescription] = useState(false);
 
-  const {Overlay}=useContext(hooksContext)
+  const {OverlayVisibility,setOverlayVisibility}=useContext(hooksContext)
   const { cartDispatch } = useContext(dispatchContext);
   // const { productPageId } = useContext(hooksContext);
 
@@ -50,9 +50,11 @@ function ProductCard({ productsDb }) {
     console.log(productSize);
   };
   const sizeLeft = () => {
-    if (productSize === "s") return 0;
-    else if (productSize === "m") return 1;
-    else return 2;
+    if (productSize === "xs") return 0;
+    else if (productSize === "s") return 1;
+    else if (productSize === "m") return 2;
+    else if (productSize === "l") return 3;
+    else return 4;
   };
 
   const handleImageToggle = (direction) => {
@@ -84,12 +86,12 @@ function ProductCard({ productsDb }) {
         sizeChartRef.current.style.translate='';
         document.body.style.overflow='';
 
-        Overlay.current.style.display = "none";
+        setOverlayVisibility(false)
         
         }else{
           sizeChartRef.current.style.translate='0 0%';
           document.body.style.overflow='hidden';
-          Overlay.current.style.display = "flex";
+          setOverlayVisibility(true)
         
       }
   
@@ -99,13 +101,13 @@ function ProductCard({ productsDb }) {
         sizeChartRef.current.style.translate='';
         document.body.style.overflow='';
         document.body.style.marginRight='';
-        Overlay.current.style.display = "none";
+        setOverlayVisibility(false)
         
         }else{
           sizeChartRef.current.style.translate='0';
           document.body.style.overflow='hidden';
-          Overlay.current.style.display = "flex";
           document.body.style.marginRight='17px';
+          setOverlayVisibility(true)
         
       }
   
@@ -243,13 +245,28 @@ function ProductCard({ productsDb }) {
               </div>
               <div id="product-variants-radio">
                 <form action="" onChange={handleSizeChange}>
+
+
+                <div className="size-variant-button-parent">
+                    <input
+                      type="radio"
+                      id="size-xs"
+                      name="size"
+                      value="xs"
+                      disabled={product.quantity[0] < 1}
+                    />
+                    <label htmlFor="size-xs" className="size-variant-button">
+                      XS
+                    </label>
+                  </div>
+
                   <div className="size-variant-button-parent">
                     <input
                       type="radio"
                       id="size-s"
                       name="size"
                       value="s"
-                      disabled={product.quantity[0] < 1}
+                      disabled={product.quantity[1] < 1}
                     />
                     <label htmlFor="size-s" className="size-variant-button">
                       S
@@ -262,7 +279,7 @@ function ProductCard({ productsDb }) {
                       id="size-m"
                       name="size"
                       value="m"
-                      disabled={product.quantity[1] < 1}
+                      disabled={product.quantity[2] < 1}
                     />
                     <label htmlFor="size-m" className="size-variant-button">
                       M
@@ -275,12 +292,27 @@ function ProductCard({ productsDb }) {
                       id="size-l"
                       name="size"
                       value="l"
-                      disabled={product.quantity[2] < 1}
+                      disabled={product.quantity[3] < 1}
                     />
                     <label htmlFor="size-l" className="size-variant-button">
                       L
                     </label>
                   </div>
+
+                  <div className="size-variant-button-parent">
+                    <input
+                      type="radio"
+                      id="size-xl"
+                      name="size"
+                      value="xl"
+                      disabled={product.quantity[4] < 1}
+                    />
+                    <label htmlFor="size-xl" className="size-variant-button">
+                      XL
+                    </label>
+                  </div>
+
+
                 </form>
               </div>
               {productSize && (

@@ -7,12 +7,15 @@ function AdminLogIn({ setAccess }) {
   const navigate = useNavigate();
 
   const checkCredentials = async (obj) => {
-    const response = await fetch(`http://192.168.0.129:3000/users/adminlogin`, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(obj),
-    });
+    const response = await fetch(
+      `https://outliers-clothing-api.vercel.app/users/adminlogin`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(obj),
+      }
+    );
 
     const { status, username } = await response.json();
     if (status === "success") {

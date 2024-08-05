@@ -9,7 +9,7 @@ function ViewOrders({ acess }) {
   useEffect(() => {
     const getOrdersfromDB = async () => {
       const response = await fetch(
-        `http://192.168.0.129:3000/orders/getAllOrders`,
+        `https://outliers-clothing-api.vercel.app/orders/getAllOrders`,
         {
           credentials: "include",
         }

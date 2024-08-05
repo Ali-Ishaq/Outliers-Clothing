@@ -11,7 +11,7 @@ function ProductModification() {
     if (btn === "delete") {
       const deleteProduct = async () => {
         const response = await fetch(
-          `http://192.168.0.129:3000/products/${idRef.current.value}`,
+          `https://outliers-clothing-api.vercel.app/products/${idRef.current.value}`,
           {
             method: "DELETE",
           }

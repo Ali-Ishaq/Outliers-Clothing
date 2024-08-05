@@ -31,7 +31,7 @@ function ClientSide() {
   const [isUserLogged, setIsUserLogged] = useState(null);
 
   const [overlayVisibility, setOverlayVisibility] = useState(false);
-  const cartRef=useRef(null)
+  const cartRef = useRef(null);
 
   const logOutFunction = () => {};
 
@@ -151,7 +151,7 @@ function ClientSide() {
 
           console.log("fetching.....");
           const response = await fetch(
-            `http://192.168.0.129:3000/cart/updatecart`,
+            `https://outliers-clothing-api.vercel.app/cart/updatecart`,
             {
               method: "POST",
               body: JSON.stringify(updatedCart),
@@ -171,7 +171,7 @@ function ClientSide() {
     try {
       const checkAuth = async () => {
         const response = await fetch(
-          "http://192.168.0.129:3000/users/checkAuth",
+          "https://outliers-clothing-api.vercel.app/users/checkAuth",
           {
             credentials: "include",
           }
@@ -231,7 +231,7 @@ function ClientSide() {
                   setProductPageId,
                   overlayVisibility,
                   setOverlayVisibility,
-                  cartRef
+                  cartRef,
                 }}
               >
                 <Header cartlength={cartdata.length}></Header>
@@ -292,7 +292,6 @@ function ClientSide() {
                 </Routes>
                 <OverlayComp />
                 <Cart
-                
                   carttotal={carttotal}
                   cartdata={cartdata}
                   clearCart={clearCart}

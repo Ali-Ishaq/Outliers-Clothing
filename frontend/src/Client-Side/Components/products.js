@@ -10,7 +10,6 @@ import { hooksContext } from "../Contexts/hooksContext";
 import { RxCross1 } from "react-icons/rx";
 import ReactSlider from "react-slider";
 
-
 function Products({ productsDb }) {
   const [products, setProducts] = useState(null);
   const productSkeleton = ["", "", "", "", "", "", "", ""];
@@ -60,7 +59,7 @@ function Products({ productsDb }) {
     const getProductsFromDb = async () => {
       try {
         const res = await fetch(
-          `http://192.168.0.129:3000/products/category/${category}`
+          `https://outliers-clothing-api.vercel.app/products/category/${category}`
         );
         const { fetchedProducts } = await res.json();
         console.log(fetchedProducts);
@@ -158,8 +157,6 @@ function Products({ productsDb }) {
   };
 
   const filterArrowHandle = (index) => {
-    
-
     switch (index) {
       case 0:
         if (filterArrowRef.current[index].style.transform == "rotateZ(0deg)") {
@@ -174,7 +171,8 @@ function Products({ productsDb }) {
       case 1:
         if (filterArrowRef.current[index].style.transform == "rotateZ(0deg)") {
           filterArrowRef.current[index].style.transform = "rotateZ(180deg)";
-          filterArrowRef.current[index].parentNode.parentNode.style.height ="154px";
+          filterArrowRef.current[index].parentNode.parentNode.style.height =
+            "154px";
         } else {
           filterArrowRef.current[index].style.transform = "rotateZ(0deg)";
           filterArrowRef.current[index].parentNode.parentNode.style.height = "";
@@ -194,7 +192,6 @@ function Products({ productsDb }) {
       default:
         break;
     }
-
   };
   // setTimeout(()=>{
   //      setProducts(productsDb)
@@ -541,8 +538,6 @@ function Products({ productsDb }) {
                   ></ProductUI>
                 ))
               : productSkeleton.map((details, index) => <ProductUISkeleton />)}
-
-      
           </div>
         </div>
       </div>

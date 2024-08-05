@@ -45,7 +45,7 @@ function AddReview() {
   const handleReviewSubmit = async () => {
     const addReview = async () => {
       const response = await fetch(
-        "http://192.168.0.129:3000/orders/addProductReview",
+        "https://outliers-clothing-api.vercel.app/orders/addProductReview",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -72,7 +72,7 @@ function AddReview() {
     if (userProfile) {
       const authenticateProductPurchase = async () => {
         const response = await fetch(
-          `http://192.168.0.129:3000/orders/checkProductPurchase/${orderId}/${productId}`
+          `https://outliers-clothing-api.vercel.app/orders/checkProductPurchase/${orderId}/${productId}`
         );
         const { order } = await response.json();
         setProduct(order);

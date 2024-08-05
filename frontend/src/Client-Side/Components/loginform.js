@@ -33,15 +33,18 @@ function Loginform({ cartdata, userprevCart }) {
 
     const findUser = async () => {
       try {
-        const response = await fetch("http://192.168.0.129:3000/users/login", {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(credentials),
-        });
+        const response = await fetch(
+          "https://outliers-clothing-api.vercel.app/users/login",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(credentials),
+          }
+        );
 
         const { status, role, userDetails, cart } = await response.json();
-        console.log('cartfromDB:' ,cart);
+        console.log("cartfromDB:", cart);
         if (status === "success") {
           if (role === "visitor") {
             cartDispatch({ type: "userCartDB", payload: cart });

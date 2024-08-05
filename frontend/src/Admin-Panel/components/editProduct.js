@@ -11,7 +11,9 @@ function EditProduct() {
   const { id } = useParams();
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await fetch(`http://192.168.0.129:3000/products/${id}`);
+      const response = await fetch(
+        `https://outliers-clothing-api.vercel.app/products/${id}`
+      );
       const { data } = await response.json();
       setProduct(data);
       console.log(data);
@@ -20,11 +22,14 @@ function EditProduct() {
   }, []);
 
   const editProduct = async (product) => {
-    const response = await fetch(`http://192.168.0.129:3000/products/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(product),
-    });
+    const response = await fetch(
+      `https://outliers-clothing-api.vercel.app/products/${id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+      }
+    );
 
     const { status, updatedProduct } = await response.json();
 
@@ -60,8 +65,20 @@ function EditProduct() {
                 price: product.price,
                 thumbnail: product.thumbnail,
                 category: product.category,
-                images:[product.images[0],product.images[1],product.images[2],product.images[3],product.images[4]],
-                quantity:[product.quantity[0],product.quantity[1],product.quantity[2],product.quantity[3],product.quantity[4]]
+                images: [
+                  product.images[0],
+                  product.images[1],
+                  product.images[2],
+                  product.images[3],
+                  product.images[4],
+                ],
+                quantity: [
+                  product.quantity[0],
+                  product.quantity[1],
+                  product.quantity[2],
+                  product.quantity[3],
+                  product.quantity[4],
+                ],
               }}
               handleSubmitFunction={editProduct}
             ></AddProduct>

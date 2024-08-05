@@ -98,8 +98,8 @@ const stripePaymentUrl = async (req, res) => {
         };
       }),
 
-      success_url: "http://192.168.0.129:3001/",
-      cancel_url: "http://192.168.0.129:3001/",
+      success_url: "https://outliers-clothing.vercel.app/",
+      cancel_url: "https://outliers-clothing.vercel.app/",
     });
 
     res.json({ url: session.url });

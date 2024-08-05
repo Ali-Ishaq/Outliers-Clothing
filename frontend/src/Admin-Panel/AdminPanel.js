@@ -16,7 +16,7 @@ function AdminPanel() {
   useEffect(() => {
     const checkAuth = async () => {
       const response = await fetch(
-        "http://192.168.0.129:3000/users/checkauthadmin",
+        "https://outliers-clothing-api.vercel.app/users/checkauthadmin",
         { credentials: "include" }
       );
       const { permission, status } = await response.json();

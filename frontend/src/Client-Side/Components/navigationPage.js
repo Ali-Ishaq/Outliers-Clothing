@@ -12,7 +12,7 @@ function NavigationPage({ setAccess }) {
   const handleLogout = () => {
     const logOut = async () => {
       const response = await fetch(
-        "http://192.168.0.129:3000/users/logout/adminToken",
+        "https://outliers-clothing-api.vercel.app/users/logout/adminToken",
         { credentials: "include" }
       );
     };

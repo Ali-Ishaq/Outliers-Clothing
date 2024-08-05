@@ -26,7 +26,7 @@ function UserProfilepage() {
 
     const logOut = async () => {
       const response = await fetch(
-        "http://192.168.0.129:3000/users/logout/visitorToken",
+        "https://outliers-clothing-api.vercel.app/users/logout/visitorToken",
         { credentials: "include" }
       );
     };

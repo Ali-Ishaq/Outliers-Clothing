@@ -87,7 +87,7 @@ export default function CheckOut({ cartdata, carttotal }) {
     setOverlayVisibility(true);
 
     // Create PaymentIntent as soon as the page loads
-    fetch("http://192.168.0.129:3000/orders/placeOrder", {
+    fetch("https://outliers-clothing-api.vercel.app/orders/placeOrder", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
@@ -653,24 +653,21 @@ export default function CheckOut({ cartdata, carttotal }) {
           <>
             <img src="orderComplete.png" alt="" />
             <h1>Order Confirmed</h1>
-            <h2>Your Order Number is {orderApiResponse.orderId.slice(-7).toUpperCase()} </h2>
+            <h2>
+              Your Order Number is{" "}
+              {orderApiResponse.orderId.slice(-7).toUpperCase()}{" "}
+            </h2>
             <p>
               We are getting started on your order right away, and you will
-              receive an order confirmation email shortly. In
-              the meantime, explore our latest collection and get inspired by
-              new trends.{" "}
+              receive an order confirmation email shortly. In the meantime,
+              explore our latest collection and get inspired by new trends.{" "}
             </p>
             <button> Explore More</button>
             <a href="#">Read about our return policy</a>
           </>
         ) : (
-          
-          
           <div class="defautloader"></div>
-          
-        
         )}
-
       </div>
     </>
   );

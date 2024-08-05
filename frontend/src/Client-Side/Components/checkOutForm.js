@@ -60,7 +60,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://192.168.0.129:3001/cart",
+        return_url: "https://outliers-clothing.vercel.app/cart",
       },
     });
 

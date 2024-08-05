@@ -8,22 +8,23 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { RxCross1 } from "react-icons/rx";
 
-
 function ProductCard({ productsDb }) {
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState(0);
   const [productSize, setProductSize] = useState(null);
   const { id } = useParams();
-  const sizeChartRef=useRef()
+  const sizeChartRef = useRef();
   const [showDescription, setShowDescription] = useState(false);
 
-  const {OverlayVisibility,setOverlayVisibility}=useContext(hooksContext)
+  const { OverlayVisibility, setOverlayVisibility } = useContext(hooksContext);
   const { cartDispatch } = useContext(dispatchContext);
   // const { productPageId } = useContext(hooksContext);
 
   useEffect(() => {
     const getOneProduct = async () => {
-      const response = await fetch(`http://192.168.0.129:3000/products/${id}`);
+      const response = await fetch(
+        `https://outliers-clothing-api.vercel.app/products/${id}`
+      );
       const data = await response.json();
       setProduct(data.data);
 
@@ -78,44 +79,32 @@ function ProductCard({ productsDb }) {
     }
   };
 
-  const handleChartToggle=(status)=>{
+  const handleChartToggle = (status) => {
+    if (window.visualViewport.width < 600) {
+      if (status === "close") {
+        sizeChartRef.current.style.translate = "";
+        document.body.style.overflow = "";
 
-    if(window.visualViewport.width<600){
-
-      if(status==='close'){
-        sizeChartRef.current.style.translate='';
-        document.body.style.overflow='';
-
-        setOverlayVisibility(false)
-        
-        }else{
-          sizeChartRef.current.style.translate='0 0%';
-          document.body.style.overflow='hidden';
-          setOverlayVisibility(true)
-        
+        setOverlayVisibility(false);
+      } else {
+        sizeChartRef.current.style.translate = "0 0%";
+        document.body.style.overflow = "hidden";
+        setOverlayVisibility(true);
       }
-  
-    }else{
-
-      if(status==='close'){
-        sizeChartRef.current.style.translate='';
-        document.body.style.overflow='';
-        document.body.style.marginRight='';
-        setOverlayVisibility(false)
-        
-        }else{
-          sizeChartRef.current.style.translate='0';
-          document.body.style.overflow='hidden';
-          document.body.style.marginRight='17px';
-          setOverlayVisibility(true)
-        
+    } else {
+      if (status === "close") {
+        sizeChartRef.current.style.translate = "";
+        document.body.style.overflow = "";
+        document.body.style.marginRight = "";
+        setOverlayVisibility(false);
+      } else {
+        sizeChartRef.current.style.translate = "0";
+        document.body.style.overflow = "hidden";
+        document.body.style.marginRight = "17px";
+        setOverlayVisibility(true);
       }
-  
-  
     }
-
-    
-  }
+  };
 
   return (
     <div id="productcard">
@@ -212,15 +201,15 @@ function ProductCard({ productsDb }) {
           <div id="details">
             <h1 id="brand-name">OUTLIERS CLOTHING</h1>
             <h1 id="productname">{product.title}</h1>
-           
-            
+
             <div id="review-stars">
-            
               <div class="stars-outer">
-                <div class="stars-inner" style={{width: `${(product.reviews.rating / 5) * 100}%`}}></div>
+                <div
+                  class="stars-inner"
+                  style={{ width: `${(product.reviews.rating / 5) * 100}%` }}
+                ></div>
               </div>
               <p className="reviews-count">({product.reviews.reviewers})</p>
-            
             </div>
 
             <h1 id="productprice"> Rs {product.price}</h1>
@@ -240,14 +229,14 @@ function ProductCard({ productsDb }) {
               <div id="product-variants-heading">
                 <p>Size: M</p>
                 <p>
-                  <a href="#" onClick={handleChartToggle} >Size chart</a>
+                  <a href="#" onClick={handleChartToggle}>
+                    Size chart
+                  </a>
                 </p>
               </div>
               <div id="product-variants-radio">
                 <form action="" onChange={handleSizeChange}>
-
-
-                <div className="size-variant-button-parent">
+                  <div className="size-variant-button-parent">
                     <input
                       type="radio"
                       id="size-xs"
@@ -311,8 +300,6 @@ function ProductCard({ productsDb }) {
                       XL
                     </label>
                   </div>
-
-
                 </form>
               </div>
               {productSize && (
@@ -338,16 +325,20 @@ function ProductCard({ productsDb }) {
         </div>
       )}
 
-
-      <div ref={sizeChartRef}  id="size-chart">
-          <div className="sizeChart-toggle-menu">
-            <RxCross1 onClick={()=>{handleChartToggle('close')}}/>
-          </div>
-          <div className="sizeChart-image-container">
-
-          <img src="https://overlays.co/cdn/shop/files/TSHIRT-RElaxed-size-chart.png?v=1680184202" alt="" />
-          </div>
-          
+      <div ref={sizeChartRef} id="size-chart">
+        <div className="sizeChart-toggle-menu">
+          <RxCross1
+            onClick={() => {
+              handleChartToggle("close");
+            }}
+          />
+        </div>
+        <div className="sizeChart-image-container">
+          <img
+            src="https://overlays.co/cdn/shop/files/TSHIRT-RElaxed-size-chart.png?v=1680184202"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );

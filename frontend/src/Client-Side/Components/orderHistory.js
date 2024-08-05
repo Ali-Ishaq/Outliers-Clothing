@@ -14,7 +14,7 @@ function OrderHistory() {
       const getOrdersfromDB = async () => {
         try {
           const response = await fetch(
-            `http://192.168.0.129:3000/orders/getUserOrders/${userProfile._id}`
+            `https://outliers-clothing-api.vercel.app/orders/getUserOrders/${userProfile._id}`
           );
           const { orders } = await response.json();
           console.log(orders);

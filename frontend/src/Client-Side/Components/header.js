@@ -1,6 +1,6 @@
 import "./header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { FiSearch, FiHeart  } from "react-icons/fi";
+import { FiSearch, FiHeart } from "react-icons/fi";
 import { FaUser } from "react-icons/fa6";
 import { BsCart3 } from "react-icons/bs";
 import { GiEagleHead } from "react-icons/gi";
@@ -14,7 +14,8 @@ import Cart from "./cart";
 function Header({ cartlength }) {
   const navigate = useNavigate();
   const { isUserLogged, logOutFunction } = useContext(userContext);
-  const { overlayVisibility,setOverlayVisibility,cartRef } = useContext(hooksContext);
+  const { overlayVisibility, setOverlayVisibility, cartRef } =
+    useContext(hooksContext);
   const navMenus = useRef();
 
   const [isNavbarVisible, setNavbarVisibility] = useState(true);
@@ -29,11 +30,10 @@ function Header({ cartlength }) {
       const scrolled15vh = currentScrollPos >= window.innerHeight * 0.15;
 
       // Hide the navbar only if scrolled down and at least 15vh from the top
-      if(document.getElementById('products')!=null ){
+      if (document.getElementById("products") != null) {
         setNavbarVisibility(true);
-
-      }else{
-
+;
+      } else {
         setNavbarVisibility(!(isScrollingDown && scrolled15vh));
       }
 
@@ -44,6 +44,7 @@ function Header({ cartlength }) {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      
     };
   }, [prevScrollPos]);
 
@@ -51,7 +52,7 @@ function Header({ cartlength }) {
     if (window.visualViewport.width < 780) {
       navMenus.current.style.translate = "-100vw";
     }
-    setOverlayVisibility(false)
+    setOverlayVisibility(false);
     // Overlay.current.style.display = "none";
     // document.body.style.overflow = "unset";
   };
@@ -83,45 +84,44 @@ function Header({ cartlength }) {
             style={{ display: "none" }}
             onClick={() => {
               navMenus.current.style.translate = "0vw";
-              setOverlayVisibility(true)
+              setOverlayVisibility(true);
             }}
           >
             <RxHamburgerMenu size="25px" />
           </div>
 
           <div id="search-icon">
-          <FiSearch size={"20px"}/>
+            <FiSearch size={"20px"} />
           </div>
 
           <div id="logo">
-            <img
+            {/* <img
               src="https://overlays.co/cdn/shop/files/Overlays_LOGO_150x150_02d0e0fb-6b69-4a21-902d-32c59760e50c_150x.jpg?v=1713180477"
               alt=""
               loading="eager"
-              
+            /> */}
+            <img
+            
+              src="/logo1.jpg"
+              alt=""
+              loading="eager"
             />
-            {/* <h1 style={{fontFamily:' "Lobster", sans-serif',fontWeight:'400',fontStyle:'normal',fontSize:'40px'}}>Outliers.</h1> */}
+            {/* <h1 style={{fontWeight:'650',fontStyle:'normal',fontSize:'40px',color:'black'}}>Otlrs</h1> */}
           </div>
 
           {/* style={(!isNavbarVisible && window.visualViewport.width<780)?{transform:'translateY(8.6vh)'}:{}} */}
-          
-          
 
           <div id="cart">
             <div id="cart-icon">
               {" "}
-              <Link  onClick={()=>{
-                
-                setOverlayVisibility(true)
-                // cartRef.current.style.translate = "100vw";
-                // cartRef.current.style.display = "flex";
-                cartRef.current.style.translate = "0";
-
-                
-                
-                
-                
-              }}>
+              <Link
+                onClick={() => {
+                  setOverlayVisibility(true);
+                  // cartRef.current.style.translate = "100vw";
+                  // cartRef.current.style.display = "flex";
+                  cartRef.current.style.translate = "0";
+                }}
+              >
                 {" "}
                 <BsCart3
                   color="black"
@@ -134,37 +134,34 @@ function Header({ cartlength }) {
               <div id="cart-counter">{cartlength}</div>{" "}
             </div>
           </div>
-
-
         </div>
 
-
         <div id="navbar-elems">
-            <ul id="navlinks">
-              <li onClick={closeMenu} className="navlinks">
-                <Link to="/">Home</Link>
-              </li>
-              <li onClick={closeMenu} className="navlinks">
-                <Link to="">Shop All</Link>
-              </li>
+          <ul id="navlinks">
+            <li onClick={closeMenu} className="navlinks">
+              <Link to="/">Home</Link>
+            </li>
+            <li onClick={closeMenu} className="navlinks">
+              <Link to="">Shop All</Link>
+            </li>
 
-              <li onClick={closeMenu} className="navlinks">
-                <Link to="">Men</Link>
-              </li>
+            <li onClick={closeMenu} className="navlinks">
+              <Link to="">Men</Link>
+            </li>
 
-              <li onClick={closeMenu} className="navlinks">
-                <Link to="">Sale</Link>
-              </li>
+            <li onClick={closeMenu} className="navlinks">
+              <Link to="">Sale</Link>
+            </li>
 
-              <li onClick={closeMenu} className="navlinks">
-                <Link to="">Oversized</Link>
-              </li>
+            <li onClick={closeMenu} className="navlinks">
+              <Link to="">Oversized</Link>
+            </li>
 
-              <li onClick={closeMenu} className="navlinks">
-                <Link to="">Contact Us</Link>
-              </li>
-            </ul>
-          </div>
+            <li onClick={closeMenu} className="navlinks">
+              <Link to="">Contact Us</Link>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div
@@ -177,8 +174,7 @@ function Header({ cartlength }) {
             <RxCross1
               onClick={() => {
                 navMenus.current.style.translate = "-100vw";
-                setOverlayVisibility(false)
-              
+                setOverlayVisibility(false);
               }}
               size="25px"
             />
@@ -235,13 +231,11 @@ function Header({ cartlength }) {
                 fontSize: "20px",
                 display: "flex",
                 justifyContent: "start",
-                paddingInline:'24px',
+                paddingInline: "24px",
                 alignItems: "center",
               }}
             >
-              {isUserLogged === true && (
-                <SlLogout size="20px" />
-              )}{" "}
+              {isUserLogged === true && <SlLogout size="20px" />}{" "}
               {isUserLogged === true ? (
                 <p>Log Out</p>
               ) : (

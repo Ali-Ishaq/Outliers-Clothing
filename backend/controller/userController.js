@@ -30,8 +30,8 @@ const userLogIn = async (req, res) => {
         res.cookie(cookieName, token, {
           httpOnly: true,
           expires: expirationDate,
-          // sameSite: "None",
-          // secure: true,
+          sameSite: "None",
+          secure: true,
           //has to enable these attributes at the time of publishing.
         });
 

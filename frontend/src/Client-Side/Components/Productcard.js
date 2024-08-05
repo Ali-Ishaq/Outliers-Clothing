@@ -223,7 +223,7 @@ function ProductCard({ productsDb }) {
             
             </div>
 
-            <h1 id="productprice"> $ {product.price}</h1>
+            <h1 id="productprice"> Rs {product.price}</h1>
             {/* <div id="reviewStars">
               <div id="stars"></div>
             </div> */}

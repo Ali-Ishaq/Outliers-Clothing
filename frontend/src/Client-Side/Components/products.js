@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { hooksContext } from "../Contexts/hooksContext";
 import { RxCross1 } from "react-icons/rx";
+import ReactSlider from "react-slider";
+
 
 function Products({ productsDb }) {
   const [products, setProducts] = useState(null);
@@ -17,8 +19,10 @@ function Products({ productsDb }) {
   const productFilterRef = useRef();
   const sortArrowDirection = useRef(false);
   const arrowRef = useRef();
+  const filterArrowRef = useRef([]);
   const sortDrawerRef = useRef();
   const sortDrawerMobileRef = useRef();
+  const filterDrawerMobileRef = useRef();
   const [sortValue, setSortValue] = useState("Best selling");
 
   const rangeSelectorRef = useRef();
@@ -28,6 +32,8 @@ function Products({ productsDb }) {
   const { setOverlayVisibility } = useContext(hooksContext);
   const [thumb1X, setThumb1X] = useState(0);
   const [thumb2X, setThumb2X] = useState(190);
+
+  const [rangeSelectorValue, setRangeSelectorValue] = useState([0, 3000]);
 
   // experiment
 
@@ -123,12 +129,25 @@ function Products({ productsDb }) {
 
   const sortDrawerToggle = (status) => {
     if (status === "close") {
-      sortDrawerMobileRef.current.style.translate='';
+      sortDrawerMobileRef.current.style.translate = "";
       document.body.style.overflow = "";
 
       setOverlayVisibility(false);
     } else {
-      sortDrawerMobileRef.current.style.translate='0 0%';
+      sortDrawerMobileRef.current.style.translate = "0 0%";
+      document.body.style.overflow = "hidden";
+      setOverlayVisibility(true);
+    }
+  };
+
+  const filterDrawerToggle = (status) => {
+    if (status === "close") {
+      filterDrawerMobileRef.current.style.translate = "";
+      document.body.style.overflow = "";
+
+      setOverlayVisibility(false);
+    } else {
+      filterDrawerMobileRef.current.style.translate = "0";
       document.body.style.overflow = "hidden";
       setOverlayVisibility(true);
     }
@@ -136,6 +155,46 @@ function Products({ productsDb }) {
 
   const handleProductSort = (e) => {
     setSortValue(e.target.value);
+  };
+
+  const filterArrowHandle = (index) => {
+    
+
+    switch (index) {
+      case 0:
+        if (filterArrowRef.current[index].style.transform == "rotateZ(0deg)") {
+          filterArrowRef.current[index].style.transform = "rotateZ(180deg)";
+          filterArrowRef.current[index].parentNode.parentNode.style.height =
+            "154px";
+        } else {
+          filterArrowRef.current[index].style.transform = "rotateZ(0deg)";
+          filterArrowRef.current[index].parentNode.parentNode.style.height = "";
+        }
+        break;
+      case 1:
+        if (filterArrowRef.current[index].style.transform == "rotateZ(0deg)") {
+          filterArrowRef.current[index].style.transform = "rotateZ(180deg)";
+          filterArrowRef.current[index].parentNode.parentNode.style.height ="154px";
+        } else {
+          filterArrowRef.current[index].style.transform = "rotateZ(0deg)";
+          filterArrowRef.current[index].parentNode.parentNode.style.height = "";
+        }
+        break;
+      case 2:
+        if (filterArrowRef.current[index].style.transform == "rotateZ(0deg)") {
+          filterArrowRef.current[index].style.transform = "rotateZ(180deg)";
+          filterArrowRef.current[index].parentNode.parentNode.style.height =
+            "154px";
+        } else {
+          filterArrowRef.current[index].style.transform = "rotateZ(0deg)";
+          filterArrowRef.current[index].parentNode.parentNode.style.height = "";
+        }
+        break;
+
+      default:
+        break;
+    }
+
   };
   // setTimeout(()=>{
   //      setProducts(productsDb)
@@ -168,7 +227,13 @@ function Products({ productsDb }) {
 
       <div className="sort-filter-conatiner-mobile-view">
         <div className="filter-mobile-view">
-          <h1>Filters</h1>
+          <h1
+            onClick={() => {
+              filterDrawerToggle("open");
+            }}
+          >
+            Filters
+          </h1>
         </div>
         <div className="sort-mobile-view">
           <h1
@@ -178,101 +243,122 @@ function Products({ productsDb }) {
           >
             Sort by
           </h1>
-
-          
         </div>
       </div>
 
-      <div className="product-sort-drawer-mobile-view" ref={sortDrawerMobileRef}>
-            <div className="product-sort-drawer-close">
-              <RxCross1
-                onClick={() => {
-                  sortDrawerToggle("close");
-                }}
-              />
-              <p
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  fontSize: "18px",
-                }}
-              >
-                Sort by
-              </p>
-            </div>
+      <div
+        className="product-sort-drawer-mobile-view"
+        ref={sortDrawerMobileRef}
+      >
+        <div className="product-sort-drawer-close">
+          <RxCross1
+            onClick={() => {
+              sortDrawerToggle("close");
+            }}
+          />
+          <p
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              fontSize: "18px",
+            }}
+          >
+            Sort by
+          </p>
+        </div>
 
-            <div className="product-sort-drawer">
-              <button
-                onClick={handleProductSort}
-                value={"Featured"}
-                className="product-sort-btns"
-              >
-                Featured
-              </button>
-              <button
-                onClick={handleProductSort}
-                value={"Best selling"}
-                className="product-sort-btns"
-              >
-                Best selling
-              </button>
-              <button
-                onClick={handleProductSort}
-                value={"Alphabetically, A-Z"}
-                className="product-sort-btns"
-              >
-                Alphabetically, A-Z
-              </button>
-              <button
-                onClick={handleProductSort}
-                value={"Alphabetically, Z-A"}
-                className="product-sort-btns"
-              >
-                Alphabetically, Z-A
-              </button>
-              <button
-                onClick={handleProductSort}
-                value={"Price, low to high"}
-                className="product-sort-btns"
-              >
-                Price, low to high
-              </button>
-              <button
-                onClick={handleProductSort}
-                value={"Price, high to low"}
-                className="product-sort-btns"
-              >
-                Price, high to low
-              </button>
-              <button
-                onClick={handleProductSort}
-                value={"Date, old to new"}
-                className="product-sort-btns"
-              >
-                Date, old to new
-              </button>
-              <button
-                onClick={handleProductSort}
-                value={"Date, new to old"}
-                className="product-sort-btns"
-              >
-                Date, new to old
-              </button>
-            </div>
-          </div>
+        <div className="product-sort-drawer">
+          <button
+            onClick={handleProductSort}
+            value={"Featured"}
+            className="product-sort-btns"
+          >
+            Featured
+          </button>
+          <button
+            onClick={handleProductSort}
+            value={"Best selling"}
+            className="product-sort-btns"
+          >
+            Best selling
+          </button>
+          <button
+            onClick={handleProductSort}
+            value={"Alphabetically, A-Z"}
+            className="product-sort-btns"
+          >
+            Alphabetically, A-Z
+          </button>
+          <button
+            onClick={handleProductSort}
+            value={"Alphabetically, Z-A"}
+            className="product-sort-btns"
+          >
+            Alphabetically, Z-A
+          </button>
+          <button
+            onClick={handleProductSort}
+            value={"Price, low to high"}
+            className="product-sort-btns"
+          >
+            Price, low to high
+          </button>
+          <button
+            onClick={handleProductSort}
+            value={"Price, high to low"}
+            className="product-sort-btns"
+          >
+            Price, high to low
+          </button>
+          <button
+            onClick={handleProductSort}
+            value={"Date, old to new"}
+            className="product-sort-btns"
+          >
+            Date, old to new
+          </button>
+          <button
+            onClick={handleProductSort}
+            value={"Date, new to old"}
+            className="product-sort-btns"
+          >
+            Date, new to old
+          </button>
+        </div>
+      </div>
 
       <div ref={productListRef} className="products-list">
-        <div className="product-list-filter-container">
+        <div
+          className="product-list-filter-container"
+          ref={filterDrawerMobileRef}
+        >
           <div ref={productFilterRef} className="product-list-filter-wrapper">
             <div className="filter-container-heading">
               <h1>Filters</h1>
+              <RxCross1
+                style={{ display: "none" }}
+                size={"20px"}
+                onClick={() => {
+                  filterDrawerToggle("close");
+                }}
+              />
             </div>
 
             <div className="filter-types">
               <div className="filter-types-heading-container">
                 <h1>Price</h1>
-                <svg focusable="false" width="12" height="8" viewBox="0 0 12 8">
+                <svg
+                  focusable="false"
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  ref={(el) => (filterArrowRef.current[0] = el)}
+                  style={{ transform: "rotateZ(0deg)" }}
+                  onClick={() => {
+                    filterArrowHandle(0);
+                  }}
+                >
                   <path
                     fill="none"
                     d="M1 1l5 5 5-5"
@@ -281,36 +367,45 @@ function Products({ productsDb }) {
                   ></path>
                 </svg>
               </div>
-              <div ref={rangeSelectorRef} className="price-range-selector">
-                <motion.span
-                  ref={rangeSelectorThumb1Ref}
-                  drag="x"
-                  // dragConstraints={{ left: 0, right: thubmb1x, top: 0, bottom: 0 }}
-                  dragConstraints={rangeSelectorRef}
-                  dragElastic={0}
-                  dragMomentum={false}
-                  onDrag={(e, info) => {
-                    const newX = Math.min(info.point.x, thumb2X - 10); // Ensure thumb1 does not cross thumb2
-                    setThumb1X(newX);
-                  }}
-                  className="range-selector-thumbs"
-                ></motion.span>
 
-                <motion.span
-                  drag="x"
-                  // dragConstraints={{ left: thubmb2x, right: 0, top: 0, bottom: 0 }}
-                  dragConstraints={rangeSelectorRef}
-                  dragElastic={0}
-                  dragMomentum={false}
-                  ref={rangeSelectorThumb2Ref}
-                  className="range-selector-thumbs"
-                ></motion.span>
+              <div className="price-range-selector">
+                <ReactSlider
+                  defaultValue={[0, 100]}
+                  onChange={(values, index) => {
+                    setRangeSelectorValue(values);
+                  }}
+                  className="h-slider"
+                  thumbClassName="e-thumb"
+                  trackClassName="e-track"
+                />
+                <div className="range-selector-value-display">
+                  <p>
+                    Rs{" "}
+                    <input type="number" value={rangeSelectorValue[0] * 30} />
+                  </p>
+                  <span>to</span>
+
+                  <p>
+                    Rs{" "}
+                    <input type="number" value={rangeSelectorValue[1] * 30} />
+                  </p>
+                </div>
               </div>
             </div>
             <div className="filter-types">
               <div className="filter-types-heading-container">
                 <h1>Product type</h1>
-                <svg focusable="false" width="12" height="8" viewBox="0 0 12 8">
+                <svg
+                  focusable="false"
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  ref={(el) => (filterArrowRef.current[1] = el)}
+                  style={{ transform: "rotateZ(0deg)" }}
+                  onClick={() => {
+                    filterArrowHandle(1);
+                  }}
+                >
                   <path
                     fill="none"
                     d="M1 1l5 5 5-5"
@@ -323,7 +418,17 @@ function Products({ productsDb }) {
             <div className="filter-types">
               <div className="filter-types-heading-container">
                 <h1>Size</h1>
-                <svg focusable="false" width="12" height="8" viewBox="0 0 12 8">
+                <svg
+                  focusable="false"
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  ref={(el) => (filterArrowRef.current[2] = el)}
+                  style={{ transform: "rotateZ(0deg)" }}
+                  onClick={() => {
+                    filterArrowHandle(2);
+                  }}
+                >
                   <path
                     fill="none"
                     d="M1 1l5 5 5-5"
@@ -436,6 +541,8 @@ function Products({ productsDb }) {
                   ></ProductUI>
                 ))
               : productSkeleton.map((details, index) => <ProductUISkeleton />)}
+
+      
           </div>
         </div>
       </div>

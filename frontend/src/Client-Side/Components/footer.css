@@ -46,13 +46,11 @@
     overflow: hidden;
     align-items: center;
 }
-#footer-logo .svg {
-    height: 65%;
-    aspect-ratio: 1/1;
+#footer-logo img {
     mix-blend-mode:lighten;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width:80%;
+    
+    translate: -8%;
 
 }
 
@@ -187,8 +185,13 @@ height: 15%;
         
        
     }
-    #footer-logo img{
-        height: 65%;
+   
+    #footer-logo img {
+        mix-blend-mode:lighten;
+        width:70%;
+        /* transform: translateX(0); */
+        translate: 0 2%;
+    
     }
     #social-icons{
         /* background-color: aqua; */

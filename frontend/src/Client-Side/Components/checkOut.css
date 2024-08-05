@@ -7,7 +7,6 @@
   font-family: "Jost", sans-serif;
 }
 div#CheckOutPage {
-
   display: flex;
   width: 100vw;
   background-color: black;
@@ -21,11 +20,10 @@ div#CheckOutPage {
 
   position: absolute;
   top: 0;
-  z-index: 5;
+  z-index: 4;
   /* overflow: hidden; */
   margin: 0px;
 }
-
 
 div#orderOverview {
   width: 40%;
@@ -37,19 +35,16 @@ div#orderOverview {
   align-items: center;
   /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
   border-radius: 10px;
-  
-  
+
   height: 100vh;
   background-color: #f6f3ed;
   position: sticky;
   top: 0;
-  
-border-radius: 0;
+
+  border-radius: 0;
 }
 
-
 div#orderCartView {
-  
   width: 100%;
   /* background-color: aqua; */
   flex: 1;
@@ -68,7 +63,7 @@ div#orderCartView::-webkit-scrollbar-thumb {
 }
 div#orderCalculation {
   width: 100%;
-  
+
   /* background-color: skyblue; */
   gap: 10px;
   align-self: flex-end;
@@ -80,13 +75,11 @@ div#orderCalculation {
 }
 div#dueAmount {
   width: 100%;
-  
+
   display: flex;
 
   align-items: center;
 
-  
-  
   /* background-color:rgb(230, 248, 255); */
   height: 50px;
 }
@@ -95,8 +88,8 @@ div#checkOutDetails {
   width: 500px;
 
   background-color: white;
-  padding: 20px 30px ;
-  
+  padding: 20px 30px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,11 +100,9 @@ div#checkOutDetails {
   /* height: 100%; */
   /* overflow: scroll; */
   border-radius: 0;
-  
 }
 
 div#checkOutDetails h1 {
- 
   margin-bottom: 35px;
   font-weight: 400;
   display: flex;
@@ -168,18 +159,17 @@ div.deliveryOption {
   width: 100%;
   height: 50%;
   background-color: rgb(213, 242, 253);
-  
 }
 
 .deliveryPrice {
   padding: 15px;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 25%;
-  h2{
+  h2 {
     font-weight: 500;
   }
 }
@@ -226,7 +216,95 @@ div.deliveryOption {
   color: black;
 }
 
-button#saveAddres{
+button#saveAddres {
+  width: 100%;
+  border: 0px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  font-size: 18px;
+  /* font-weight: 600; */
+  align-self: center;
+  color: white;
+  transition: all ease 0.3s;
+  height: 50px;
+}
+
+button#saveAddres:hover {
+  /* background-color: rgb(124, 241, 7); */
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.534);
+}
+button#saveAddres:active {
+  scale: 0.9;
+}
+
+.promo-code-container {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    height: 40px;
+    width: 70%;
+    padding-inline-start: 10px;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+  }
+  button {
+    width: 20%;
+    background-color: #f0eadf;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+  }
+}
+
+.order-summary-expandable-drawer {
+  display: none;
+}
+
+.order-processing-window {
+  width: min(350px, 90vw);
+
+  aspect-ratio: 7/10;
+  background-color: white;
+  position: fixed;
+  top: 50dvh;
+  transform: translateY(-50%);
+  z-index: 7;
+  padding: 40px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 7px;
+  img {
+    height: 60px;
+    width: 60px;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: 26px;
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: 400;
+    /* translate: 0px 10px; */
+    }
+    p {
+      font-size: 13px;
+      text-align: justify;
+      
+      
+    color: #807e7e;
+    font-weight: 350;
+    margin-bottom: 10px;
+  }
+  button {
     width: 100%;
     border: 0px;
     border-radius: 3px;
@@ -239,113 +317,88 @@ button#saveAddres{
     align-self: center;
     color: white;
     transition: all ease 0.3s;
-    height: 50px;
-
-}
-
-
-button#saveAddres:hover{
-  /* background-color: rgb(124, 241, 7); */
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.534);
-
-}
-button#saveAddres:active{
-  scale: 0.9;
-}
-
-.promo-code-container{
-  width: 100%;
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  
-  input{
-    height: 40px;
-    width: 70%;
-    padding-inline-start: 10px;
-    border: 1px solid #dedede;
-    border-radius: 3px;
-    }
-    button{
-      width: 20%;
-      background-color: #f0eadf;
-      border: 1px solid #dedede;
-      border-radius: 3px;
-    
+    height: 45px;
   }
-}
+  button:hover {
+    /* background-color: rgb(124, 241, 7); */
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.534);
+  }
 
-.order-summary-expandable-drawer{
-  display: none;
+  button:active {
+    scale: 0.9;
+  }
+
+  a {
+    font-size: 13px;
+    color: #807e7e;
+    }
 }
 
 @media (max-width: 1000px) {
   div#orderOverview,
-  div#checkOutDetails{
+  div#checkOutDetails {
     width: 50%;
   }
 }
 
 @media (max-width: 800px) {
   div#CheckOutPage {
-   flex-direction: column;
-   align-items: center;
+    flex-direction: column;
+    align-items: center;
 
-   h1{
-    font-weight: 400;
-    font-size: 16px;
-   }
-   
+    h1 {
+      font-weight: 400;
+      font-size: 16px;
+    }
   }
 
-  .order-summary-expandable-drawer{
-    display:flex;
+  .order-summary-expandable-drawer {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
     padding-block: 15px;
-    padding-inline:10px ;
-     background-color: #f6f3ed;
+    padding-inline: 10px;
+    background-color: #f6f3ed;
 
-     .orderVisibilitybtn{
+    .orderVisibilitybtn {
       width: 30px;
-      
+
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       border: 0px;
       background-color: transparent;
-       
-      svg{
+
+      svg {
         width: 60%;
         height: 90%;
         transition: 0.2s;
       }
-     }
-
+    }
   }
 
   div#orderOverview,
   div#checkOutDetails,
   div#checkOutCard {
-    width: min(100%,500px);
+    width: min(100%, 500px);
     position: relative;
     /* overflow: unset; */
   }
-  div#checkOutDetails::after,div#orderOverview::after{
-    content: '';
+  div#checkOutDetails::after,
+  div#orderOverview::after {
+    content: "";
     z-index: -1;
-    
+
     position: absolute;
     width: 100vw;
     height: 100%;
     top: 0;
     background-color: white;
-
   }
 
-  div#orderOverview::after{
+  div#orderOverview::after {
     background-color: #f6f3ed;
   }
   div#orderOverview {
@@ -356,20 +409,17 @@ button#saveAddres:active{
     overflow: hidden;
     transition: 0.5s;
     position: static;
-   
-    
-    
   }
-  h1.orderOverview-main-heading{
-    display: none ;
+  h1.orderOverview-main-heading {
+    display: none;
   }
 
   div#orderCalculation {
-    p{
+    p {
       font-size: 14px !important;
     }
-    }
-    p.calcprices {
+  }
+  p.calcprices {
     font-size: 18px !important;
   }
   .calcsubprice {
@@ -378,17 +428,14 @@ button#saveAddres:active{
   }
   div#dueAmount {
     justify-content: flex-end;
-    
-    p{
+
+    p {
       font-size: 18px !important;
     }
-    
-    
   }
   button#continueShopping {
     display: none;
   }
-  
 
   div#orderCartView {
     height: 280px;
@@ -413,18 +460,14 @@ button#saveAddres:active{
   }
 
   div#checkOutDetails {
-    
-    padding: 20px 10px ;
+    padding: 20px 10px;
     order: 1;
-    
   }
   div#checkOutDetails h1 {
- 
     margin-bottom: 35px;
     font-weight: 400;
     font-size: 25px;
     text-align: start;
-   
   }
 
   .deliveryDetails #p1 {
@@ -452,5 +495,40 @@ button#saveAddres:active{
     justify-content: center;
     align-items: flex-start;
     width: 55%;
+  }
+
+  .order-processing-window {
+    aspect-ratio: 6/10;
+    padding-inline:30px ;
+    
+    img {
+      height: 60px;
+      width: 60px;
+    }
+  
+    h1 {
+      
+      font-size: 28px;
+    }
+    h2 {
+      font-size: 16px;
+      
+      /* translate: 0px 10px; */
+      }
+      p {
+        font-size: 14px;
+        
+    }
+    
+    
+  
+    button:active {
+      scale: 0.9;
+    }
+  
+    a {
+      font-size: 14px;
+    
+      }
   }
 }

@@ -13,11 +13,11 @@ function Footer() {
     <div id="logo-section">
         <div id="footer-logo">
           
-          <div className="svg">
           
-          <img src="https://res.cloudinary.com/drwizlf0y/image/upload/v1705763032/TrendFlare/vecteezy_creative-letter-t-f-elegant-monogram-logo_10858087_1_av2dvq.jpg" alt="" style={{height:'100%'}} />
-
-          </div>
+          
+          <img src="/logo2.jpg" alt=""  />
+    {/* <h1 style={{fontSize:'500%'}}>Otlrs</h1> */}
+          
         </div>
         <div id="social-icons">
           <h1>Follow Us</h1>
@@ -44,7 +44,7 @@ function Footer() {
           <div className="contact-icon"><IoLocationSharp size={'30px'} color="#F3F3F4"/></div>
             <div className="contact-paras">
               <p >Find us</p>
-              <p>42 Willow Lane, Apt 5B, Maplewood Heights, Pineville, United States</p>
+              <p>42 Willow Lane, Apt 5B, Maplewood Heights, Karachi, Pakistan</p>
             </div>
         
         </div>
@@ -53,7 +53,7 @@ function Footer() {
             <div className="contact-paras">
               {" "}
               <p>Call us</p>
-              <p>+92 3859820726</p>
+              <p>+92 3313894077</p>
             </div>
         
         </div>
@@ -61,7 +61,7 @@ function Footer() {
           <div className="contact-icon"><IoMailSharp size={'30px'} color="#F3F3F4"/></div>
             <div className="contact-paras">
               <p>Mail us</p>
-              <p>TrendFlare@gmail.com</p>
+              <p>outliers.clothing@gmail.com</p>
             </div>
          
         </div>
@@ -69,7 +69,7 @@ function Footer() {
     </div>
 
     <div id="footer-section-2">
-         <a style={{textDecoration:'none'}} href="https://TrendFlare.com/"><h1>© Copyright 2023 TrendFlare All Rights Reserved</h1></a>
+         <a style={{textDecoration:'none'}} href="https://portfolio-ali-ishaq.vercel.app/" target="_blank"><h1>© Copyright 2023 Outliers Clothing All Rights Reserved</h1></a>
         
     </div>
   

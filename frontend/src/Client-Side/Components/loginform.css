@@ -6,10 +6,12 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
 }
 
+
 div#login_form_parent {
-  font-family: "Noto Sans JP", sans-serif;
   width: 100vw;
   /* margin-block: 2rem; */
   padding-inline: 2rem;
@@ -97,14 +99,14 @@ div#heading {
 div#heading h1 {
   /* font-family: 'Alfa Slab One'; */
   position: relative;
-  font-size: 300%;
-  font-weight: 100;
+  font-size: 50px;
+  font-weight: 450;
 
   color: rgba(0, 0, 0, 0.336);
 
   font-family: "Jost", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 800;
+  
   font-style: normal;
 }
 button#submit_btn,
@@ -169,8 +171,8 @@ button#logoutbtn:hover {
     /* font-family: 'Alfa Slab One'; */
     position: relative;
 
-    font-weight: 100;
-    letter-spacing: 2px;
+
+
     color: rgb(61, 60, 60);
   }
 }
